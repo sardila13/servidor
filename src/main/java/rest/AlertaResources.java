@@ -37,16 +37,17 @@ public class AlertaResources {
     
     private AlertaLogic logic = new AlertaLogic();
     
-    //Requerimiento 1 Recibe info de los sensores...
     /**
-     * TODO Requerimiento 1 Recibe una alerta.
+     * TODO Requerimiento 1 Recibe una alerta del dispositivo con id...
      * @param alerta
      * @return alerta
      */
     @POST
-    public AlertaDTO createAlerta(AlertaDTO alerta)  
+    @Path("{idDispositivo: \\d+}")
+
+    public AlertaDTO createAlerta(@PathParam("idDispositivo") int idDispositivo, AlertaDTO alerta)  
     {
-        return logic.crearAlerta(alerta);
+        return logic.crearAlerta(alerta,idDispositivo);
     }
     /**
      * Metodo que permite obtener la estructura de los json de alerta
@@ -58,7 +59,7 @@ public class AlertaResources {
         Long [] pos = new Long[2];
         pos[0]=8l;
         pos[1]=7l;
-        return new AlertaDTO(10, 120, 1, 1, "descrip", pos, 0, new Date());
+        return new AlertaDTO(10,20, 120, 1, 1, "descrip", pos, 0, new Date());
     }
     
 }

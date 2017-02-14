@@ -6,7 +6,9 @@
 package mock;
 
 import dto.AlertaDTO;
+import dto.PacienteDTO;
 import java.util.List;
+import logica.ejb.PacienteLogic;
 
 /**
  *
@@ -14,11 +16,7 @@ import java.util.List;
  */
 public class AlertaMock
 {
-
-    public AlertaDTO create(AlertaDTO alerta)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    PacienteLogic pacienteLogic = new PacienteLogic();
 
     public AlertaDTO get(int pId)
     {
@@ -39,5 +37,13 @@ public class AlertaMock
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    public AlertaDTO create(AlertaDTO alerta, int idDispositivo)
+    {
+        PacienteDTO p =pacienteLogic.buscarPacientePorIdDispositivo(idDispositivo);
+                p.agregarAlerta(alerta);
+        return alerta;
+        
+    }
+                           
 }

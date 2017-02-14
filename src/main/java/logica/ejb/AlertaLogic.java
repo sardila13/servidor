@@ -25,17 +25,6 @@ public class AlertaLogic implements IAlertaLogic
         persistence = new AlertaMock();
     }
     
-    public AlertaDTO crearAlerta(AlertaDTO alerta)
-    {
-        //TODO Requerimiento 2
-        if(alerta.getFrecuenciaCardica()>10 )
-        {
-            alerta.setTipo(AlertaDTO.EMERGENCIA);
-            hospitalLogicMock.notificarEmergencia(alerta);
-        }
-        return persistence.create(alerta);
-    }
-    
     public AlertaDTO buscarAlerta(int pId)
     {   
         return persistence.get(pId);
@@ -60,5 +49,18 @@ public class AlertaLogic implements IAlertaLogic
     public AlertaDTO buscarAlerta(Long id)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public AlertaDTO crearAlerta(AlertaDTO alerta, int idDispositivo)
+    {
+//TODO Requerimiento 2
+        if(alerta.getFrecuenciaCardica()>100 ||  alerta.getFrecuenciaCardica()<60
+                || alerta.getPresionSanguinea()[0]>140 || alerta.getPresionSanguinea()[1]>90
+                || alerta.getNivelEstres()>70)
+        {
+            alerta.setTipo(AlertaDTO.EMERGENCIA);
+            hospitalLogicMock.notificarEmergencia(alerta);
+        }
+        return persistence.create(alerta, idDispositivo);
     }
 }

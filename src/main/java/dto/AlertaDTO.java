@@ -15,7 +15,7 @@ public class AlertaDTO
 {
 
     public final static int EMERGENCIA=1;
-    private int presionSanguinea;
+    private int[] presionSanguinea;
     private int frecuenciaCardica;
     private int nivelEstres;
     private int id;
@@ -29,9 +29,11 @@ public class AlertaDTO
         
     }
     
-    public AlertaDTO(int pre, int fre, int id, int tip, String des, Long[] ubi, int nivelEstres, Date fecha)
+    public AlertaDTO(int preSistolico, int preDistolico, int fre, int id, int tip, String des, Long[] ubi, int nivelEstres, Date fecha)
     {
-        this.presionSanguinea = pre;
+        presionSanguinea = new int[2];
+        this.presionSanguinea[0] = preSistolico;
+        this.presionSanguinea[1] = preDistolico;
         this.frecuenciaCardica = fre;
         this.id = id;
         this.tipo = tip;
@@ -81,12 +83,13 @@ public class AlertaDTO
         this.id = id;
     }
 
-    public int getPresionSanguinea() {
+    public int[] getPresionSanguinea() {
         return presionSanguinea;
     }
 
-    public void setPresionSanguinea(int darPresionSanguinea) {
-        this.presionSanguinea = darPresionSanguinea;
+    public void setPresionSanguinea(int pSis, int pDist) {
+        this.presionSanguinea[0] = pSis;
+        this.presionSanguinea[1]=pDist;
     }
 
     public int getNivelEstres() {
