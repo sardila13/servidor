@@ -8,7 +8,6 @@ package rest;
 
 
 import dto.AlertaDTO;
-import java.util.Date;
 import java.util.List;
 import javax.ws.rs.Consumes;
 
@@ -35,31 +34,14 @@ import logica.ejb.AlertaLogic;
 
 public class AlertaResources {
     
-    private AlertaLogic logic = new AlertaLogic();
+    private AlertaLogic logic;
     
-    /**
-     * TODO Requerimiento 1 Recibe una alerta del dispositivo con id...
-     * @param alerta
-     * @return alerta
-     */
+    //Requerimiento 1 Recibe info de los sensores...
     @POST
-    @Path("{idDispositivo: \\d+}")
-
-    public AlertaDTO createAlerta(@PathParam("idDispositivo") int idDispositivo, AlertaDTO alerta)  
+    public AlertaDTO createAlerta(AlertaDTO alerta)  
     {
-        return logic.crearAlerta(alerta,idDispositivo);
-    }
-    /**
-     * Metodo que permite obtener la estructura de los json de alerta
-     * @return un ejemplo del json alert
-     */
-    @GET
-    public AlertaDTO darAlertaEjemplo()
-    {
-        Long [] pos = new Long[2];
-        pos[0]=8l;
-        pos[1]=7l;
-        return new AlertaDTO(10,20, 120, 1, 1, "descrip", pos, 0, new Date());
+        
+        return logic.crearAlerta(alerta);
     }
     
 }

@@ -5,7 +5,9 @@
  */
 package mock;
 
-import dto.PacienteDTO;
+import dto.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -13,30 +15,78 @@ import dto.PacienteDTO;
  */
 public class PacienteMock
 {
+    
+    private ArrayList<PacienteDTO> dtos;
 
+    public PacienteMock(){
+        dtos = new ArrayList<PacienteDTO>();
+        dtos.add(new PacienteDTO("Brandon", 1L, 18, null, null, null, null, null));
+        dtos.add(new PacienteDTO("German", 2L, 19, null, null, null, null, null));
+        dtos.add(new PacienteDTO("Sebastian", 3L, 20, null, null, null, null, null));
+    }
+    
     public PacienteDTO create(PacienteDTO paciente)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Long max = 0L;
+        
+        for (Iterator<PacienteDTO> iterator = dtos.iterator(); iterator.hasNext();) {
+            PacienteDTO next = iterator.next();
+            if(max < next.getId())
+                max = next.getId();
+        }        
+        Long newId = max + 1L;
+        paciente.setId(newId);
+        
+        dtos.add(paciente);
+        return dtos.get(dtos.size()-1);
     }
 
     public void put(Long id, PacienteDTO paciente)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean encontrado = false;
+        int i;
+        for (i = 0; i < dtos.size() && !encontrado; i++) {
+            PacienteDTO dto = dtos.get(i);
+            if(dto.getId() == id){
+                encontrado = true;
+                dtos.set(i, paciente);
+
+            }
+        }
     }
 
     public void delete(Long id)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean encontrado = false;
+        int i;
+        for (i = 0; i < dtos.size() && !encontrado; i++) {
+            PacienteDTO dto = dtos.get(i);
+            if(dto.getId() == id){
+                encontrado = true;
+                dtos.remove(i);    
+            }
+        }
+            
     }
 
-    public PacienteDTO[] getAll()
+    public ArrayList<PacienteDTO> getAll()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dtos;
     }
 
     public PacienteDTO get(Long id)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean encontrado = false;
+        int i;
+        for (i = 0; i < dtos.size() && !encontrado; i++) {
+            PacienteDTO dto = dtos.get(i);
+            if(dto.getId() == id){
+                encontrado = true;
+                return dtos.get(i);
+            }
+        }
+        
+        return null;
     }
     
 }

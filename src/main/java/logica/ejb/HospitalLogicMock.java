@@ -19,8 +19,7 @@ public class HospitalLogicMock implements IHospital
 
     public void notificarEmergencia(AlertaDTO alerta)
     {
-        //TODO
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -32,7 +31,7 @@ public class HospitalLogicMock implements IHospital
             a.setTipo(1);
         }
         //buscar ultimo id de alerta
-        a.setId(7);
+        a.setId(7L);
         
     }
     

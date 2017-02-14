@@ -35,7 +35,7 @@ public class PacienteLogic implements IPaciente {
     }
 
     @Override
-    public PacienteDTO[] darPacientes() {
+    public ArrayList<PacienteDTO> darPacientes() {
         return persistence.getAll();
     }
 
@@ -53,11 +53,6 @@ public class PacienteLogic implements IPaciente {
     {
         //Implementar
         return null;
-    }
-
-    public PacienteDTO buscarPacientePorIdDispositivo(int idDispositivo)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

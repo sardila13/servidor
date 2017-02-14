@@ -14,13 +14,16 @@ import java.util.Date;
 public class AlertaDTO 
 {
 
-    public final static int EMERGENCIA=1;
-    private int[] presionSanguinea;
+    public final static int VERDE = 0;
+    public final static int AMARILLO = 1;
+    public final static int ROJO = 2;
+    
+    private boolean esEmergencia;
+    private int presionSanguinea;
     private int frecuenciaCardica;
     private int nivelEstres;
-    private int id;
+    private Long id;
     private int tipo;
-    private String descripcion;
     private Long[] ubicacion;
     private Date fecha;
     
@@ -29,18 +32,16 @@ public class AlertaDTO
         
     }
     
-    public AlertaDTO(int preSistolico, int preDistolico, int fre, int id, int tip, String des, Long[] ubi, int nivelEstres, Date fecha)
+    public AlertaDTO(boolean pEsEmergencia, int pPresion, int pFrecuancia, Long pId, int pTipo, Long[] pUbicacion, int pNivelEstres, Date pFecha)
     {
-        presionSanguinea = new int[2];
-        this.presionSanguinea[0] = preSistolico;
-        this.presionSanguinea[1] = preDistolico;
-        this.frecuenciaCardica = fre;
-        this.id = id;
-        this.tipo = tip;
-        this.descripcion = des;
-        this.ubicacion = ubi;
-        this.nivelEstres = nivelEstres;
-        this.fecha = fecha;
+        this.esEmergencia = pEsEmergencia;
+        this.presionSanguinea = pPresion;
+        this.frecuenciaCardica = pFrecuancia;
+        this.id = pId;
+        this.tipo = pTipo;
+        this.ubicacion = pUbicacion;
+        this.nivelEstres = pNivelEstres;
+        this.fecha = pFecha;
     }
 
     public int getTipo() {
@@ -49,14 +50,6 @@ public class AlertaDTO
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public Long[] getUbicacion() {
@@ -75,21 +68,20 @@ public class AlertaDTO
         this.frecuenciaCardica = frecuenciaCardica;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int[] getPresionSanguinea() {
+    public int getPresionSanguinea() {
         return presionSanguinea;
     }
 
-    public void setPresionSanguinea(int pSis, int pDist) {
-        this.presionSanguinea[0] = pSis;
-        this.presionSanguinea[1]=pDist;
+    public void setPresionSanguinea(int darPresionSanguinea) {
+        this.presionSanguinea = darPresionSanguinea;
     }
 
     public int getNivelEstres() {
@@ -107,6 +99,15 @@ public class AlertaDTO
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public boolean esEmergencia() {
+        return esEmergencia;
+    }
+
+    public void setEsEmergencia(boolean esEmergencia) {
+        this.esEmergencia = esEmergencia;
+    }
+    
     
     
 }

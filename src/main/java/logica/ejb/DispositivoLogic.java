@@ -6,6 +6,7 @@
 package logica.ejb;
 
 import dto.DispositivoDTO;
+import java.util.ArrayList;
 import logica.interfaces.IDispositivo;
 import mock.DispositivoMock;
 
@@ -32,7 +33,7 @@ public class DispositivoLogic implements IDispositivo {
     }
 
     @Override
-    public DispositivoDTO[] darDispositivos() {
+    public ArrayList<DispositivoDTO> darDispositivos() {
         return persistence.getAll();
     }
 
