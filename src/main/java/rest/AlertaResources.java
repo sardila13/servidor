@@ -8,7 +8,9 @@ package rest;
 
 
 import dto.AlertaDTO;
+import java.util.Date;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -34,5 +36,15 @@ public class AlertaResources
     {
         return logic.crearAlerta(alerta);
     }
+    
+    @GET
+    public AlertaDTO createAlerta()  
+    {
+        Long[] arr= new Long[2];
+        arr[0]=5l;
+        arr[1]=8l;
+        return new AlertaDTO(true, 0, 0, 0, Long.MIN_VALUE, 0, arr, 0, new Date());
+    }
+
     
 }

@@ -8,6 +8,7 @@ package mock;
 import dto.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -16,14 +17,14 @@ import java.util.Iterator;
 public class PacienteMock
 {
     
-    private ArrayList<PacienteDTO> dtos;
+    private List<PacienteDTO> dtos;
 
     public PacienteMock(){
         dtos = new ArrayList<PacienteDTO>();
         dtos.add(new PacienteDTO("Brandon", 1L, 18, null, null, null));
         dtos.add(new PacienteDTO("German", 2L, 19, null, null, null));
         dtos.add(new PacienteDTO("Sebastian", 3L, 20, null, null, null));
-        
+               
     }
     
     public PacienteDTO create(PacienteDTO paciente)
@@ -71,7 +72,7 @@ public class PacienteMock
             
     }
 
-    public ArrayList<PacienteDTO> getAll()
+    public List<PacienteDTO> getAll()
     {
         return dtos;
     }
@@ -89,6 +90,12 @@ public class PacienteMock
         }
         
         return null;
+    }
+
+    @Override
+    public String toString() 
+    {
+        return "PacienteMock{" + "dtos=" + dtos + '}';
     }
     
 }

@@ -7,6 +7,7 @@ package logica.interfaces;
 
 import dto.PacienteDTO;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,7 @@ public interface IPaciente {
     
     public PacienteDTO buscarPaciente(Long id);
     
-    public ArrayList<PacienteDTO> darPacientes();
+    public List<PacienteDTO> darPacientes();
     
     public void eliminarPaciente(Long id);
     

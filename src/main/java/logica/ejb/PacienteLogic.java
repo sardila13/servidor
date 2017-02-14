@@ -10,7 +10,9 @@ import dto.PacienteDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import javafx.scene.control.Alert;
+import javax.ejb.Stateless;
 import logica.interfaces.IPaciente;
 import mock.PacienteMock;
 
@@ -18,6 +20,7 @@ import mock.PacienteMock;
  *
  * @author s.ardila13
  */
+@Stateless
 public class PacienteLogic implements IPaciente {
     
     private PacienteMock persistence;
@@ -37,7 +40,7 @@ public class PacienteLogic implements IPaciente {
     }
 
     @Override
-    public ArrayList<PacienteDTO> darPacientes() {
+    public List<PacienteDTO> darPacientes() {
         return persistence.getAll();
     }
 
@@ -66,5 +69,12 @@ public class PacienteLogic implements IPaciente {
         }
         return r;
     }
+
+    @Override
+    public String toString() {
+        return "PacienteLogic{" + "persistence=" + persistence + '}';
+    }
+    
+    
     
 }

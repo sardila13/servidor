@@ -34,6 +34,7 @@ public class AlertaDTO
     
     public AlertaDTO(boolean pEsEmergencia, int pPresionSistolica, int pPresionDiastolica, int pFrecuancia, Long pId, int pTipo, Long[] pUbicacion, int pNivelEstres, Date pFecha)
     {
+        presionSanguinea= new int[2];
         this.esEmergencia = pEsEmergencia;
         this.presionSanguinea[0] = pPresionSistolica;
         this.presionSanguinea[1] = pPresionDiastolica;

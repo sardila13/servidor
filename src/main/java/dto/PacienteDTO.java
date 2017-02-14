@@ -6,6 +6,7 @@
 package dto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,17 +22,19 @@ public class PacienteDTO {
     
     private DispositivoDTO dispositivo;
     
-    private ArrayList<MedicoDTO> medicos;
+    private List<MedicoDTO> medicos;
     
     private HospitalDTO hospital;
     
     private HistorialDTO historial;
     
-    private ArrayList<AlertaDTO> alertas;
+    private List<AlertaDTO> alertas;
     
-    private ArrayList<String> consejos;
+    private List<String> consejos;
     
-
+    public PacienteDTO()
+    {
+    }
     
     public PacienteDTO(String nombre, Long id, int edad, DispositivoDTO dispositivo, ArrayList<MedicoDTO> medicos, HospitalDTO hospital){
         this.nombre = nombre;
@@ -133,7 +136,7 @@ public class PacienteDTO {
         return dispositivo;
     }
     
-    public ArrayList<MedicoDTO> getMedicos(){
+    public List<MedicoDTO> getMedicos(){
         return medicos;
     }
     
@@ -145,7 +148,7 @@ public class PacienteDTO {
         return historial;
     }
     
-    public ArrayList<AlertaDTO> getAlertas(){
+    public List<AlertaDTO> getAlertas(){
         return alertas;
     }
 
@@ -154,7 +157,7 @@ public class PacienteDTO {
         this.historial = historial;
     }
 
-    public ArrayList<String> getConsejos()
+    public List<String> getConsejos()
     {
         return consejos;
     }
@@ -167,6 +170,11 @@ public class PacienteDTO {
     public void recibirConsejo(String consejo)
     {
         consejos.add(consejo);
+    }
+
+    @Override
+    public String toString() {
+        return "PacienteDTO{" + "nombre=" + nombre + ", id=" + id + ", edad=" + edad + ", dispositivo=" + dispositivo + ", medicos=" + medicos + ", hospital=" + hospital + ", historial=" + historial + ", alertas=" + alertas + ", consejos=" + consejos + '}';
     }
     
     

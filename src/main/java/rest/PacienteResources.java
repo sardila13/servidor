@@ -9,6 +9,9 @@ import dto.HistorialDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,20 +28,19 @@ import logica.ejb.PacienteLogic;
  * @author s.ardila13
  */
 
-@Path("paciente")
-@Produces("application/json")
-
+@Path("/paciente")
+@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
 public class PacienteResources 
 {
-    
-    private PacienteLogic logic;
+
+    private PacienteLogic logic = new PacienteLogic();
     
     //Requerimiento 1 Recibe info de los sensores...
     @GET
-    @Path("historial-fechas")
-    public ArrayList<AlertaDTO> getHistorialPorRango(@PathParam("idPaciente") long idPaciente, @PathParam("fechaInicio") Date fechaInicio, @PathParam("fechaFinal") Date fechaFinal)  
+    @Path("/historial-fechas")
+    public List<AlertaDTO> getHistorialPorRango(@PathParam("idPaciente") long idPaciente, @PathParam("fechaInicio") Date fechaInicio, @PathParam("fechaFinal") Date fechaFinal)  
     {
         return logic.getHistorialPorRango(idPaciente, fechaInicio, fechaFinal);
     }
@@ -51,10 +53,19 @@ public class PacienteResources
     }
     
     @GET
-//  @Path("buscar")
+    @Path("/paciente")
     public PacienteDTO getPaciente(@PathParam("idPaciente")long idPaciente)
     {
         return logic.buscarPaciente(idPaciente);
+    }
+    
+    @GET
+    public List<PacienteDTO> getPacientes()
+    {
+        for (int i = 0; i < logic.darPacientes().size(); i++) {
+            System.out.println(logic.darPacientes().get(i));
+        }
+        return logic.darPacientes();
     }
             
     @PUT
@@ -71,7 +82,7 @@ public class PacienteResources
     
     
     @GET
-    @Path("historial")
+    @Path("/historial")
     public HistorialDTO getHistorialClinico (@PathParam("idPaciente") long idPaciente)
     {
         PacienteDTO p = logic.buscarPaciente(idPaciente);
