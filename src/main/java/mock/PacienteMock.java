@@ -20,9 +20,10 @@ public class PacienteMock
 
     public PacienteMock(){
         dtos = new ArrayList<PacienteDTO>();
-        dtos.add(new PacienteDTO("Brandon", 1L, 18, null, null, null, null, null));
-        dtos.add(new PacienteDTO("German", 2L, 19, null, null, null, null, null));
-        dtos.add(new PacienteDTO("Sebastian", 3L, 20, null, null, null, null, null));
+        dtos.add(new PacienteDTO("Brandon", 1L, 18, null, null, null));
+        dtos.add(new PacienteDTO("German", 2L, 19, null, null, null));
+        dtos.add(new PacienteDTO("Sebastian", 3L, 20, null, null, null));
+        
     }
     
     public PacienteDTO create(PacienteDTO paciente)
@@ -41,7 +42,7 @@ public class PacienteMock
         return dtos.get(dtos.size()-1);
     }
 
-    public void put(Long id, PacienteDTO paciente)
+    public PacienteDTO put(Long id, PacienteDTO paciente)
     {
         boolean encontrado = false;
         int i;
@@ -50,9 +51,10 @@ public class PacienteMock
             if(dto.getId() == id){
                 encontrado = true;
                 dtos.set(i, paciente);
-
+                return paciente;
             }
         }
+        return null;
     }
 
     public void delete(Long id)

@@ -24,4 +24,7 @@ public interface IDispositivo {
     
     public void modificarDispositivo(Long id, DispositivoDTO paciente);
     
+    public void setConfiguracion(String confi, long idDispositivo);
+
+    
 }

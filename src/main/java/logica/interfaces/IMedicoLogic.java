@@ -16,6 +16,7 @@ public interface IMedicoLogic
     public MedicoDTO buscarMedico(int id);
     public ArrayList<MedicoDTO>darMedicos();
     public void eliminarMedico(int id);
-    public void configurarMarcapasos(int id, String cofiguracion);
+    public void configurarMarcapasos(long id, String cofiguracion);
+    public void enviarConsejo(long idPaciente, String consejo);
     
 }

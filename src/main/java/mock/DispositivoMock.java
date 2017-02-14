@@ -21,9 +21,10 @@ public class DispositivoMock
     
     public DispositivoMock(){
         dtos = new ArrayList<DispositivoDTO>();
-        dtos.add(new DispositivoDTO(1L, null, null, null));
-        dtos.add(new DispositivoDTO(2L, null, null, null));
-        dtos.add(new DispositivoDTO(3L, null, null, null));
+        dtos.add(new DispositivoDTO(1L, null, null, null,"config"));
+        dtos.add(new DispositivoDTO(2L, null, null, null,"config"));
+        dtos.add(new DispositivoDTO(3L, null, null, null,"config"));
+        
     }
     
     public DispositivoDTO create(DispositivoDTO dispositivo)
@@ -44,16 +45,17 @@ public class DispositivoMock
 
     public DispositivoDTO get(Long id)
     {
-       boolean encontrado = false;
+       DispositivoDTO dto=null;
         int i;
-        for (i = 0; i < dtos.size() && !encontrado; i++) {
-            DispositivoDTO dto = dtos.get(i);
-            if(dto.getId() == id){
-                encontrado = true;
-                return dtos.get(i);
+        for (i = 0; i < dtos.size() && dto!=null; i++) 
+        {
+            DispositivoDTO temp = dtos.get(i);
+            if(id == dto.getId())
+            {
+                dto=temp;
             }
         }    
-         return null;
+         return dto;
     }
 
     public ArrayList<DispositivoDTO> getAll()
@@ -87,6 +89,11 @@ public class DispositivoMock
             }
         }
         
+    }
+
+    public void setConfiguracion(long idDispositivo, String confi)
+    {
+        get(idDispositivo).setConfiguration(confi);
     }
     
 }

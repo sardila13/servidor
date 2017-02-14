@@ -16,10 +16,35 @@ public class HistorialDTO
     private ArrayList alertas;
     
     private PacienteDTO paciente;
+    
+    private ArrayList<String> tratamientos;
+    
+    private ArrayList<String> examenes;
 
     public HistorialDTO()
     {
     }
+
+    public ArrayList<String> getTratamientos()
+    {
+        return tratamientos;
+    }
+
+    public void setTratamientos(ArrayList<String> tratamientos)
+    {
+        this.tratamientos = tratamientos;
+    }
+
+    public ArrayList<String> getExamenes()
+    {
+        return examenes;
+    }
+
+    public void setExamenes(ArrayList<String> examenes)
+    {
+        this.examenes = examenes;
+    }
+    
     
     
 

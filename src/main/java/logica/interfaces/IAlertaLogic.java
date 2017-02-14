@@ -16,11 +16,13 @@ public interface IAlertaLogic
 {
     public AlertaDTO crearAlerta(AlertaDTO nueva);
     
-    public AlertaDTO buscarAlerta(Long id);
     
     public List<AlertaDTO> darAlertas();
-    
+    /**
+    public AlertaDTO buscarAlerta(Long id);
     public void modificarAlerta(Long id, AlertaDTO nueva);
-    
     public void eliminarAlerta(Long id);
+     * 
+     */
+    
 }

@@ -21,7 +21,11 @@ public class DispositivoDTO {
     
     private HospitalDTO hospital;
     
-    public DispositivoDTO(Long id, PacienteDTO paciente, ArrayList<AlertaDTO> alertas, HospitalDTO hospital){
+    private String configuracion;
+    
+    public DispositivoDTO(Long id, PacienteDTO paciente, ArrayList<AlertaDTO> alertas, HospitalDTO hospital,
+    String configuracion)
+    {
         this.id = id;
         
         this.paciente = paciente;
@@ -29,6 +33,7 @@ public class DispositivoDTO {
         this.alertas = alertas;
         
         this.hospital = hospital;
+        this.configuracion=configuracion;
     }
     
     public void agregarAlerta(AlertaDTO alerta){
@@ -77,6 +82,16 @@ public class DispositivoDTO {
     
     public HospitalDTO getHospital(){
         return hospital;
+    }
+
+    public void setConfiguration(String confi)
+    {
+       configuracion=confi; 
+    }
+    
+    public String getConfiguration(String confi)
+    {
+       return configuracion; 
     }
     
 }

@@ -28,35 +28,26 @@ public class AlertaLogic implements IAlertaLogic
     public AlertaDTO crearAlerta(AlertaDTO alerta)
     {
         //Requerimiento 2
-        if(alerta.getFrecuenciaCardica()>10 )
+        if(alerta.getFrecuenciaCardica()>100 ||alerta.getFrecuenciaCardica()<60
+                || alerta.getPresionSanguinea()[0]>120 || alerta.getPresionSanguinea()[1]<80
+                ||alerta.getNivelEstres()>70)
+        {
             alerta.setEsEmergencia(true);
             hospitalLogicMock.notificarEmergencia(alerta);
+        }
         return persistence.create(alerta);
     }
     
-    public AlertaDTO buscarAlerta(int pId)
-    {   
-        return persistence.get(pId);
-    }
+    //No se necesita public AlertaDTO buscarAlerta(int pId)
+
     
     public List<AlertaDTO> darAlertas()
     {
         return persistence.getAll();
     }
     
-    public void modificarAlerta(Long id, AlertaDTO nueva)
-    {
-        persistence.put(id, nueva);
-    }
+// no se necesita    public void modificarAlerta(Long id, AlertaDTO nueva)
     
-    public void eliminarAlerta(Long id)
-    {
-        persistence.delete(id);
-    }
+   //no se necesita public void eliminarAlerta(Long id)
 
-    @Override
-    public AlertaDTO buscarAlerta(Long id)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -28,7 +28,8 @@ public class DispositivoLogic implements IDispositivo {
     }
 
     @Override
-    public DispositivoDTO buscarDispositivo(Long id) {
+    public DispositivoDTO buscarDispositivo(Long id) 
+    {
         return persistence.get(id);
     }
 
@@ -45,6 +46,12 @@ public class DispositivoLogic implements IDispositivo {
     @Override
     public void modificarDispositivo(Long id, DispositivoDTO paciente) {
         persistence.put(id, paciente);
+    }
+
+    @Override
+    public void setConfiguracion(String confi, long idDispositivo)
+    {
+        persistence.setConfiguracion(idDispositivo, confi);
     }
     
 }

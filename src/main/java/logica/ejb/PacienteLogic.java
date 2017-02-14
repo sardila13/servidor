@@ -9,6 +9,8 @@ import dto.AlertaDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import javafx.scene.control.Alert;
 import logica.interfaces.IPaciente;
 import mock.PacienteMock;
 
@@ -45,14 +47,24 @@ public class PacienteLogic implements IPaciente {
     }
 
     @Override
-    public void modificarPaciente(Long id, PacienteDTO paciente) {
-        persistence.put(id, paciente);
+    public PacienteDTO modificarPaciente(Long id, PacienteDTO paciente) {
+        return persistence.put(id, paciente);
     }
 
-    public ArrayList<AlertaDTO> getHistorialPorRango(int idPaciente, Date fechaInicio, Date fechaFinal)
+    public ArrayList<AlertaDTO> getHistorialPorRango(long idPaciente, Date fechaInicio, Date fechaFinal)
     {
-        //Implementar
-        return null;
+       PacienteDTO p= persistence.get(idPaciente);
+       ArrayList<AlertaDTO> r = new ArrayList<>();
+        for (int i =0; i<p.getAlertas().size();i++)
+        {
+            AlertaDTO actual = p.getAlertas().get(i);
+            
+            if(actual.getFecha().after(fechaInicio) && actual.getFecha().before(fechaFinal))
+            {
+                r.add(actual);
+            }
+        }
+        return r;
     }
     
 }

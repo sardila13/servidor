@@ -19,10 +19,10 @@ public class AlertaDTO
     public final static int ROJO = 2;
     
     private boolean esEmergencia;
-    private int presionSanguinea;
+    private int[] presionSanguinea;
     private int frecuenciaCardica;
     private int nivelEstres;
-    private Long id;
+    private Long idDispositivo;
     private int tipo;
     private Long[] ubicacion;
     private Date fecha;
@@ -32,12 +32,13 @@ public class AlertaDTO
         
     }
     
-    public AlertaDTO(boolean pEsEmergencia, int pPresion, int pFrecuancia, Long pId, int pTipo, Long[] pUbicacion, int pNivelEstres, Date pFecha)
+    public AlertaDTO(boolean pEsEmergencia, int pPresionSistolica, int pPresionDiastolica, int pFrecuancia, Long pId, int pTipo, Long[] pUbicacion, int pNivelEstres, Date pFecha)
     {
         this.esEmergencia = pEsEmergencia;
-        this.presionSanguinea = pPresion;
+        this.presionSanguinea[0] = pPresionSistolica;
+        this.presionSanguinea[1] = pPresionDiastolica;
         this.frecuenciaCardica = pFrecuancia;
-        this.id = pId;
+        this.idDispositivo = pId;
         this.tipo = pTipo;
         this.ubicacion = pUbicacion;
         this.nivelEstres = pNivelEstres;
@@ -68,20 +69,21 @@ public class AlertaDTO
         this.frecuenciaCardica = frecuenciaCardica;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdDispositivo() {
+        return idDispositivo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idDispositivo) {
+        this.idDispositivo = idDispositivo;
     }
 
-    public int getPresionSanguinea() {
+    public int[] getPresionSanguinea() {
         return presionSanguinea;
     }
 
-    public void setPresionSanguinea(int darPresionSanguinea) {
-        this.presionSanguinea = darPresionSanguinea;
+    public void setPresionSanguinea(int darPresionSanguinea, int diastolica) {
+        this.presionSanguinea[0] = darPresionSanguinea;
+        this.presionSanguinea[1] = diastolica;
     }
 
     public int getNivelEstres() {
@@ -107,6 +109,14 @@ public class AlertaDTO
     public void setEsEmergencia(boolean esEmergencia) {
         this.esEmergencia = esEmergencia;
     }
+
+    @Override
+    public String toString()
+    {
+        return "AlertaDTO{" + "esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardica=" + frecuenciaCardica + ", nivelEstres=" + nivelEstres + ", idDispositivo=" + idDispositivo + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
+    }
+    
+    
     
     
     

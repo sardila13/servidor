@@ -5,8 +5,11 @@
  */
 package logica.ejb;
 
+import dto.DispositivoDTO;
 import dto.MedicoDTO;
+import dto.PacienteDTO;
 import java.util.ArrayList;
+import logica.interfaces.IDispositivo;
 import logica.interfaces.IMedicoLogic;
 
 /**
@@ -15,6 +18,9 @@ import logica.interfaces.IMedicoLogic;
  */
 public class MedicoLogic implements IMedicoLogic{
 
+    private PacienteLogic pacienteLogic=new PacienteLogic();
+    private DispositivoLogic dispositivoLogic= new DispositivoLogic();
+    
     @Override
     public void crearMedico(MedicoDTO medico) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -36,8 +42,15 @@ public class MedicoLogic implements IMedicoLogic{
     }
 
     @Override
-    public void configurarMarcapasos(int id, String cofiguracion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void configurarMarcapasos(long idDispositivo, String configuracion) 
+    {
+        dispositivoLogic.setConfiguracion( configuracion, idDispositivo);
+    }
+
+    public void enviarConsejo(long idPaciente, String consejo)
+    {
+        PacienteDTO p = pacienteLogic.buscarPaciente(idPaciente);
+        p.recibirConsejo(consejo);
     }
     
 }

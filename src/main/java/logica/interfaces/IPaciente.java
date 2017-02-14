@@ -22,6 +22,5 @@ public interface IPaciente {
     
     public void eliminarPaciente(Long id);
     
-    public void modificarPaciente(Long id, PacienteDTO paciente);
-    
+    public PacienteDTO modificarPaciente(Long id, PacienteDTO paciente);
 }

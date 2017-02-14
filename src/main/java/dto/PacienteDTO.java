@@ -29,7 +29,11 @@ public class PacienteDTO {
     
     private ArrayList<AlertaDTO> alertas;
     
-    public PacienteDTO(String nombre, Long id, int edad, DispositivoDTO dispositivo, ArrayList<MedicoDTO> medicos, HospitalDTO hospital, HistorialDTO historial, ArrayList<AlertaDTO> alertas){
+    private ArrayList<String> consejos;
+    
+
+    
+    public PacienteDTO(String nombre, Long id, int edad, DispositivoDTO dispositivo, ArrayList<MedicoDTO> medicos, HospitalDTO hospital){
         this.nombre = nombre;
         
         this.id = id;
@@ -42,9 +46,11 @@ public class PacienteDTO {
         
         this.hospital = hospital;
         
-        this.historial = historial;
+        this.historial = new HistorialDTO();
         
-        this.alertas = alertas;
+        consejos = new ArrayList<>();
+        alertas = new ArrayList<>();
+        
     }
     
     public void agregarAlerta(AlertaDTO alerta){
@@ -142,5 +148,27 @@ public class PacienteDTO {
     public ArrayList<AlertaDTO> getAlertas(){
         return alertas;
     }
+
+    public void setHistorial(HistorialDTO historial)
+    {
+        this.historial = historial;
+    }
+
+    public ArrayList<String> getConsejos()
+    {
+        return consejos;
+    }
+
+    public void setConsejos(ArrayList<String> consejos)
+    {
+        this.consejos = consejos;
+    }
+
+    public void recibirConsejo(String consejo)
+    {
+        consejos.add(consejo);
+    }
+    
+    
     
 }
