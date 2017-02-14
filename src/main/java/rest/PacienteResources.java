@@ -28,7 +28,7 @@ import logica.ejb.PacienteLogic;
 @Path("paciente")
 @Produces("application/json")
 
-//@Consumes(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 
 public class PacienteResources 
 {
@@ -37,6 +37,7 @@ public class PacienteResources
     
     //Requerimiento 1 Recibe info de los sensores...
     @GET
+    @Path("historial-fechas")
     public ArrayList<AlertaDTO> getHistorialPorRango(@PathParam("idPaciente") long idPaciente, @PathParam("fechaInicio") Date fechaInicio, @PathParam("fechaFinal") Date fechaFinal)  
     {
         return logic.getHistorialPorRango(idPaciente, fechaInicio, fechaFinal);
@@ -50,28 +51,27 @@ public class PacienteResources
     }
     
     @GET
-    @Path("{idPaciente: \\d+}")
+//  @Path("buscar")
     public PacienteDTO getPaciente(@PathParam("idPaciente")long idPaciente)
     {
         return logic.buscarPaciente(idPaciente);
     }
             
     @PUT
-    @Path("{idPaciente: \\d+}")
     public PacienteDTO upDatePaciente(@PathParam("idPaciente") long idPaciente, PacienteDTO p)
     {
         return logic.modificarPaciente(idPaciente, p);
     }
     
     @DELETE
-    @Path("{idPaciente: \\d+}")
     public void deletePaciente(@PathParam("idPaciente")long idPaciente)
     {
         logic.eliminarPaciente(idPaciente);
     }
     
+    
     @GET
-    @Path("{idPaciente: \\d+}")
+    @Path("historial")
     public HistorialDTO getHistorialClinico (@PathParam("idPaciente") long idPaciente)
     {
         PacienteDTO p = logic.buscarPaciente(idPaciente);

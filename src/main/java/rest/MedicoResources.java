@@ -37,13 +37,16 @@ public class MedicoResources
     
     //Requerimiento 4 dar consejo a un dispositivo...
     @POST
+    @Path("consejo")
     public void enviarConsejo(@PathParam("idPaciente") long idPaciente, @PathParam("consejo") String consejo)  
     {
         medicoLogic.enviarConsejo(idPaciente,consejo);
         //return "Mensaje enviado satisfactoriamente";
     }
     
+    
     @POST
+    @Path("configuracion")
     public void enviarReconfiguracion(@PathParam("idDispositivo") long idDispositivo, @PathParam("config") String config)  
     {
         medicoLogic.configurarMarcapasos(idDispositivo,config );
