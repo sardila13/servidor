@@ -13,7 +13,6 @@ import java.util.Date;
  */
 public class AlertaDTO 
 {
-
     public final static int VERDE = 0;
     public final static int AMARILLO = 1;
     public final static int ROJO = 2;
