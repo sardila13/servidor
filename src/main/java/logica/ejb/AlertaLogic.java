@@ -23,6 +23,7 @@ public class AlertaLogic implements IAlertaLogic
     public AlertaLogic()
     {
         persistence = new AlertaMock();
+        hospitalLogicMock = new HospitalLogicMock();
     }
     
     public AlertaDTO crearAlerta(AlertaDTO alerta)

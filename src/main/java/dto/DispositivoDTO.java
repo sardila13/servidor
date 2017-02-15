@@ -23,15 +23,15 @@ public class DispositivoDTO {
     
     private String configuracion;
     
-    public DispositivoDTO(Long id, PacienteDTO paciente, ArrayList<AlertaDTO> alertas, HospitalDTO hospital,
+    public DispositivoDTO(Long id, PacienteDTO paciente,  HospitalDTO hospital,
     String configuracion)
     {
         this.id = id;
         
         this.paciente = paciente;
-        
-        this.alertas = alertas;
-        
+
+        this.alertas = new ArrayList<AlertaDTO>();
+                
         this.hospital = hospital;
         this.configuracion=configuracion;
     }

@@ -18,97 +18,109 @@ public class AlertaDTO
     public final static int AMARILLO = 1;
     public final static int ROJO = 2;
     
-    private boolean esEmergencia;
-    private int[] presionSanguinea;
-    private int frecuenciaCardica;
-    private int nivelEstres;
+    private Boolean esEmergencia;
+    private Integer[] presionSanguinea;
+    private Integer frecuenciaCardica;
+    private Integer nivelEstres;
     private Long idDispositivo;
-    private int tipo;
+    private Integer tipo;
     private Long[] ubicacion;
     private Date fecha;
-    
+
     public AlertaDTO()
     {
-        
     }
-    
-    public AlertaDTO(boolean pEsEmergencia, int pPresionSistolica, int pPresionDiastolica, int pFrecuancia, Long pId, int pTipo, Long[] pUbicacion, int pNivelEstres, Date pFecha)
+
+    public AlertaDTO(Boolean esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres, Long idDispositivo, Integer tipo, Long[] ubicacion, Date fecha)
     {
-        presionSanguinea= new int[2];
-        this.esEmergencia = pEsEmergencia;
-        this.presionSanguinea[0] = pPresionSistolica;
-        this.presionSanguinea[1] = pPresionDiastolica;
-        this.frecuenciaCardica = pFrecuancia;
-        this.idDispositivo = pId;
-        this.tipo = pTipo;
-        this.ubicacion = pUbicacion;
-        this.nivelEstres = pNivelEstres;
-        this.fecha = pFecha;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-
-    public Long[] getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(Long[] ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public int getFrecuenciaCardica() {
-        return frecuenciaCardica;
-    }
-
-    public void setFrecuenciaCardica(int frecuenciaCardica) {
+        this.esEmergencia = esEmergencia;
+        this.presionSanguinea = presionSanguinea;
         this.frecuenciaCardica = frecuenciaCardica;
-    }
-
-    public Long getIdDispositivo() {
-        return idDispositivo;
-    }
-
-    public void setId(Long idDispositivo) {
-        this.idDispositivo = idDispositivo;
-    }
-
-    public int[] getPresionSanguinea() {
-        return presionSanguinea;
-    }
-
-    public void setPresionSanguinea(int darPresionSanguinea, int diastolica) {
-        this.presionSanguinea[0] = darPresionSanguinea;
-        this.presionSanguinea[1] = diastolica;
-    }
-
-    public int getNivelEstres() {
-        return nivelEstres;
-    }
-
-    public void setNivelEstres(int nivelEstres) {
         this.nivelEstres = nivelEstres;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
+        this.idDispositivo = idDispositivo;
+        this.tipo = tipo;
+        this.ubicacion = ubicacion;
         this.fecha = fecha;
     }
 
-    public boolean esEmergencia() {
+    public Boolean getEsEmergencia()
+    {
         return esEmergencia;
     }
 
-    public void setEsEmergencia(boolean esEmergencia) {
+    public void setEsEmergencia(Boolean esEmergencia)
+    {
         this.esEmergencia = esEmergencia;
+    }
+
+    public Integer[] getPresionSanguinea()
+    {
+        return presionSanguinea;
+    }
+
+    public void setPresionSanguinea(Integer[] presionSanguinea)
+    {
+        this.presionSanguinea = presionSanguinea;
+    }
+
+    public Integer getFrecuenciaCardica()
+    {
+        return frecuenciaCardica;
+    }
+
+    public void setFrecuenciaCardica(Integer frecuenciaCardica)
+    {
+        this.frecuenciaCardica = frecuenciaCardica;
+    }
+
+    public Integer getNivelEstres()
+    {
+        return nivelEstres;
+    }
+
+    public void setNivelEstres(Integer nivelEstres)
+    {
+        this.nivelEstres = nivelEstres;
+    }
+
+    public Long getIdDispositivo()
+    {
+        return idDispositivo;
+    }
+
+    public void setIdDispositivo(Long idDispositivo)
+    {
+        this.idDispositivo = idDispositivo;
+    }
+
+    public Integer getTipo()
+    {
+        return tipo;
+    }
+
+    public void setTipo(Integer tipo)
+    {
+        this.tipo = tipo;
+    }
+
+    public Long[] getUbicacion()
+    {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Long[] ubicacion)
+    {
+        this.ubicacion = ubicacion;
+    }
+
+    public Date getFecha()
+    {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha)
+    {
+        this.fecha = fecha;
     }
 
     @Override
@@ -116,8 +128,6 @@ public class AlertaDTO
     {
         return "AlertaDTO{" + "esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardica=" + frecuenciaCardica + ", nivelEstres=" + nivelEstres + ", idDispositivo=" + idDispositivo + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
     }
-    
-    
     
     
     

@@ -26,14 +26,16 @@ public class AlertaMock
     public AlertaMock()
     {
         alertas = new ArrayList<AlertaDTO>();
-        Long[] ub = new Long[2];
-        ub[0] = 1L;
-        ub[1] = 1L;
+        Long[] arr= new Long[2];
+        arr[0]=5l;
+        arr[1]=8l;
         
-        alertas.add( new AlertaDTO(false, 100,75, 50, 1L, AlertaDTO.VERDE, ub, 0, new Date() ) );
-        alertas.add( new AlertaDTO(false, 80,77, 70, 2L, AlertaDTO.VERDE, ub, 0, new Date() ) );
-        alertas.add( new AlertaDTO(false, 90,73, 40, 3L, AlertaDTO.VERDE, ub, 0, new Date() ) );
-        
+        Integer[] arr1= new Integer[2];
+        arr1[0]=5;
+        arr1[1]=8;
+        new AlertaDTO(true, arr1, 10, 10, 1L, 2, arr, new Date());
+        new AlertaDTO(true, arr1, 10, 10, 2L, 2, arr, new Date());
+        new AlertaDTO(true, arr1, 10, 10, 3L, 2, arr, new Date());
     }
     
     public AlertaDTO create(AlertaDTO alerta)
@@ -41,8 +43,8 @@ public class AlertaMock
         //Ya no se genera el id porque el id se refiere al id del dispositivo.
  
         alertas.add(alerta);
-        
-        DispositivoDTO disp=dispositivoLogic.buscarDispositivo(alerta.getIdDispositivo());
+        System.out.println(alerta.getIdDispositivo());
+        DispositivoDTO disp = dispositivoLogic.buscarDispositivo(alerta.getIdDispositivo());
         
         disp.agregarAlerta(alerta);
         

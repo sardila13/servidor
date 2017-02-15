@@ -31,7 +31,7 @@ public class HospitalLogicMock implements IHospital
             a.setTipo(1);
         }
         //buscar ultimo id de alerta
-        a.setId(7L);
+        a.setIdDispositivo(7L);
         
     }
     
