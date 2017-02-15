@@ -21,9 +21,9 @@ public class DispositivoMock
     
     public DispositivoMock(){
         dtos = new ArrayList<DispositivoDTO>();
-        dtos.add(new DispositivoDTO(1L, null, null, null,"config"));
-        dtos.add(new DispositivoDTO(2L, null, null, null,"config"));
-        dtos.add(new DispositivoDTO(3L, null, null, null,"config"));
+        dtos.add(new DispositivoDTO(1L, null, null,"config"));
+        dtos.add(new DispositivoDTO(2L, null, null,"config"));
+        dtos.add(new DispositivoDTO(3L, null, null,"config"));
         
     }
     
@@ -47,10 +47,10 @@ public class DispositivoMock
     {
        DispositivoDTO dto=null;
         int i;
-        for (i = 0; i < dtos.size() && dto!=null; i++) 
+        for (i = 0; i < dtos.size() && dto == null; i++) 
         {
             DispositivoDTO temp = dtos.get(i);
-            if(id == dto.getId())
+            if(id.compareTo(temp.getId()) == 0)
             {
                 dto=temp;
             }
