@@ -53,7 +53,7 @@ public class PacienteResources
     }
     
     @GET
-    @Path("/paciente/{idPaciente:\\d+}")
+    @Path("/{idPaciente:\\d+}")
     public PacienteDTO getPaciente(@PathParam("idPaciente")Long idPaciente)
     {
         System.out.println("Resoruces " + idPaciente);
@@ -70,9 +70,17 @@ public class PacienteResources
     }
             
     @PUT
+    @Path("{idPaciente:\\d+}")
     public PacienteDTO upDatePaciente(@PathParam("idPaciente") long idPaciente, PacienteDTO p)
     {
         return logic.modificarPaciente(idPaciente, p);
+    }
+    
+    @PUT
+    @Path("{idPaciente:\\d+}/historial")
+    public HistorialDTO upDateHistorialPaciente(@PathParam("idPaciente") Long idPaciente, HistorialDTO p)
+    {
+        return logic.modificarHistorialPaciente(idPaciente, p);
     }
     
     @DELETE
@@ -83,7 +91,7 @@ public class PacienteResources
     
     
     @GET
-    @Path("/historial")
+    @Path("{idPaciente:\\d+}/historial")
     public HistorialDTO getHistorialClinico (@PathParam("idPaciente") long idPaciente)
     {
         PacienteDTO p = logic.buscarPaciente(idPaciente);

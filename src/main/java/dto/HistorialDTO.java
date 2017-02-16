@@ -23,6 +23,21 @@ public class HistorialDTO
 
     public HistorialDTO()
     {
+        this.alertas = new ArrayList<AlertaDTO>();
+        
+        this.tratamientos = new ArrayList<String>();
+        
+        this.examenes = new ArrayList<String>();
+    }
+    
+    public HistorialDTO(PacienteDTO paciente){
+        this.paciente = paciente;
+        
+        this.alertas = new ArrayList<AlertaDTO>();
+        
+        this.tratamientos = new ArrayList<String>();
+        
+        this.examenes = new ArrayList<String>();
     }
 
     public ArrayList<String> getTratamientos()

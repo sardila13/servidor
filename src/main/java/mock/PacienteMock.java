@@ -6,7 +6,6 @@
 package mock;
 
 import dto.*;
-import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -36,6 +35,9 @@ public class PacienteMock
         PacienteDTO brandon = new PacienteDTO("Brandon", 1L, 18, null, null, null);
         dispositivo1.setPaciente(brandon);
         brandon.setDispositivo(dispositivo1);
+        brandon.setHistorial(new HistorialDTO());
+        brandon.getHistorialClinico().getExamenes().add("Examen 1");
+        brandon.getHistorialClinico().getTratamientos().add("Tratamiento 1");
         brandon.agregarAlerta(new AlertaDTO(false, presion, 80, 75, 1L, 1, ubicacion, new Date()));
         dtos.add(brandon);
         
@@ -124,6 +126,12 @@ public class PacienteMock
     public String toString() 
     {
         return "PacienteMock{" + "dtos=" + dtos + '}';
+    }
+
+    public HistorialDTO modificarHistorialPaciente(Long idPaciente, HistorialDTO p) {
+        PacienteDTO paciente = get(idPaciente);
+        paciente.setHistorial(p);
+        return paciente.getHistorialClinico();
     }
     
 }

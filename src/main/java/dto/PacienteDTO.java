@@ -111,10 +111,6 @@ public class PacienteDTO {
         this.medicos = medicos;
     }
     
-    public void setHistorialCzlinico(HistorialDTO historial){
-        this.historial = historial;
-    }
-    
     public void setHospital(HospitalDTO hospital){
         this.hospital = hospital;
     }

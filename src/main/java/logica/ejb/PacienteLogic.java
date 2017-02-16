@@ -6,6 +6,7 @@
 package logica.ejb;
 
 import dto.AlertaDTO;
+import dto.HistorialDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -74,6 +75,10 @@ public class PacienteLogic implements IPaciente {
     @Override
     public String toString() {
         return "PacienteLogic{" + "persistence=" + persistence + '}';
+    }
+
+    public HistorialDTO modificarHistorialPaciente(Long idPaciente, HistorialDTO p) {
+        return persistence.modificarHistorialPaciente(idPaciente, p);
     }
     
     
