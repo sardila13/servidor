@@ -30,7 +30,7 @@ public class PacienteDTO {
     
     private List<AlertaDTO> alertas;
     
-    private List<String> consejos;
+    private List<ConsejoDTO> consejos;
     
     public PacienteDTO()
     {
@@ -160,19 +160,20 @@ public class PacienteDTO {
         this.historial = historial;
     }
 
-    public List<String> getConsejos()
+    public List<ConsejoDTO> getConsejos()
     {
         return consejos;
     }
 
-    public void setConsejos(ArrayList<String> consejos)
+    public void setConsejos(ArrayList<ConsejoDTO> consejos)
     {
         this.consejos = consejos;
     }
 
-    public void recibirConsejo(String consejo)
+    public ConsejoDTO recibirConsejo(ConsejoDTO consejo)
     {
         consejos.add(consejo);
+        return consejo;
     }
 
     @Override

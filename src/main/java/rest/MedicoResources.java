@@ -8,6 +8,7 @@ package rest;
 
 
 import dto.AlertaDTO;
+import dto.ConsejoDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.ws.rs.Consumes;
@@ -26,21 +27,21 @@ import logica.ejb.PacienteLogic;
  * @author s.ardila13
  */
 
-@Path("paciente")
+@Path("medico")
 @Produces("application/json")
 @Consumes(MediaType.APPLICATION_JSON)
 
 public class MedicoResources 
 {
     
-    private  MedicoLogic medicoLogic;
+    private  MedicoLogic medicoLogic  = new MedicoLogic();
     
     //Requerimiento 4 dar consejo a un dispositivo...
     @POST
-    @Path("consejo")
-    public void enviarConsejo(@PathParam("idPaciente") long idPaciente, @PathParam("consejo") String consejo)  
+    @Path("consejo/{idPaciente:\\d+}/")
+    public ConsejoDTO enviarConsejo(@PathParam("idPaciente") long idPaciente, ConsejoDTO consejo)  
     {
-        medicoLogic.enviarConsejo(idPaciente,consejo);
+        return medicoLogic.enviarConsejo(idPaciente,consejo);
         //return "Mensaje enviado satisfactoriamente";
     }
     

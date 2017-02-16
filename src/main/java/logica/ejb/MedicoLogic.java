@@ -5,6 +5,7 @@
  */
 package logica.ejb;
 
+import dto.ConsejoDTO;
 import dto.DispositivoDTO;
 import dto.MedicoDTO;
 import dto.PacienteDTO;
@@ -47,10 +48,10 @@ public class MedicoLogic implements IMedicoLogic{
         dispositivoLogic.setConfiguracion( configuracion, idDispositivo);
     }
 
-    public void enviarConsejo(long idPaciente, String consejo)
+    public ConsejoDTO enviarConsejo(long idPaciente, ConsejoDTO consejo)
     {
         PacienteDTO p = pacienteLogic.buscarPaciente(idPaciente);
-        p.recibirConsejo(consejo);
+         return p.recibirConsejo(consejo);
     }
     
 }
