@@ -5,6 +5,7 @@
  */
 package logica.ejb;
 
+import dto.ConfiguracionDTO;
 import dto.ConsejoDTO;
 import dto.DispositivoDTO;
 import dto.MedicoDTO;
@@ -43,9 +44,9 @@ public class MedicoLogic implements IMedicoLogic{
     }
 
     @Override
-    public void configurarMarcapasos(long idDispositivo, String configuracion) 
+    public ConfiguracionDTO configurarMarcapasos(long idDispositivo, ConfiguracionDTO configuracion) 
     {
-        dispositivoLogic.setConfiguracion( configuracion, idDispositivo);
+        return dispositivoLogic.setConfiguracion( configuracion, idDispositivo);
     }
 
     public ConsejoDTO enviarConsejo(long idPaciente, ConsejoDTO consejo)

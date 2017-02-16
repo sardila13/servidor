@@ -21,10 +21,10 @@ public class DispositivoDTO {
     
     private HospitalDTO hospital;
     
-    private String configuracion;
+    private ConfiguracionDTO configuracion;
     
     public DispositivoDTO(Long id, PacienteDTO paciente,  HospitalDTO hospital,
-    String configuracion)
+    ConfiguracionDTO configuracion)
     {
         this.id = id;
         
@@ -84,12 +84,12 @@ public class DispositivoDTO {
         return hospital;
     }
 
-    public void setConfiguration(String confi)
+    public void setConfiguration(ConfiguracionDTO confi)
     {
        configuracion=confi; 
     }
     
-    public String getConfiguration(String confi)
+    public ConfiguracionDTO getConfiguration(String confi)
     {
        return configuracion; 
     }

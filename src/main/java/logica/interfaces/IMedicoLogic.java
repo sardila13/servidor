@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package logica.interfaces;
+import dto.ConfiguracionDTO;
 import dto.ConsejoDTO;
 import dto.MedicoDTO;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public interface IMedicoLogic
     public MedicoDTO buscarMedico(int id);
     public ArrayList<MedicoDTO>darMedicos();
     public void eliminarMedico(int id);
-    public void configurarMarcapasos(long id, String cofiguracion);
+    public ConfiguracionDTO configurarMarcapasos(long id, ConfiguracionDTO cofiguracion);
     public ConsejoDTO enviarConsejo(long idPaciente, ConsejoDTO consejo);
     
 }

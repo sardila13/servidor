@@ -5,9 +5,11 @@
  */
 package mock;
 
+import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -21,9 +23,9 @@ public class DispositivoMock
     
     public DispositivoMock(){
         dtos = new ArrayList<DispositivoDTO>();
-        dtos.add(new DispositivoDTO(1L, null, null,"config"));
-        dtos.add(new DispositivoDTO(2L, null, null,"config"));
-        dtos.add(new DispositivoDTO(3L, null, null,"config"));
+        dtos.add(new DispositivoDTO(1L, null, null,new ConfiguracionDTO("Cnosejo", new Date())));
+        dtos.add(new DispositivoDTO(2L, null, null,new ConfiguracionDTO("Cnosejo", new Date())));
+        dtos.add(new DispositivoDTO(3L, null, null,new ConfiguracionDTO("Cnosejo", new Date())));
         
     }
     
@@ -91,9 +93,10 @@ public class DispositivoMock
         
     }
 
-    public void setConfiguracion(long idDispositivo, String confi)
+    public ConfiguracionDTO setConfiguracion(Long idDispositivo, ConfiguracionDTO confi)
     {
         get(idDispositivo).setConfiguration(confi);
+        return confi;
     }
     
 }

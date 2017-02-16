@@ -5,6 +5,7 @@
  */
 package logica.ejb;
 
+import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import java.util.ArrayList;
 import logica.interfaces.IDispositivo;
@@ -49,9 +50,9 @@ public class DispositivoLogic implements IDispositivo {
     }
 
     @Override
-    public void setConfiguracion(String confi, long idDispositivo)
+    public ConfiguracionDTO setConfiguracion(ConfiguracionDTO confi, Long idDispositivo)
     {
-        persistence.setConfiguracion(idDispositivo, confi);
+        return persistence.setConfiguracion(idDispositivo, confi);
     }
     
 }

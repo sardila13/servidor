@@ -8,6 +8,7 @@ package rest;
 
 
 import dto.AlertaDTO;
+import dto.ConfiguracionDTO;
 import dto.ConsejoDTO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,10 +48,10 @@ public class MedicoResources
     
     
     @POST
-    @Path("configuracion")
-    public void enviarReconfiguracion(@PathParam("idDispositivo") long idDispositivo, @PathParam("config") String config)  
+    @Path("configuracion/{idDispositivo:\\d+}")
+    public ConfiguracionDTO enviarReconfiguracion(@PathParam("idDispositivo") long idDispositivo, ConfiguracionDTO config)  
     {
-        medicoLogic.configurarMarcapasos(idDispositivo,config );
+        return medicoLogic.configurarMarcapasos(idDispositivo,config );
         //return "Configuración enviada satisfactoriamente";
     }
     

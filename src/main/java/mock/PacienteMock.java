@@ -32,20 +32,20 @@ public class PacienteMock
         presion[1] = 80;
         
         dtos = new ArrayList<PacienteDTO>();
-        DispositivoDTO dispositivo1 = new DispositivoDTO(1L, null, null, "config");
+        DispositivoDTO dispositivo1 = new DispositivoDTO(1L, null, null, new ConfiguracionDTO("Cnosejo", new Date()));
         PacienteDTO brandon = new PacienteDTO("Brandon", 1L, 18, null, null, null);
         dispositivo1.setPaciente(brandon);
         brandon.setDispositivo(dispositivo1);
         brandon.agregarAlerta(new AlertaDTO(false, presion, 80, 75, 1L, 1, ubicacion, new Date()));
         dtos.add(brandon);
         
-        DispositivoDTO dispositivo2 = new DispositivoDTO(2L, null, null, "config");
+        DispositivoDTO dispositivo2 = new DispositivoDTO(2L, null, null, new ConfiguracionDTO("Cnosejo", new Date()));
         PacienteDTO german = new PacienteDTO("German", 2L, 19, null, null, null);
         dispositivo2.setPaciente(german);
         brandon.setDispositivo(dispositivo2);
         dtos.add(german);
         
-        DispositivoDTO dispositivo3 = new DispositivoDTO(3L, null, null, "config");
+        DispositivoDTO dispositivo3 = new DispositivoDTO(3L, null, null, new ConfiguracionDTO("Cnosejo", new Date()));
         PacienteDTO sebastian = new PacienteDTO("Sebastian", 3L, 20, null, null, null);
         dispositivo3.setPaciente(sebastian);
         brandon.setDispositivo(dispositivo2);

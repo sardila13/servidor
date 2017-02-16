@@ -5,6 +5,7 @@
  */
 package logica.interfaces;
 
+import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public interface IDispositivo {
     
     public void modificarDispositivo(Long id, DispositivoDTO paciente);
     
-    public void setConfiguracion(String confi, long idDispositivo);
+    public ConfiguracionDTO setConfiguracion(ConfiguracionDTO confi, Long idDispositivo);
 
     
 }
