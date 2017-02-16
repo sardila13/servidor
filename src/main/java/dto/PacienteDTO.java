@@ -52,11 +52,14 @@ public class PacienteDTO {
         this.historial = new HistorialDTO();
         
         consejos = new ArrayList<>();
+        
         alertas = new ArrayList<>();
         
     }
     
-    public void agregarAlerta(AlertaDTO alerta){
+    public void agregarAlerta(AlertaDTO alerta)
+    {
+        System.out.println("Agreganbdo Alerta");
         alertas.add(alerta);
     }
     

@@ -39,10 +39,10 @@ public class PacienteResources
     
     //Requerimiento 1 Recibe info de los sensores...
     @GET
-    @Path("/historial-fechas")
-    public List<AlertaDTO> getHistorialPorRango(@PathParam("idPaciente") long idPaciente, @PathParam("fechaInicio") Date fechaInicio, @PathParam("fechaFinal") Date fechaFinal)  
+    @Path("/historial-fechas/{idPaciente:\\d+}/{fechaInicio:\\d+}/{fechaFinal:\\d+}")
+    public List<AlertaDTO> getHistorialPorRango(@PathParam("idPaciente") long idPaciente, @PathParam("fechaInicio") Long fechaInicio, @PathParam("fechaFinal") Long fechaFinal)  
     {
-        return logic.getHistorialPorRango(idPaciente, fechaInicio, fechaFinal);
+        return logic.getHistorialPorRango(idPaciente, new Date(fechaInicio), new Date(fechaFinal));
     }
     
     //CRUD
@@ -53,9 +53,10 @@ public class PacienteResources
     }
     
     @GET
-    @Path("/paciente")
-    public PacienteDTO getPaciente(@PathParam("idPaciente")long idPaciente)
+    @Path("/paciente/{idPaciente:\\d+}")
+    public PacienteDTO getPaciente(@PathParam("idPaciente")Long idPaciente)
     {
+        System.out.println("Resoruces " + idPaciente);
         return logic.buscarPaciente(idPaciente);
     }
     

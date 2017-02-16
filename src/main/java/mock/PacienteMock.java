@@ -6,7 +6,9 @@
 package mock;
 
 import dto.*;
+import java.time.Clock;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,10 +22,35 @@ public class PacienteMock
     private List<PacienteDTO> dtos;
 
     public PacienteMock(){
+        
+        Long[] ubicacion = new Long[2];
+        ubicacion[0] = 1L;
+        ubicacion[1] = 1L;
+        
+        Integer[] presion = new Integer[2];
+        presion[0] = 100;
+        presion[1] = 80;
+        
         dtos = new ArrayList<PacienteDTO>();
-        dtos.add(new PacienteDTO("Brandon", 1L, 18, null, null, null));
-        dtos.add(new PacienteDTO("German", 2L, 19, null, null, null));
-        dtos.add(new PacienteDTO("Sebastian", 3L, 20, null, null, null));
+        DispositivoDTO dispositivo1 = new DispositivoDTO(1L, null, null, "config");
+        PacienteDTO brandon = new PacienteDTO("Brandon", 1L, 18, null, null, null);
+        dispositivo1.setPaciente(brandon);
+        brandon.setDispositivo(dispositivo1);
+        brandon.agregarAlerta(new AlertaDTO(false, presion, 80, 75, 1L, 1, ubicacion, new Date()));
+        dtos.add(brandon);
+        
+        DispositivoDTO dispositivo2 = new DispositivoDTO(2L, null, null, "config");
+        PacienteDTO german = new PacienteDTO("German", 2L, 19, null, null, null);
+        dispositivo2.setPaciente(german);
+        brandon.setDispositivo(dispositivo2);
+        dtos.add(german);
+        
+        DispositivoDTO dispositivo3 = new DispositivoDTO(3L, null, null, "config");
+        PacienteDTO sebastian = new PacienteDTO("Sebastian", 3L, 20, null, null, null);
+        dispositivo3.setPaciente(sebastian);
+        brandon.setDispositivo(dispositivo2);
+        dtos.add(sebastian);
+        
                
     }
     
@@ -79,6 +106,7 @@ public class PacienteMock
 
     public PacienteDTO get(Long id)
     {
+        System.out.println(id);
         boolean encontrado = false;
         int i;
         for (i = 0; i < dtos.size() && !encontrado; i++) {

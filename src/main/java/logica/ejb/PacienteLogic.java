@@ -36,6 +36,7 @@ public class PacienteLogic implements IPaciente {
 
     @Override
     public PacienteDTO buscarPaciente(Long id) {
+        System.out.println("Logic " + id);
         return persistence.get(id);
     }
 
