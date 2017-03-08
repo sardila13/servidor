@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Entites;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
+
+/**
+ *
+ * @author s.ardila13
+ */
+@Entity
+public class HistorialEntity implements Serializable
+{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
+    @OneToMany(mappedBy = "historial", cascade = CascadeType.ALL, orphanRemoval = true) 
+    private List<AlertaEntity> alertas;
+    
+    @OneToOne
+    @PodamExclude
+    private PacienteEntity paciente;
+    
+    private List<String> tratamientos;
+    
+    private List<String> examenes;
+
+    public HistorialEntity(List<AlertaEntity> alertas, PacienteEntity paciente, List<String> tratamientos, List<String> examenes) {
+        this.alertas = alertas;
+        this.paciente = paciente;
+        this.tratamientos = tratamientos;
+        this.examenes = examenes;
+    }
+
+    public HistorialEntity()
+    {
+        
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<AlertaEntity> getAlertas() {
+        return alertas;
+    }
+
+    public void setAlertas(ArrayList<AlertaEntity> alertas) {
+        this.alertas = alertas;
+    }
+
+    public PacienteEntity getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteEntity paciente) {
+        this.paciente = paciente;
+    }
+
+    public List<String> getTratamientos() {
+        return tratamientos;
+    }
+
+    public void setTratamientos(ArrayList<String> tratamientos) {
+        this.tratamientos = tratamientos;
+    }
+
+    public List<String> getExamenes() {
+        return examenes;
+    }
+
+    public void setExamenes(ArrayList<String> examenes) {
+        this.examenes = examenes;
+    }
+ 
+    
+    
+}

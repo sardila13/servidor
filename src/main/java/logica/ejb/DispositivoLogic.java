@@ -5,9 +5,15 @@
  */
 package logica.ejb;
 
+import Persitence.PersistenceManager;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
 import logica.interfaces.IDispositivo;
 import mock.DispositivoMock;
 
@@ -17,42 +23,51 @@ import mock.DispositivoMock;
  */
 public class DispositivoLogic implements IDispositivo {
     
-    private DispositivoMock persistence;
+    //private DispositivoMock persistence;
+    
+    @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)
+    private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
     public DispositivoLogic(){
-        persistence = new DispositivoMock();
+        //persistence = new DispositivoMock();
     }
 
     @Override
     public DispositivoDTO crearPaciente(DispositivoDTO dispositivo) {
-        return persistence.create(dispositivo);
+        em.persist(dispositivo);
+        return dispositivo;
     }
 
     @Override
     public DispositivoDTO buscarDispositivo(Long id) 
     {
-        return persistence.get(id);
+        return em.find(DispositivoDTO.class, id);
+        
     }
 
     @Override
-    public ArrayList<DispositivoDTO> darDispositivos() {
-        return persistence.getAll();
+    public List<DispositivoDTO> darDispositivos() {
+        Query q = em.createQuery("select u from DispositivoEntity u");
+        return q.getResultList();
     }
 
     @Override
     public void eliminarDispositivo(Long id) {
-        persistence.delete(id);
+        em.remove(em.find(DispositivoDTO.class,id));
     }
 
     @Override
     public void modificarDispositivo(Long id, DispositivoDTO paciente) {
-        persistence.put(id, paciente);
+        em.merge(paciente);
     }
 
     @Override
     public ConfiguracionDTO setConfiguracion(ConfiguracionDTO confi, Long idDispositivo)
     {
-        return persistence.setConfiguracion(idDispositivo, confi);
+        DispositivoDTO dispositivo = em.find(DispositivoDTO.class, idDispositivo);
+        dispositivo.setConfiguration(confi);
+        em.merge(dispositivo);
+        return confi;
     }
     
 }

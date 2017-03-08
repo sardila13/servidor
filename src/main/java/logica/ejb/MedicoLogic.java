@@ -5,12 +5,16 @@
  */
 package logica.ejb;
 
+import Persitence.PersistenceManager;
 import dto.ConfiguracionDTO;
 import dto.ConsejoDTO;
 import dto.DispositivoDTO;
 import dto.MedicoDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import logica.interfaces.IDispositivo;
 import logica.interfaces.IMedicoLogic;
 
@@ -20,8 +24,11 @@ import logica.interfaces.IMedicoLogic;
  */
 public class MedicoLogic implements IMedicoLogic{
 
-    private PacienteLogic pacienteLogic=new PacienteLogic();
-    private DispositivoLogic dispositivoLogic= new DispositivoLogic();
+    private PacienteLogic pacienteLogic = new PacienteLogic();
+    private DispositivoLogic dispositivoLogic = new DispositivoLogic();
+    
+    @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)
+    private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
     @Override
     public void crearMedico(MedicoDTO medico) {
@@ -51,8 +58,8 @@ public class MedicoLogic implements IMedicoLogic{
 
     public ConsejoDTO enviarConsejo(long idPaciente, ConsejoDTO consejo)
     {
-        PacienteDTO p = pacienteLogic.buscarPaciente(idPaciente);
-         return p.recibirConsejo(consejo);
+        PacienteDTO p = pacienteLogic.agregarConsejo(idPaciente, consejo);
+        return consejo;
     }
     
 }

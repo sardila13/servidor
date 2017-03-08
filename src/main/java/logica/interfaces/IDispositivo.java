@@ -8,6 +8,7 @@ package logica.interfaces;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +20,7 @@ public interface IDispositivo {
     
     public DispositivoDTO buscarDispositivo(Long id);
     
-    public ArrayList<DispositivoDTO> darDispositivos();
+    public List<DispositivoDTO> darDispositivos();
     
     public void eliminarDispositivo(Long id);
     

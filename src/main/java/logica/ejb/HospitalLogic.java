@@ -14,25 +14,12 @@ import logica.interfaces.IHospital;
  *
  * @author gc.andrade10
  */
-public class HospitalLogicMock implements IHospital
+public class HospitalLogic implements IHospital
 {
-
+    
     public void notificarEmergencia(AlertaDTO alerta)
     {
         System.out.println("EMERGENCIA "+alerta.toString());
-    }
-
-    @Override
-    public void guardarAlerta(AlertaDTO a, DispositivoDTO d)
-    {
-        //Guarda la alerta
-        if(a.getFrecuenciaCardica()>100)
-        {
-            a.setTipo(1);
-        }
-        //buscar ultimo id de alerta
-        a.setIdDispositivo(7L);
-        
     }
     
 }

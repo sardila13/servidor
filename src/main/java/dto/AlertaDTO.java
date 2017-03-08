@@ -17,37 +17,37 @@ public class AlertaDTO
     public final static int AMARILLO = 1;
     public final static int ROJO = 2;
     
-    private Boolean esEmergencia;
+    private Integer esEmergencia;
     private Integer[] presionSanguinea;
     private Integer frecuenciaCardica;
     private Integer nivelEstres;
-    private Long idDispositivo;
+    private DispositivoDTO dispositivo;
     private Integer tipo;
-    private Long[] ubicacion;
+    private Integer[] ubicacion;
     private Date fecha;
 
     public AlertaDTO()
     {
     }
 
-    public AlertaDTO(Boolean esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres, Long idDispositivo, Integer tipo, Long[] ubicacion, Date fecha)
+    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres, DispositivoDTO pDispositivo, Integer tipo, Integer[] ubicacion)
     {
         this.esEmergencia = esEmergencia;
         this.presionSanguinea = presionSanguinea;
         this.frecuenciaCardica = frecuenciaCardica;
         this.nivelEstres = nivelEstres;
-        this.idDispositivo = idDispositivo;
+        this.dispositivo = pDispositivo;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
-        this.fecha = fecha;
+        this.fecha = new Date();
     }
 
-    public Boolean getEsEmergencia()
+    public Integer getEsEmergencia()
     {
         return esEmergencia;
     }
 
-    public void setEsEmergencia(Boolean esEmergencia)
+    public void setEsEmergencia(Integer esEmergencia)
     {
         this.esEmergencia = esEmergencia;
     }
@@ -82,14 +82,14 @@ public class AlertaDTO
         this.nivelEstres = nivelEstres;
     }
 
-    public Long getIdDispositivo()
+    public DispositivoDTO getDispositivo()
     {
-        return idDispositivo;
+        return dispositivo;
     }
 
-    public void setIdDispositivo(Long idDispositivo)
+    public void setDispositivo(DispositivoDTO pDispositivo)
     {
-        this.idDispositivo = idDispositivo;
+        this.dispositivo = pDispositivo;
     }
 
     public Integer getTipo()
@@ -102,12 +102,12 @@ public class AlertaDTO
         this.tipo = tipo;
     }
 
-    public Long[] getUbicacion()
+    public Integer[] getUbicacion()
     {
         return ubicacion;
     }
 
-    public void setUbicacion(Long[] ubicacion)
+    public void setUbicacion(Integer[] ubicacion)
     {
         this.ubicacion = ubicacion;
     }
@@ -125,7 +125,7 @@ public class AlertaDTO
     @Override
     public String toString()
     {
-        return "AlertaDTO{" + "esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardica=" + frecuenciaCardica + ", nivelEstres=" + nivelEstres + ", idDispositivo=" + idDispositivo + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
+        return "AlertaDTO{" + "esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardica=" + frecuenciaCardica + ", nivelEstres=" + nivelEstres + ", idDispositivo=" + dispositivo.toString() + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
     }
     
     

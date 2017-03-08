@@ -12,9 +12,9 @@ package dto;
 public class MedicoDTO 
 {
     //atributos
-    String nombre;
-    int id;
-    int especialista;
+    private String nombre;
+    private int id;
+    private int especialista;
     
     //constrcutor vacio
     public MedicoDTO()

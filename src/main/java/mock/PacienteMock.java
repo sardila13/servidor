@@ -38,7 +38,7 @@ public class PacienteMock
         brandon.setHistorial(new HistorialDTO());
         brandon.getHistorialClinico().getExamenes().add("Examen 1");
         brandon.getHistorialClinico().getTratamientos().add("Tratamiento 1");
-        brandon.agregarAlerta(new AlertaDTO(false, presion, 80, 75, 1L, 1, ubicacion, new Date()));
+        //brandon.agregarAlerta(new AlertaDTO(false, presion, 80, 75, 1L, 1, ubicacion, new Date()));
         dtos.add(brandon);
         
         DispositivoDTO dispositivo2 = new DispositivoDTO(2L, null, null, new ConfiguracionDTO("Cnosejo", new Date()));

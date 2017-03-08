@@ -5,10 +5,12 @@
  */
 package rest;
 
-
-
+import Entites.AlertaEntity;
+import Entites.DispositivoEntity;
+import Entites.PacienteEntity;
 import dto.AlertaDTO;
 import java.util.Date;
+import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,7 +19,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import logica.ejb.AlertaLogic;
 import logica.ejb.DispositivoLogic;
-import mock.DispositivoMock;
 
 
 /**
@@ -35,6 +36,8 @@ public class AlertaResources
     
     private DispositivoLogic dispositivologic = new DispositivoLogic();
     //Requerimiento 1 Recibe info de los sensores...
+    
+    
     @POST
     public void createAlerta(AlertaDTO alerta)  
     {
@@ -42,17 +45,22 @@ public class AlertaResources
     }
     
     @GET
-    public AlertaDTO createAlerta()  
-    {
-        Long[] arr= new Long[2];
-        arr[0]=5l;
-        arr[1]=8l;
-        
-        Integer[] arr1= new Integer[2];
-        arr1[0]=5;
-        arr1[1]=8;
-        return new AlertaDTO(true, arr1, 10, 10, 1L, 2, arr, new Date());
+    public List<AlertaDTO> darAlertas() {
+        return logic.darAlertas();
     }
-
+    
+    @GET
+    @Path("/ejemplo")
+    public AlertaDTO ejemplo(){
+        Integer[] presion = new Integer[2];
+        presion[0] = 60;
+        presion[1] = 80;
+        PacienteEntity pPaciente = new PacienteEntity("Brandon", 20, null, null, null, null, null, null);
+        DispositivoEntity pDispositivo = new DispositivoEntity(pPaciente, null, null, null);
+        pPaciente.setDispositivo(pDispositivo);
+        AlertaEntity alerta = new AlertaEntity(0, presion, 100, 70, pDispositivo, 0, null, new Date());
+        System.out.println("Entra al servicio x2");
+        return alerta.toDTO();
+    }
     
 }

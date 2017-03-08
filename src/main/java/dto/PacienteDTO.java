@@ -176,6 +176,10 @@ public class PacienteDTO {
     public String toString() {
         return "PacienteDTO{" + "nombre=" + nombre + ", id=" + id + ", edad=" + edad + ", dispositivo=" + dispositivo + ", medicos=" + medicos + ", hospital=" + hospital + ", historial=" + historial + ", alertas=" + alertas + ", consejos=" + consejos + '}';
     }
+
+    public void agregarConsejo(ConsejoDTO consejo) {
+        consejos.add(consejo);
+    }
     
     
     

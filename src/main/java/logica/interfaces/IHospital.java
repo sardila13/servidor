@@ -25,5 +25,5 @@ import javax.ejb.Local;
 public interface IHospital
 {
     
-    public void guardarAlerta(AlertaDTO a, DispositivoDTO d);
+    //public void guardarAlerta(AlertaDTO a, DispositivoDTO d);
 }

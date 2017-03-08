@@ -5,10 +5,18 @@
  */
 package logica.ejb;
 
+import Persitence.PersistenceManager;
 import dto.AlertaDTO;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
 import logica.interfaces.IAlertaLogic;
 import mock.AlertaMock;
+import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
 
 /**
  *
@@ -16,14 +24,17 @@ import mock.AlertaMock;
  */
 public class AlertaLogic implements IAlertaLogic
 {
-    private AlertaMock persistence;
+    //private AlertaMock persistence;
     
-    private HospitalLogicMock hospitalLogicMock;
+    private HospitalLogic hospitalLogic;
+    
+    @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)
+    private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
     public AlertaLogic()
     {
-        persistence = new AlertaMock();
-        hospitalLogicMock = new HospitalLogicMock();
+        //persistence = new AlertaMock();
+        hospitalLogic = new HospitalLogic();
     }
     
     public AlertaDTO crearAlerta(AlertaDTO alerta)
@@ -33,10 +44,11 @@ public class AlertaLogic implements IAlertaLogic
                 || alerta.getPresionSanguinea()[0]>120 || alerta.getPresionSanguinea()[1]<80
                 ||alerta.getNivelEstres()>70)
         {
-            alerta.setEsEmergencia(true);
-            hospitalLogicMock.notificarEmergencia(alerta);
+            alerta.setEsEmergencia(1);
+            hospitalLogic.notificarEmergencia(alerta);
         }
-        return persistence.create(alerta);
+        em.persist(alerta);
+        return alerta;
     }
     
     //No se necesita public AlertaDTO buscarAlerta(int pId)
@@ -44,7 +56,8 @@ public class AlertaLogic implements IAlertaLogic
     
     public List<AlertaDTO> darAlertas()
     {
-        return persistence.getAll();
+        Query q = em.createQuery("select u from AlertaEntity u");
+        return q.getResultList();
     }
     
 // no se necesita    public void modificarAlerta(Long id, AlertaDTO nueva)
