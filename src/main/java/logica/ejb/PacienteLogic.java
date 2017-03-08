@@ -22,7 +22,6 @@ import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import javax.swing.text.html.HTML;
 import logica.interfaces.IPaciente;
-import mock.PacienteMock;
 
 /**
  *

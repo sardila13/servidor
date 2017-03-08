@@ -15,7 +15,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import logica.interfaces.IAlertaLogic;
-import mock.AlertaMock;
 import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
 
 /**
