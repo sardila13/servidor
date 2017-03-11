@@ -32,7 +32,8 @@ public class MedicoLogic implements IMedicoLogic{
     private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
     @Override
-    public void crearMedico(MedicoDTO medico) {
+    public void crearMedico(MedicoDTO medico) 
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

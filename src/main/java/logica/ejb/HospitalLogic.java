@@ -8,6 +8,7 @@ package logica.ejb;
 import Persitence.PersistenceManager;
 import dto.AlertaDTO;
 import dto.HospitalDTO;
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -34,6 +35,17 @@ public class HospitalLogic implements IHospital
     {
     }
     
+    @PostConstruct
+    public void init()
+    {
+        try
+        {
+            em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
     
     public void notificarEmergencia(AlertaDTO alerta)
@@ -45,7 +57,26 @@ public class HospitalLogic implements IHospital
     {
         System.out.println(hospitalDTO);
         System.out.println(em.hashCode());
-        em.persist(hospitalDTO.toEntity());
+        try
+        {
+//            em.getTransaction().begin();
+            em.persist(hospitalDTO.toEntity());
+//            em.getTransaction().commit();
+//            em.refresh(hospitalDTO);
+        }
+        catch(Exception t)
+        {
+            System.out.println("logica.ejb.HospitalLogic.crear()");
+            t.printStackTrace();
+//            if(em.getTransaction().isActive())
+//            {
+//                em.getTransaction().rollback();
+//            }
+        }
+//        finally{
+//            em.clear();
+//            em.close();
+//        }
     }
     
 }
