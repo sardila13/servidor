@@ -99,7 +99,8 @@ public class DispositivoEntity implements Serializable
         this.configuracion = configuracion;
     }
 
-    public DispositivoDTO toDTO() {
+    public DispositivoDTO toDTO() 
+    {
         PacienteDTO pPaciente = null;
         if(paciente != null){
             pPaciente = paciente.toDTO();
@@ -112,6 +113,8 @@ public class DispositivoEntity implements Serializable
         if(configuracion != null){
             pConfiguracion = configuracion.toDTO();
         }
-        return new DispositivoDTO(id, pPaciente, pHospital, pConfiguracion);
+        DispositivoDTO d = new DispositivoDTO( pPaciente, pHospital, pConfiguracion);
+        d.setId(id);
+        return d;
     }
 }

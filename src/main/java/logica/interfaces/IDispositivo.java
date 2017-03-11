@@ -5,8 +5,10 @@
  */
 package logica.interfaces;
 
+import com.sun.media.jfxmediaimpl.MediaDisposer;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
+import dto.PacienteDTO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
  */
 public interface IDispositivo {
     
-    public DispositivoDTO crearPaciente(DispositivoDTO dispositivo);
+    public DispositivoDTO crearDispositivo(DispositivoDTO dispositivo);
     
     public DispositivoDTO buscarDispositivo(Long id);
     

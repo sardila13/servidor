@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import javafx.scene.control.Alert;
 import javax.ejb.Stateless;
+import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -27,7 +28,8 @@ import logica.interfaces.IPaciente;
  *
  * @author s.ardila13
  */
-@Stateless
+//@Stateless
+@Singleton
 public class PacienteLogic implements IPaciente {
     
     @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)

@@ -69,8 +69,11 @@ public class ConfiguracionEntity implements Serializable
         this.fecha = fecha;
     }
 
-    public ConfiguracionDTO toDTO() {
-        return new ConfiguracionDTO(configuracion, fecha);
+    public ConfiguracionDTO toDTO() 
+    {
+        ConfiguracionDTO c = new ConfiguracionDTO(configuracion);
+        c.setFecha(fecha);
+        return c;
     }
     
     

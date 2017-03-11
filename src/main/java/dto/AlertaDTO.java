@@ -5,7 +5,10 @@
  */
 package dto;
 
+import Entites.*;
 import java.util.Date;
+import javax.inject.Inject;
+import logica.ejb.DispositivoLogic;
 
 /**
  *
@@ -19,24 +22,27 @@ public class AlertaDTO
     
     private Integer esEmergencia;
     private Integer[] presionSanguinea;
-    private Integer frecuenciaCardica;
+    private Integer frecuenciaCardiaca;
     private Integer nivelEstres;
     private DispositivoDTO dispositivo;
     private Integer tipo;
-    private Integer[] ubicacion;
+    private Long[] ubicacion;
     private Date fecha;
+    
+    @Inject
+    private DispositivoLogic logicDispositivo;
 
     public AlertaDTO()
     {
     }
 
-    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres, DispositivoDTO pDispositivo, Integer tipo, Integer[] ubicacion)
+    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres, Long IdDispositivo, Integer tipo, Long[] ubicacion)
     {
         this.esEmergencia = esEmergencia;
         this.presionSanguinea = presionSanguinea;
-        this.frecuenciaCardica = frecuenciaCardica;
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.nivelEstres = nivelEstres;
-        this.dispositivo = pDispositivo;
+        this.dispositivo = logicDispositivo.buscarDispositivo(IdDispositivo);
         this.tipo = tipo;
         this.ubicacion = ubicacion;
         this.fecha = new Date();
@@ -64,12 +70,12 @@ public class AlertaDTO
 
     public Integer getFrecuenciaCardica()
     {
-        return frecuenciaCardica;
+        return frecuenciaCardiaca;
     }
 
     public void setFrecuenciaCardica(Integer frecuenciaCardica)
     {
-        this.frecuenciaCardica = frecuenciaCardica;
+        this.frecuenciaCardiaca = frecuenciaCardica;
     }
 
     public Integer getNivelEstres()
@@ -102,12 +108,12 @@ public class AlertaDTO
         this.tipo = tipo;
     }
 
-    public Integer[] getUbicacion()
+    public Long[] getUbicacion()
     {
         return ubicacion;
     }
 
-    public void setUbicacion(Integer[] ubicacion)
+    public void setUbicacion(Long[] ubicacion)
     {
         this.ubicacion = ubicacion;
     }
@@ -125,7 +131,19 @@ public class AlertaDTO
     @Override
     public String toString()
     {
-        return "AlertaDTO{" + "esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardica=" + frecuenciaCardica + ", nivelEstres=" + nivelEstres + ", idDispositivo=" + dispositivo.toString() + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
+        return "AlertaDTO{" + "esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardiaca=" + frecuenciaCardiaca + ", nivelEstres=" + nivelEstres + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
+    }
+
+    public AlertaEntity toEntity() 
+    {
+        
+        DispositivoEntity disEntity = null;
+        if(dispositivo != null){
+            disEntity = dispositivo.toEntity();
+        }
+        new AlertaEntity(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres, disEntity, tipo, ubicacion, fecha);
+        
+        return new AlertaEntity(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres,disEntity, tipo, ubicacion, fecha);
     }
     
     

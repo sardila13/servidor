@@ -12,6 +12,7 @@ import dto.ConfiguracionDTO;
 import dto.ConsejoDTO;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,6 +22,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import logica.ejb.MedicoLogic;
 import logica.ejb.PacienteLogic;
+import logica.interfaces.IMedicoLogic;
 
 
 /**
@@ -34,8 +36,8 @@ import logica.ejb.PacienteLogic;
 
 public class MedicoResources 
 {
-    
-    private  MedicoLogic medicoLogic  = new MedicoLogic();
+    @Inject
+    private  IMedicoLogic medicoLogic;
     
     //Requerimiento 4 dar consejo a un dispositivo...
     @POST

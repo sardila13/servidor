@@ -14,7 +14,6 @@ package logica.interfaces;
 
 
 import dto.AlertaDTO;
-import dto.DispositivoDTO;
 import javax.ejb.Local;
 
 /**
@@ -25,5 +24,5 @@ import javax.ejb.Local;
 public interface IHospital
 {
     
-    //public void guardarAlerta(AlertaDTO a, DispositivoDTO d);
+    //public void guardarAlerta(AlertaDTO a, Long d);
 }

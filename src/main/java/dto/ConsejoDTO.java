@@ -5,6 +5,7 @@
  */
 package dto;
 
+import Entites.ConsejoEntity;
 import java.util.Date;
 
 /**
@@ -44,6 +45,10 @@ public class ConsejoDTO {
     @Override
     public String toString() {
         return "CnosejoDTO{" + "consejo=" + consejo + ", fecha=" + fecha + '}';
+    }
+
+    ConsejoEntity toEntity() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

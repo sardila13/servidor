@@ -5,7 +5,6 @@
  */
 package Entites;
 import dto.AlertaDTO;
-import dto.DispositivoDTO;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -145,12 +144,13 @@ public class AlertaEntity implements Serializable
         this.fecha = fecha;
     }
 
-    public AlertaDTO toDTO() {
-        DispositivoDTO pDispositivo = null;
+    public AlertaDTO toDTO() 
+    {
+        Long pDispositivo = null;
         if(dispositivo != null){
-            pDispositivo = dispositivo.toDTO();
+            pDispositivo = dispositivo.toDTO().getId();
         }
-        return new AlertaDTO(getEsEmergencia(), getPresionSanguinea(), frecuenciaCardica, nivelEstres, pDispositivo, tipo, presionSanguinea);
+        return new AlertaDTO(getEsEmergencia(), getPresionSanguinea(), frecuenciaCardica, nivelEstres, pDispositivo, tipo, ubicacion);
     }
 
     @Override

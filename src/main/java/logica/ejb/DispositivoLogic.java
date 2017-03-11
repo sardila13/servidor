@@ -8,8 +8,11 @@ package logica.ejb;
 import Persitence.PersistenceManager;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
+import dto.PacienteDTO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -20,6 +23,8 @@ import logica.interfaces.IDispositivo;
  *
  * @author s.ardila13
  */
+@Singleton
+//@Stateless
 public class DispositivoLogic implements IDispositivo {
     
     //private DispositivoMock persistence;
@@ -32,7 +37,7 @@ public class DispositivoLogic implements IDispositivo {
     }
 
     @Override
-    public DispositivoDTO crearPaciente(DispositivoDTO dispositivo) {
+    public DispositivoDTO crearDispositivo(DispositivoDTO dispositivo) {
         em.persist(dispositivo);
         return dispositivo;
     }
@@ -52,7 +57,7 @@ public class DispositivoLogic implements IDispositivo {
 
     @Override
     public void eliminarDispositivo(Long id) {
-        em.remove(em.find(DispositivoDTO.class,id));
+        em.remove(em.find(Long.class,id));
     }
 
     @Override

@@ -5,6 +5,8 @@
  */
 package dto;
 
+import Entites.HospitalEntity;
+
 /**
  *
  * @author gc.andrade10
@@ -12,16 +14,15 @@ package dto;
 public class HospitalDTO
 {
  private String nombre;
- private long id;
+ private Long id;
 
     public HospitalDTO()
     {
     }
 
-    public HospitalDTO(String nombre, long id)
+    public HospitalDTO(String nombre)
     {
         this.nombre = nombre;
-        this.id=id;
     }
 
     /**
@@ -35,9 +36,20 @@ public class HospitalDTO
     /**
      * @return the id
      */
-    public long getId()
+    public Long getId()
     {
         return id;
+    }
+    
+    public void setId(Long pId)
+    {
+        id=pId;
+    }
+
+    public HospitalEntity toEntity() 
+    {
+        System.out.println(nombre);
+        return new HospitalEntity(nombre);
     }
  
     

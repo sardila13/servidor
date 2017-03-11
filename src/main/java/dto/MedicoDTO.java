@@ -5,6 +5,8 @@
  */
 package dto;
 
+import Entites.MedicoEntity;
+
 /**
  *
  * @author Sneider Velandia G
@@ -13,7 +15,7 @@ public class MedicoDTO
 {
     //atributos
     private String nombre;
-    private int id;
+    private Long id;
     private int especialista;
     
     //constrcutor vacio
@@ -21,10 +23,9 @@ public class MedicoDTO
     {}
     
     //contructor con atributos
-    public MedicoDTO(String nombre, int id, int especialista)
+    public MedicoDTO(String nombre, int i) 
     {
         this.nombre=nombre;
-        this.id=id;
         this.especialista=especialista;
     }
     
@@ -34,7 +35,7 @@ public class MedicoDTO
         return nombre;
     }
     
-    public int getId()
+    public Long getId()
     {
         return id;
     }
@@ -49,7 +50,7 @@ public class MedicoDTO
         this.nombre = nombre;
     }
     
-    public void setId(int id)
+    public void setId(Long id)
     {
         this.id = id;
     }
@@ -57,6 +58,13 @@ public class MedicoDTO
     public void setEspecialista(int especialista)
     {
         this.especialista=especialista;
+    }
+
+    MedicoEntity toEntity() 
+    {
+        MedicoEntity m = new MedicoEntity(nombre, especialista);
+        m.setId(id);
+        return m;
     }
 
     

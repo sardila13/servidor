@@ -8,20 +8,21 @@ package logica.ejb;
 import Persitence.PersistenceManager;
 import dto.ConfiguracionDTO;
 import dto.ConsejoDTO;
-import dto.DispositivoDTO;
 import dto.MedicoDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
+import javax.ejb.Stateless;
+import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
-import logica.interfaces.IDispositivo;
 import logica.interfaces.IMedicoLogic;
 
 /**
  *
  * @author Sneider Velandia G
  */
+@Singleton
 public class MedicoLogic implements IMedicoLogic{
 
     private PacienteLogic pacienteLogic = new PacienteLogic();

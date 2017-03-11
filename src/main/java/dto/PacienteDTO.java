@@ -5,8 +5,18 @@
  */
 package dto;
 
+import Entites.AlertaEntity;
+import Entites.ConfiguracionEntity;
+import Entites.ConsejoEntity;
+import Entites.DispositivoEntity;
+import Entites.HistorialEntity;
+import Entites.HospitalEntity;
+import Entites.MedicoEntity;
+import Entites.PacienteEntity;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
+import logica.ejb.DispositivoLogic;
 
 /**
  *
@@ -32,30 +42,30 @@ public class PacienteDTO {
     
     private List<ConsejoDTO> consejos;
     
+    @Inject
+    private DispositivoLogic dispositivoLoigc;
+    
     public PacienteDTO()
     {
     }
-    
-    public PacienteDTO(String nombre, Long id, int edad, DispositivoDTO dispositivo, ArrayList<MedicoDTO> medicos, HospitalDTO hospital){
+
+    public PacienteDTO(String nombre, int edad, HospitalDTO h) 
+    {
         this.nombre = nombre;
-        
-        this.id = id;
         
         this.edad = edad;
         
-        this.dispositivo = dispositivo;
+        this.medicos = new ArrayList<MedicoDTO>();
         
-        this.medicos = medicos;
-        
-        this.hospital = hospital;
+        this.hospital = h;
         
         this.historial = new HistorialDTO();
         
         consejos = new ArrayList<>();
         
         alertas = new ArrayList<>();
-        
     }
+
     
     public void agregarAlerta(AlertaDTO alerta)
     {
@@ -180,6 +190,51 @@ public class PacienteDTO {
     public void agregarConsejo(ConsejoDTO consejo) {
         consejos.add(consejo);
     }
+
+    public ArrayList<MedicoEntity> medicosEntities(){
+        ArrayList<MedicoEntity> nMedicos = new ArrayList<MedicoEntity>();
+        for(int i = 0; i < medicos.size(); i++){
+            nMedicos.add(medicos.get(i).toEntity());
+        }
+        return nMedicos;
+    }
+    
+    public ArrayList<AlertaEntity> alertasEntities(){
+        ArrayList<AlertaEntity> nAlertas = new ArrayList<AlertaEntity>();
+        for(int i = 0; i < alertas.size(); i++){
+            nAlertas.add(alertas.get(i).toEntity());
+        }
+        return nAlertas;
+    }
+    
+    public ArrayList<ConsejoEntity> consejosEntities(){
+        ArrayList<ConsejoEntity> nConsejos = new ArrayList<ConsejoEntity>();
+        for(int i = 0; i < consejos.size(); i++){
+            nConsejos.add(consejos.get(i).toEntity());
+        }
+        return nConsejos;
+    }
+    
+    public PacienteEntity toEntity() 
+    {
+         HospitalEntity h =null;
+        if(hospital!=null)
+        {
+            h=hospital.toEntity();
+        }
+        HistorialEntity his =null;
+        if(historial!=null)
+        {
+            his=historial.toEntity();
+        }
+        DispositivoEntity d =null;
+        if(dispositivo!=null)
+        {
+            d=dispositivo.toEntity();
+        }
+        return new PacienteEntity(nombre, edad, d, medicosEntities(), h,his , alertasEntities(), consejosEntities());
+    }
+
     
     
     

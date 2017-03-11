@@ -22,6 +22,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import logica.ejb.PacienteLogic;
+import logica.interfaces.IPaciente;
 
 /**
  *
@@ -34,8 +35,8 @@ import logica.ejb.PacienteLogic;
 
 public class PacienteResources 
 {
-
-    private PacienteLogic logic = new PacienteLogic();
+    @Inject
+    private IPaciente logic;
     
     //Requerimiento 1 Recibe info de los sensores...
     @GET

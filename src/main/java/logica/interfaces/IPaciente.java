@@ -5,8 +5,11 @@
  */
 package logica.interfaces;
 
+import dto.AlertaDTO;
+import dto.HistorialDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,4 +27,8 @@ public interface IPaciente {
     public void eliminarPaciente(Long id);
     
     public PacienteDTO modificarPaciente(Long id, PacienteDTO paciente);
+
+    public HistorialDTO modificarHistorialPaciente(Long idPaciente, HistorialDTO p);
+
+    public List<AlertaDTO> getHistorialPorRango(long idPaciente, Date date, Date date0);
 }

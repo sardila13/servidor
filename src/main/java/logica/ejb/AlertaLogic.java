@@ -8,33 +8,39 @@ package logica.ejb;
 import Persitence.PersistenceManager;
 import dto.AlertaDTO;
 import java.util.List;
-import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import logica.interfaces.IAlertaLogic;
-import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
 
 /**
  *
  * @author ba.bohorquez10
  */
+@Singleton
+//@Stateless
 public class AlertaLogic implements IAlertaLogic
 {
     //private AlertaMock persistence;
     
+    @Inject
     private HospitalLogic hospitalLogic;
     
-    @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)
-    private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
+    @PersistenceContext(unitName = "Persistence")
+    protected EntityManager em;
+    
+//    = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
+    //type = PersistenceContextType.TRANSACTION
     
     public AlertaLogic()
     {
-        //persistence = new AlertaMock();
-        hospitalLogic = new HospitalLogic();
     }
+    
+  
     
     public AlertaDTO crearAlerta(AlertaDTO alerta)
     {
@@ -46,7 +52,9 @@ public class AlertaLogic implements IAlertaLogic
             alerta.setEsEmergencia(1);
             hospitalLogic.notificarEmergencia(alerta);
         }
-        em.persist(alerta);
+        System.out.println(alerta.toString());
+        System.out.println("e: "+alerta.toEntity());
+        em.persist(alerta.toEntity());
         return alerta;
     }
     

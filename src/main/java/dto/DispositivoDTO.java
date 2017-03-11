@@ -1,10 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package dto;
 
+import Entites.AlertaEntity;
+import Entites.ConfiguracionEntity;
+import Entites.DispositivoEntity;
+import Entites.HospitalEntity;
+import Entites.PacienteEntity;
 import java.util.ArrayList;
 
 /**
@@ -23,19 +28,14 @@ public class DispositivoDTO {
     
     private ConfiguracionDTO configuracion;
     
-    public DispositivoDTO(Long id, PacienteDTO paciente,  HospitalDTO hospital,
-    ConfiguracionDTO configuracion)
-    {
-        this.id = id;
-        
-        this.paciente = paciente;
 
-        this.alertas = new ArrayList<AlertaDTO>();
-                
-        this.hospital = hospital;
-        this.configuracion=configuracion;
+    public DispositivoDTO(PacienteDTO p, HospitalDTO h, ConfiguracionDTO c) 
+    {
+        paciente = p;
+        hospital = h;
+        configuracion = c;
     }
-    
+
     public void agregarAlerta(AlertaDTO alerta){
         alertas.add(alerta);
     }
@@ -83,15 +83,42 @@ public class DispositivoDTO {
     public HospitalDTO getHospital(){
         return hospital;
     }
-
+    
     public void setConfiguration(ConfiguracionDTO confi)
     {
-       configuracion=confi; 
+        configuracion=confi;
     }
     
     public ConfiguracionDTO getConfiguration(String confi)
     {
-       return configuracion; 
+        return configuracion;
+    }
+    
+     public ArrayList<AlertaEntity> alertasEntities(){
+        ArrayList<AlertaEntity> nAlertas = new ArrayList<AlertaEntity>();
+        for(int i = 0; i < alertas.size(); i++){
+            nAlertas.add(alertas.get(i).toEntity());
+        }
+        return nAlertas;
+    }
+    
+    DispositivoEntity toEntity() {
+        PacienteEntity p =null;
+        if(paciente!=null)
+        {
+            p=paciente.toEntity();
+        }
+        HospitalEntity h =null;
+        if(hospital!=null)
+        {
+            h=hospital.toEntity();
+        }
+        ConfiguracionEntity c =null;
+        if(configuracion!=null)
+        {
+            c=configuracion.toEntity();
+        }
+        return new DispositivoEntity(p, alertasEntities(), h, c);
     }
     
 }

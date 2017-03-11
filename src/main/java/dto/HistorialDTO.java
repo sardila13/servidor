@@ -5,6 +5,9 @@
  */
 package dto;
 
+import Entites.AlertaEntity;
+import Entites.HistorialEntity;
+import Entites.PacienteEntity;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +16,7 @@ import java.util.ArrayList;
  */
 public class HistorialDTO 
 {
-    private ArrayList alertas;
+    private ArrayList<AlertaDTO> alertas;
     
     private PacienteDTO paciente;
     
@@ -93,6 +96,24 @@ public class HistorialDTO
     public void setPaciente(PacienteDTO paciente)
     {
         this.paciente = paciente;
+    }
+    
+     public ArrayList<AlertaEntity> alertasEntities(){
+        ArrayList<AlertaEntity> nAlertas = new ArrayList<AlertaEntity>();
+        for(int i = 0; i < alertas.size(); i++)
+        {
+            AlertaDTO actual=(AlertaDTO) alertas.get(i);
+            nAlertas.add(actual.toEntity());
+        }
+        return nAlertas;
+    }
+
+    HistorialEntity toEntity() {
+        PacienteEntity p  = null;
+        if(paciente != null){
+            p  =paciente.toEntity();
+        }
+        return new HistorialEntity(alertasEntities(), p, tratamientos, examenes);
     }
     
     

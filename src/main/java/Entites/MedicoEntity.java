@@ -67,8 +67,11 @@ public class MedicoEntity implements Serializable
         this.especialista = especialista;
     }
 
-    public MedicoDTO toDTO() {
-        return new MedicoDTO(nombre, especialista, especialista);
+    public MedicoDTO toDTO() 
+    {
+        MedicoDTO m = new MedicoDTO(nombre, especialista);
+        m.setId(id);
+        return m;
     }
     
     

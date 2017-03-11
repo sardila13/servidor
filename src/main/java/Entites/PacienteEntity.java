@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Entites;
 
 import dto.DispositivoDTO;
@@ -12,6 +12,7 @@ import dto.PacienteDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import logica.ejb.DispositivoLogic;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -30,6 +32,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PacienteEntity implements Serializable
 {
+//    @Inject
+//    DispositivoLogic dispositivoLogic;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,7 +47,7 @@ public class PacienteEntity implements Serializable
     @PodamExclude
     private DispositivoEntity dispositivo;
     
-    @ManyToMany 
+    @ManyToMany
     private List<MedicoEntity> medicos;
     
     @ManyToOne
@@ -54,12 +58,12 @@ public class PacienteEntity implements Serializable
     @PodamExclude
     private HistorialEntity historial;
     
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true) 
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AlertaEntity> alertas;
     
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true) 
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ConsejoEntity> consejos;
-
+    
     public PacienteEntity()
     {
         
@@ -75,75 +79,75 @@ public class PacienteEntity implements Serializable
         this.alertas = alertas;
         this.consejos = consejos;
     }
-
+    
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
-
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
     public int getEdad() {
         return edad;
     }
-
+    
     public void setEdad(int edad) {
         this.edad = edad;
     }
-
+    
     public DispositivoEntity getDispositivo() {
         return dispositivo;
     }
-
+    
     public void setDispositivo(DispositivoEntity dispositivo) {
         this.dispositivo = dispositivo;
     }
-
+    
     public List<MedicoEntity> getMedicos() {
         return medicos;
     }
-
+    
     public void setMedicos(List<MedicoEntity> medicos) {
         this.medicos = medicos;
     }
-
+    
     public HospitalEntity getHospital() {
         return hospital;
     }
-
+    
     public void setHospital(HospitalEntity hospital) {
         this.hospital = hospital;
     }
-
+    
     public HistorialEntity getHistorial() {
         return historial;
     }
-
+    
     public void setHistorial(HistorialEntity historial) {
         this.historial = historial;
     }
-
+    
     public List<AlertaEntity> getAlertas() {
         return alertas;
     }
-
+    
     public void setAlertas(List<AlertaEntity> alertas) {
         this.alertas = alertas;
     }
-
+    
     public List<ConsejoEntity> getConsejos() {
         return consejos;
     }
-
+    
     public void setConsejos(List<ConsejoEntity> consejos) {
         this.consejos = consejos;
     }
@@ -163,7 +167,11 @@ public class PacienteEntity implements Serializable
         if(dispositivo != null){
             pDispositivo = dispositivo.toDTO();
         }
-        return new PacienteDTO(nombre, id, edad, pDispositivo , pMedicos, pHospital);
+        PacienteDTO p = new PacienteDTO(nombre, edad, pHospital);
+        p.setId(id);
+        p.setDispositivo(pDispositivo);
+        
+        return p;
     }
     
 }
