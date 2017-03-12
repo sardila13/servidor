@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface IDispositivo {
     
-    public DispositivoDTO crearDispositivo(DispositivoDTO dispositivo);
+    public void crearDispositivo(DispositivoDTO dispositivo);
     
     public DispositivoDTO buscarDispositivo(Long id);
     

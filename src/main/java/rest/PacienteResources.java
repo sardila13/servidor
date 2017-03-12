@@ -48,9 +48,9 @@ public class PacienteResources
     
     //CRUD
     @POST
-    public PacienteDTO createPaciente (PacienteDTO p )
+    public void createPaciente (PacienteDTO p )
     {
-        return logic.crearPaciente(p);
+        logic.crearPaciente(p);
     }
     
     @GET

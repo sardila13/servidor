@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package logica.ejb;
-
 import Persitence.PersistenceManager;
 import dto.AlertaDTO;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
+import javax.transaction.UserTransaction;
 import logica.interfaces.IAlertaLogic;
-
 /**
  *
  * @author ba.bohorquez10
@@ -32,6 +25,9 @@ public class AlertaLogic implements IAlertaLogic
     
     @PersistenceContext(unitName = "Persistence")
     protected EntityManager em;
+    
+    @Resource
+            UserTransaction userTran;
     
 //    = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     //type = PersistenceContextType.TRANSACTION

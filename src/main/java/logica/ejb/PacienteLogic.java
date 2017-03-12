@@ -15,13 +15,16 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javafx.scene.control.Alert;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import javax.swing.text.html.HTML;
+import javax.transaction.UserTransaction;
 import logica.interfaces.IPaciente;
 
 /**
@@ -35,13 +38,19 @@ public class PacienteLogic implements IPaciente {
     @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)
     private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
+    @Resource
+            UserTransaction userTran;
+    
+    @Inject
+    HospitalLogic hospitalLogic;
+    
     public PacienteLogic(){
     }
 
     @Override
-    public PacienteDTO crearPaciente(PacienteDTO paciente) {
-        em.persist(paciente);
-        return paciente;
+    public void crearPaciente(PacienteDTO paciente) 
+    {
+        hospitalLogic.agregarPaciente(paciente);
     }
 
     @Override

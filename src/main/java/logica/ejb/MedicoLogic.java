@@ -11,11 +11,13 @@ import dto.ConsejoDTO;
 import dto.MedicoDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.transaction.UserTransaction;
 import logica.interfaces.IMedicoLogic;
 
 /**
@@ -31,10 +33,19 @@ public class MedicoLogic implements IMedicoLogic{
     @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)
     private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
+    @Resource
+            UserTransaction userTran;
+    
     @Override
     public void crearMedico(MedicoDTO medico) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try {
+            userTran.begin();
+            em.persist(medico.toEntity());
+            userTran.commit();
+            
+        } catch (Exception e) {
+        }
     }
 
     @Override

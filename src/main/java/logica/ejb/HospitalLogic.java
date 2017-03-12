@@ -5,15 +5,23 @@
 */
 package logica.ejb;
 
+import Entites.HospitalEntity;
 import Persitence.PersistenceManager;
 import dto.AlertaDTO;
 import dto.HospitalDTO;
+import dto.PacienteDTO;
+import java.util.List;
+import java.util.logging.Level;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
+import javax.transaction.UserTransaction;
+import javax.ws.rs.core.Response;
 import logica.interfaces.IHospital;
 
 
@@ -25,27 +33,30 @@ import logica.interfaces.IHospital;
 @Singleton
 public class HospitalLogic implements IHospital
 {
-    @PersistenceContext(unitName = "Persistence")
+    @PersistenceContext(unitName = "Persistence" , type = PersistenceContextType.TRANSACTION)
     private EntityManager em;
     
+    @Resource
+            UserTransaction userTran;
+    
     //= PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
-    //, type = PersistenceContextType.TRANSACTION
-
-    public HospitalLogic() 
+    //
+    
+    public HospitalLogic()
     {
     }
     
-    @PostConstruct
-    public void init()
-    {
-        try
-        {
-            em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+//    @PostConstruct
+//    public void init()
+//    {
+//        try
+//        {
+//            em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//        }
+//    }
     
     
     public void notificarEmergencia(AlertaDTO alerta)
@@ -55,28 +66,45 @@ public class HospitalLogic implements IHospital
     
     public void crear(HospitalDTO hospitalDTO)
     {
+//        hospitalDTO.setId(0L);
         System.out.println(hospitalDTO);
         System.out.println(em.hashCode());
-        try
-        {
-//            em.getTransaction().begin();
-            em.persist(hospitalDTO.toEntity());
-//            em.getTransaction().commit();
-//            em.refresh(hospitalDTO);
+        HospitalEntity he =hospitalDTO.toEntity();
+        System.out.println(he);
+        try {
+            userTran.begin();
+            em.persist(he);
+            userTran.commit();
+            
+        } catch (Exception e) {
         }
-        catch(Exception t)
-        {
-            System.out.println("logica.ejb.HospitalLogic.crear()");
-            t.printStackTrace();
-//            if(em.getTransaction().isActive())
-//            {
-//                em.getTransaction().rollback();
-//            }
-        }
-//        finally{
-//            em.clear();
-//            em.close();
-//        }
+        
+        
+        
+        
+        
     }
     
+    public List<HospitalEntity> findAll()
+    {
+        Query q = em.createQuery("select u from HospitalEntity u");
+        return q.getResultList();
+    }
+
+    void agregarPaciente(PacienteDTO paciente) 
+    {
+        HospitalEntity h;
+        h = find(paciente.getHospital().getId());
+        h.addPaciente(paciente.toEntity());
+        update(h);
+    }
+    
+      public HospitalEntity update (HospitalEntity adminEntity)
+    {
+        return em.merge(adminEntity);
+    }
+      public HospitalEntity find(Long id)
+    {
+        return em.find(HospitalEntity.class, id);
+    }
 }

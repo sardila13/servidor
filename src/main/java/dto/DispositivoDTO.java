@@ -102,7 +102,7 @@ public class DispositivoDTO {
         return nAlertas;
     }
     
-    DispositivoEntity toEntity() {
+    public DispositivoEntity toEntity() {
         PacienteEntity p =null;
         if(paciente!=null)
         {

@@ -60,7 +60,7 @@ public class MedicoDTO
         this.especialista=especialista;
     }
 
-    MedicoEntity toEntity() 
+    public MedicoEntity toEntity() 
     {
         MedicoEntity m = new MedicoEntity(nombre, especialista);
         m.setId(id);

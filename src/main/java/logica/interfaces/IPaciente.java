@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface IPaciente {
     
-    public PacienteDTO crearPaciente(PacienteDTO paciente);
+    public void crearPaciente(PacienteDTO paciente);
     
     public PacienteDTO buscarPaciente(Long id);
     

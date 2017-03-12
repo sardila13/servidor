@@ -1,21 +1,12 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package rest;
 
-import Entites.DispositivoEntity;
-import Entites.PacienteEntity;
 import dto.AlertaDTO;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import dto.HospitalDTO;
 import dto.MedicoDTO;
 import dto.PacienteDTO;
-import java.util.Date;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -23,15 +14,11 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import logica.ejb.AlertaLogic;
-import logica.ejb.DispositivoLogic;
 import logica.ejb.HospitalLogic;
 import logica.ejb.MedicoLogic;
 import logica.ejb.PacienteLogic;
 import logica.interfaces.IAlertaLogic;
 import logica.interfaces.IDispositivo;
-
-
 /**
  *
  * @author s.ardila13
@@ -92,27 +79,21 @@ logic.crearAlerta(alerta);
         
         Integer frecuencia = 85;
         Integer estres = 65;
-//        PacienteEntity pPaciente = new PacienteEntity("Brandon", 20, null, null, null, null, null, null);
-////        DispositivoEntity pDispositivo = new DispositivoEntity(pPaciente, null, null, null);
-//
-////        pPaciente.setDispositivo(pDispositivo);
-//        AlertaEntity alerta = new AlertaEntity(0, presion, 100, 70, null, 0,ubicacion , new Date());
-//        System.out.println("Entra al servicio x2");
-//
-//        PacienteDTO p  =new PacienteDTO("Brandon", 1L, 17, null, medicos, hospital);
-//        Long d = new Long(Long.MIN_VALUE, p, hospital, configuracion);
-//        p.setDispositivo(d);
-//
-//        dispositivologic.crearPaciente(new Long(1L, pPaciente, hospital, configuracion))
-HospitalDTO h = new HospitalDTO("Uniandes");
-hospitalLogic.crear(h);
-medicoLogic.crearMedico(new MedicoDTO("German", 0));
-PacienteDTO p = new PacienteDTO("Brandon", 20 , h);
-pacienteLogic.crearPaciente(p);
-dispositivologic.crearDispositivo(new DispositivoDTO( p, p.getHospital(), new ConfiguracionDTO("config ")));
-DispositivoDTO d = dispositivologic.darDispositivos().get(0);
-AlertaDTO a = new AlertaDTO(0, presion,frecuencia, estres, d.getId(), AlertaDTO.AMARILLO, ubicacion);
-return a;
+        
+        
+        HospitalDTO h = new HospitalDTO("Uniandes");
+        hospitalLogic.crear(h);
+        System.out.println(
+                hospitalLogic.findAll().toString()
+        );
+        
+        medicoLogic.crearMedico(new MedicoDTO("German", 0));
+        PacienteDTO p = new PacienteDTO("Brandon", 20 , h);
+        pacienteLogic.crearPaciente(p);
+        dispositivologic.crearDispositivo(new DispositivoDTO( p, p.getHospital(), new ConfiguracionDTO("config ")));
+        DispositivoDTO d = dispositivologic.darDispositivos().get(0);
+        AlertaDTO a = new AlertaDTO(0, presion,frecuencia, estres, d.getId(), AlertaDTO.AMARILLO, ubicacion);
+        return a;
     }
     
 }
