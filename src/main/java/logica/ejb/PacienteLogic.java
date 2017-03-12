@@ -5,6 +5,7 @@
 */
 package logica.ejb;
 
+import Entites.AlertaEntity;
 import Entites.DispositivoEntity;
 import Entites.PacienteEntity;
 import Persitence.PersistenceManager;
@@ -26,6 +27,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.swing.text.html.HTML;
 import javax.transaction.UserTransaction;
 import logica.interfaces.IPaciente;
@@ -92,13 +94,18 @@ public class PacienteLogic implements IPaciente {
         return paciente;
     }
     
-    public ArrayList<AlertaDTO> getHistorialPorRango(long idPaciente, Date fechaInicio, Date fechaFinal)
+    public ArrayList<AlertaDTO> getHistorialPorRango(Long idPaciente, Date fechaInicio, Date fechaFinal)
     {
-        PacienteDTO p= em.find(PacienteDTO.class,idPaciente);
         ArrayList<AlertaDTO> r = new ArrayList<>();
-        for (int i =0; i<p.getAlertas().size();i++)
+        
+        PacienteEntity p= em.find(PacienteEntity.class,idPaciente);
+        DispositivoEntity d = em.find(DispositivoEntity.class, p.getDispositivo().getId());
+        
+        
+        
+        for (int i =0; i<d.getAlertas().size();i++)
         {
-            AlertaDTO actual = p.getAlertas().get(i);
+            AlertaDTO actual = d.getAlertas().get(i).toDTO();
             
             if(actual.getFecha().after(fechaInicio) && actual.getFecha().before(fechaFinal))
             {
@@ -107,6 +114,21 @@ public class PacienteLogic implements IPaciente {
         }
         return r;
     }
+//        TypedQuery<AlertaEntity> q = em.createQuery(
+//                "SELECT c FROM ("
+//                        + " (SELECT u FROM DISPOSITIVOENTITY_ALERTAENTITY u WHERE u.DISPOSITIVOENTITY_ID = :name   ) INNER JOIN"
+//                        + "(SELECT v FROM ALERTAENTITY WHERE v.FECHA BETWEEN :fecha1 AND :fecha2 )ON u.ALERTAENTITY_ID = v.ID ) c "
+//                ,AlertaEntity.class);
+//        q = q.setParameter("name", d.getId());
+//        q = q.setParameter("fecha1", fechaInicio);
+//        q = q.setParameter("fecha2", fechaFinal);
+//        List<AlertaEntity> r = q.getResultList();
+//        
+//        for (int i = 0; i < r.size(); i++) 
+//        {
+//            rta.add(r.get(i).toDTO());
+//        }
+//        return rta;
     
     @Override
     public String toString() {
