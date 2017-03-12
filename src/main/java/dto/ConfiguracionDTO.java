@@ -14,16 +14,22 @@ import java.util.Date;
  * @author s.ardila13
  */
 public class ConfiguracionDTO {
+    
+    private Long id;
+    
     private String configuracion;
     
     private Date fecha;
     
+//    private DispositivoDTO dispositivo;
+    
     public ConfiguracionDTO() {
     }
     
-    public ConfiguracionDTO(String config_)
+    public ConfiguracionDTO(String config)
     {
-        this.configuracion = configuracion;
+//        this.dispositivo = dis;
+        this.configuracion = config;
         fecha= new Date();
     }
     
@@ -42,6 +48,24 @@ public class ConfiguracionDTO {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+//    public DispositivoDTO getDispositivo() {
+//        return dispositivo;
+//    }
+//
+//    public void setDispositivo(DispositivoDTO dispositivo) {
+//        this.dispositivo = dispositivo;
+//    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
     
     @Override
     public String toString() {
@@ -50,9 +74,12 @@ public class ConfiguracionDTO {
     
     public ConfiguracionEntity toEntity()
     {
-        return new ConfiguracionEntity(configuracion, fecha);
+        ConfiguracionEntity c = new ConfiguracionEntity(configuracion, fecha);
+        c.setId(id);
+//        if(dispositivo != null){
+//            c.setDispositivo(dispositivo.toEntity());
+//        }
+        return c;
     }
-    
-    
     
 }

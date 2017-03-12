@@ -29,11 +29,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class DispositivoEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
-    @OneToOne
     @PodamExclude
+    @OneToOne(mappedBy = "dispositivo", cascade = CascadeType.ALL, orphanRemoval = true)
     private PacienteEntity paciente;
     
     @OneToMany(mappedBy = "dispositivo", cascade = CascadeType.ALL, orphanRemoval = true) 
@@ -43,8 +43,7 @@ public class DispositivoEntity implements Serializable
     @PodamExclude
     private HospitalEntity hospital;
     
-    @OneToOne
-    @PodamExclude
+    @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
     private ConfiguracionEntity configuracion;
 
     public DispositivoEntity()
@@ -117,4 +116,11 @@ public class DispositivoEntity implements Serializable
         d.setId(id);
         return d;
     }
+
+    @Override
+    public String toString() {
+        return "DispositivoEntity{" + "id=" + id + ", paciente=" + paciente + ", alertas=" + alertas + ", hospital=" + hospital + ", configuracion=" + configuracion + '}';
+    }
+    
+    
 }

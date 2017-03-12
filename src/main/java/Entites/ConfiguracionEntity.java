@@ -6,8 +6,10 @@
 package Entites;
 
 import dto.ConfiguracionDTO;
+import dto.DispositivoDTO;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -27,8 +30,9 @@ public class ConfiguracionEntity implements Serializable
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @OneToOne
-    private DispositivoEntity dispositivo;
+//    @OneToOne(mappedBy = "configuracion", cascade = CascadeType.ALL)
+//    @PodamExclude
+//    private DispositivoEntity dispositivo;
     
     private String configuracion;
     
@@ -71,10 +75,31 @@ public class ConfiguracionEntity implements Serializable
 
     public ConfiguracionDTO toDTO() 
     {
+        DispositivoDTO dispositivoDTO = null;
+//        if(dispositivo != null){
+//            dispositivoDTO = dispositivo.toDTO();
+//        }
         ConfiguracionDTO c = new ConfiguracionDTO(configuracion);
         c.setFecha(fecha);
+        c.setId(id);
         return c;
     }
+
+//    public DispositivoEntity getDispositivo() {
+//        return dispositivo;
+//    }
+
+//    public void setDispositivo(DispositivoEntity dispositivo) {
+//        this.dispositivo = dispositivo;
+//    }
+
+    @Override
+    public String toString() {
+        return "ConfiguracionEntity{" + "id=" + id + ", configuracion=" + configuracion + ", fecha=" + fecha + '}';
+    }
+    
+    
+
     
     
 }

@@ -77,10 +77,6 @@ public class HospitalLogic implements IHospital
         catch (Exception e) {
         }
         
-        
-        
-        
-        
     }
     
     public List<HospitalEntity> findAll()

@@ -91,7 +91,12 @@ logic.crearAlerta(alerta);
         p.setId(1L);
         pacienteLogic.crearPaciente(p);
        
-        DispositivoDTO dispositivo = new DispositivoDTO( p, p.getHospital(), new ConfiguracionDTO("config "));
+        ConfiguracionDTO config = new ConfiguracionDTO("config ");
+        config.setId(1L);
+        
+        DispositivoDTO dispositivo = new DispositivoDTO( p, p.getHospital(), config);
+//        config.setDispositivo(dispositivo);
+        dispositivo.setConfiguration(config);
         dispositivo.setId(1L);
         dispositivologic.crearDispositivo(dispositivo);
         

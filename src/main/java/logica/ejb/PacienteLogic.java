@@ -5,9 +5,11 @@
  */
 package logica.ejb;
 
+import Entites.PacienteEntity;
 import Persitence.PersistenceManager;
 import dto.AlertaDTO;
 import dto.ConsejoDTO;
+import dto.DispositivoDTO;
 import dto.HistorialDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
@@ -58,7 +60,7 @@ public class PacienteLogic implements IPaciente {
         catch(Exception e){
             
         }
-        hospitalLogic.agregarPaciente(paciente);
+//        hospitalLogic.agregarPaciente(paciente);
     }
 
     @Override
@@ -119,6 +121,19 @@ public class PacienteLogic implements IPaciente {
         em.merge(paciente);
         return paciente;
     }
+
+//    public void agregarDispositivo(DispositivoDTO dispositivo) {
+//        PacienteEntity paciente = em.find(PacienteEntity.class, dispositivo.getPaciente().getId());
+//        paciente.setDispositivo(dispositivo.toEntity());
+//        try{
+//            userTran.begin();
+//            em.persist(paciente);
+//            userTran.commit();
+//        }
+//        catch(Exception e){
+//            
+//        }
+//    }
     
     
     

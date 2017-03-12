@@ -35,6 +35,7 @@ public class HospitalEntity implements Serializable
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DispositivoEntity> dispositivos;
     
+    @PodamExclude
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PacienteEntity> pacientes;
     

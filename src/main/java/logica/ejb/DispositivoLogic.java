@@ -45,12 +45,16 @@ public class DispositivoLogic implements IDispositivo {
     @Override
     public void crearDispositivo(DispositivoDTO dispositivo)
     {
+        System.out.println("Dispositivo: " + dispositivo.toString());
         try {
+            System.out.println("Dipsositivo: " + dispositivo.toEntity());
             userTran.begin();
             em.persist(dispositivo.toEntity());
             userTran.commit();
             
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
     

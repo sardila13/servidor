@@ -34,6 +34,7 @@ public class DispositivoDTO {
         paciente = p;
         hospital = h;
         configuracion = c;
+        alertas = new ArrayList<>();
     }
 
     public void agregarAlerta(AlertaDTO alerta){
@@ -120,5 +121,12 @@ public class DispositivoDTO {
         }
         return new DispositivoEntity(p, alertasEntities(), h, c);
     }
+
+    @Override
+    public String toString() {
+        return "DispositivoDTO{" + "id=" + id + ", paciente=" + paciente + ", alertas=" + alertas + ", hospital=" + hospital + ", configuracion=" + configuracion + '}';
+    }
+    
+    
     
 }

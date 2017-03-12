@@ -232,7 +232,11 @@ public class PacienteDTO {
         {
             d=dispositivo.toEntity();
         }
-        return new PacienteEntity(nombre, edad, d, medicosEntities(), h,his , alertasEntities(), consejosEntities());
+        
+        PacienteEntity ent = new PacienteEntity(nombre, edad, d, medicosEntities(), h,his , alertasEntities(), consejosEntities());
+//        ent.setId(id);
+        
+        return ent;
     }
 
     
