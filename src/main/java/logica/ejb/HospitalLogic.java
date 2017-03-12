@@ -67,16 +67,14 @@ public class HospitalLogic implements IHospital
     public void crear(HospitalDTO hospitalDTO)
     {
 //        hospitalDTO.setId(0L);
-        System.out.println(hospitalDTO);
-        System.out.println(em.hashCode());
         HospitalEntity he =hospitalDTO.toEntity();
-        System.out.println(he);
         try {
             userTran.begin();
             em.persist(he);
             userTran.commit();
             
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
         }
         
         
@@ -101,7 +99,15 @@ public class HospitalLogic implements IHospital
     
       public HospitalEntity update (HospitalEntity adminEntity)
     {
-        return em.merge(adminEntity);
+        try{
+            userTran.begin();
+            HospitalEntity he = em.merge(adminEntity);
+            userTran.commit();
+            return he;
+        }
+        catch(Exception e){
+            return null;
+        }
     }
       public HospitalEntity find(Long id)
     {

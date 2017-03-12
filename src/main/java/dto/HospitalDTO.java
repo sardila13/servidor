@@ -74,7 +74,6 @@ public class HospitalDTO
     
     public HospitalEntity toEntity()
     {
-        System.out.println(nombre);
         HospitalEntity h = new HospitalEntity(nombre);
         h.setDispositivos(dispositivosEntities());
         h.setPacientes(pacientesEntities());

@@ -50,6 +50,14 @@ public class PacienteLogic implements IPaciente {
     @Override
     public void crearPaciente(PacienteDTO paciente) 
     {
+        try{
+            userTran.begin();
+            em.persist(paciente.toEntity());
+            userTran.commit();
+        }
+        catch(Exception e){
+            
+        }
         hospitalLogic.agregarPaciente(paciente);
     }
 

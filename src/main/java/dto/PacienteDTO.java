@@ -69,7 +69,7 @@ public class PacienteDTO {
     
     public void agregarAlerta(AlertaDTO alerta)
     {
-        System.out.println("Agreganbdo Alerta");
+        System.out.println("Agregando Alerta");
         alertas.add(alerta);
     }
     

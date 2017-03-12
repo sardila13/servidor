@@ -36,17 +36,29 @@ public class AlertaDTO
     {
     }
 
-    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres, Long IdDispositivo, Integer tipo, Long[] ubicacion)
+    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres, DispositivoDTO IdDispositivo, Integer tipo, Long[] ubicacion)
     {
         this.esEmergencia = esEmergencia;
         this.presionSanguinea = presionSanguinea;
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.nivelEstres = nivelEstres;
-        this.dispositivo = logicDispositivo.buscarDispositivo(IdDispositivo);
+        this.dispositivo = dispositivo;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
         this.fecha = new Date();
     }
+    
+//    public AlertaDTO(AlertaEntity alerta)
+//    {
+//        this.esEmergencia = alerta.getEsEmergencia();
+//        this.presionSanguinea = alerta.getPresionSanguinea();
+//        this.frecuenciaCardiaca = alerta.getFrecuenciaCardica();
+//        this.nivelEstres = alerta.getNivelEstres();
+//        this.dispositivo = alerta.getDispositivo().toDTO();
+//        this.tipo = alerta.getTipo();
+//        this.ubicacion = alerta.getUbicacion();
+//        this.fecha = alerta.getFecha();
+//    }
 
     public Integer getEsEmergencia()
     {
@@ -135,15 +147,12 @@ public class AlertaDTO
     }
 
     public AlertaEntity toEntity() 
-    {
-        
-        DispositivoEntity disEntity = null;
+    {        
+        DispositivoEntity dis = null;
         if(dispositivo != null){
-            disEntity = dispositivo.toEntity();
+            dis = dispositivo.toEntity();
         }
-        new AlertaEntity(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres, disEntity, tipo, ubicacion, fecha);
-        
-        return new AlertaEntity(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres,disEntity, tipo, ubicacion, fecha);
+        return new AlertaEntity(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres,dis, tipo, ubicacion, fecha);
     }
     
     

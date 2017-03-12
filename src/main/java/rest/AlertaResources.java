@@ -83,16 +83,19 @@ logic.crearAlerta(alerta);
         
         HospitalDTO h = new HospitalDTO("Uniandes");
         hospitalLogic.crear(h);
-        System.out.println(
-                hospitalLogic.findAll().toString()
-        );
         
         medicoLogic.crearMedico(new MedicoDTO("German", 0));
+        
+        h.setId(1L);
         PacienteDTO p = new PacienteDTO("Brandon", 20 , h);
+        p.setId(1L);
         pacienteLogic.crearPaciente(p);
-        dispositivologic.crearDispositivo(new DispositivoDTO( p, p.getHospital(), new ConfiguracionDTO("config ")));
-        DispositivoDTO d = dispositivologic.darDispositivos().get(0);
-        AlertaDTO a = new AlertaDTO(0, presion,frecuencia, estres, d.getId(), AlertaDTO.AMARILLO, ubicacion);
+       
+        DispositivoDTO dispositivo = new DispositivoDTO( p, p.getHospital(), new ConfiguracionDTO("config "));
+        dispositivo.setId(1L);
+        dispositivologic.crearDispositivo(dispositivo);
+        
+        AlertaDTO a = new AlertaDTO(0, presion,frecuencia, estres, dispositivo , AlertaDTO.AMARILLO, ubicacion);
         return a;
     }
     

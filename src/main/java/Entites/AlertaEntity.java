@@ -5,8 +5,10 @@
  */
 package Entites;
 import dto.AlertaDTO;
+import dto.DispositivoDTO;
 import java.io.Serializable;
 import java.util.Date;
+import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import logica.ejb.DispositivoLogic;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -146,9 +149,9 @@ public class AlertaEntity implements Serializable
 
     public AlertaDTO toDTO() 
     {
-        Long pDispositivo = null;
+        DispositivoDTO pDispositivo = null;
         if(dispositivo != null){
-            pDispositivo = dispositivo.toDTO().getId();
+            pDispositivo = dispositivo.toDTO();
         }
         return new AlertaDTO(getEsEmergencia(), getPresionSanguinea(), frecuenciaCardica, nivelEstres, pDispositivo, tipo, ubicacion);
     }

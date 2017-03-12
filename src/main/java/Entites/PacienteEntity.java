@@ -54,8 +54,8 @@ public class PacienteEntity implements Serializable
     @PodamExclude
     private HospitalEntity hospital;
     
-    @OneToOne
     @PodamExclude
+    @OneToOne(cascade = CascadeType.ALL)
     private HistorialEntity historial;
     
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)

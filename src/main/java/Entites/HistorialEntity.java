@@ -32,8 +32,8 @@ public class HistorialEntity implements Serializable
     @OneToMany(mappedBy = "historial", cascade = CascadeType.ALL, orphanRemoval = true) 
     private List<AlertaEntity> alertas;
     
-    @OneToOne
     @PodamExclude
+    @OneToOne(mappedBy = "historial", cascade = CascadeType.ALL)
     private PacienteEntity paciente;
     
     private List<String> tratamientos;
