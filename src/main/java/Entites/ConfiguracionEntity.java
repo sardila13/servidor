@@ -27,7 +27,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ConfiguracionEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
 //    @OneToOne(mappedBy = "configuracion", cascade = CascadeType.ALL)

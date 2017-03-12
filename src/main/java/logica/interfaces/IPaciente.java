@@ -5,6 +5,7 @@
  */
 package logica.interfaces;
 
+import Entites.PacienteEntity;
 import dto.AlertaDTO;
 import dto.HistorialDTO;
 import dto.PacienteDTO;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public interface IPaciente {
     
-    public void crearPaciente(PacienteDTO paciente);
+    public PacienteDTO crearPaciente(PacienteDTO paciente);
     
     public PacienteDTO buscarPaciente(Long id);
     

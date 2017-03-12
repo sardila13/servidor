@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IAlertaLogic 
 {
-    public AlertaDTO crearAlerta(AlertaDTO nueva);
+//    public AlertaDTO crearAlerta(AlertaDTO nueva,Long idDispositivo);
     
     
     public List<AlertaDTO> darAlertas();

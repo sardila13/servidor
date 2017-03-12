@@ -27,7 +27,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class AlertaEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private Integer esEmergencia;
@@ -38,13 +38,13 @@ public class AlertaEntity implements Serializable
     
     private Integer nivelEstres;
     
-    @ManyToOne
-    @PodamExclude
-    private DispositivoEntity dispositivo;
+//    @ManyToOne
+//    @PodamExclude
+//    private DispositivoEntity dispositivo;
     
-    @ManyToOne
-    @PodamExclude
-    private HistorialEntity historial;
+//    @ManyToOne
+//    @PodamExclude
+//    private HistorialEntity historial;
     
     private Integer tipo;
     
@@ -53,21 +53,21 @@ public class AlertaEntity implements Serializable
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
-    @ManyToOne
-    @PodamExclude
-    private PacienteEntity paciente;
+//    @ManyToOne
+//    @PodamExclude
+//    private PacienteEntity paciente;
 
     public AlertaEntity()
     {
         
     }
 
-    public AlertaEntity(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres, DispositivoEntity dispositivo, Integer tipo, Long[] ubicacion, Date fecha) {
+    public AlertaEntity(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres,/* DispositivoEntity dispositivo,*/ Integer tipo, Long[] ubicacion, Date fecha) {
         this.esEmergencia = esEmergencia;
         this.presionSanguinea = presionSanguinea;
         this.frecuenciaCardica = frecuenciaCardica;
         this.nivelEstres = nivelEstres;
-        this.dispositivo = dispositivo;
+//        this.dispositivo = dispositivo;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
         this.fecha = fecha;
@@ -115,13 +115,13 @@ public class AlertaEntity implements Serializable
         this.nivelEstres = nivelEstres;
     }
 
-    public DispositivoEntity getDispositivo() {
-        return dispositivo;
-    }
-
-    public void setDispositivo(DispositivoEntity dispositivo) {
-        this.dispositivo = dispositivo;
-    }
+//    public DispositivoEntity getDispositivo() {
+//        return dispositivo;
+//    }
+//
+//    public void setDispositivo(DispositivoEntity dispositivo) {
+//        this.dispositivo = dispositivo;
+//    }
 
     public Integer getTipo() {
         return tipo;
@@ -149,17 +149,19 @@ public class AlertaEntity implements Serializable
 
     public AlertaDTO toDTO() 
     {
-        DispositivoDTO pDispositivo = null;
-        if(dispositivo != null){
-            pDispositivo = dispositivo.toDTO();
-        }
-        return new AlertaDTO(getEsEmergencia(), getPresionSanguinea(), frecuenciaCardica, nivelEstres, pDispositivo, tipo, ubicacion);
+//        DispositivoDTO pDispositivo = null;
+//        if(dispositivo != null){
+//            pDispositivo = dispositivo.toDTO();
+//        }
+        return new AlertaDTO(getEsEmergencia(), getPresionSanguinea(), frecuenciaCardica, nivelEstres, /*pDispositivo,*/ tipo, ubicacion);
     }
 
     @Override
     public String toString() {
-        return "AlertaEntity{" + "id=" + id + ", esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardica=" + frecuenciaCardica + ", nivelEstres=" + nivelEstres + ", dispositivo=" + dispositivo + ", historial=" + historial + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + ", paciente=" + paciente + '}';
+        return "AlertaEntity{" + "id=" + id + ", esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardica=" + frecuenciaCardica + ", nivelEstres=" + nivelEstres + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
     }
+
+
     
     
 }

@@ -20,7 +20,7 @@ import javax.persistence.Id;
 public class AmbulanciaEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     public AmbulanciaEntity()

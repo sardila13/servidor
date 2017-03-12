@@ -1,5 +1,6 @@
 package rest;
 
+import Entites.PacienteEntity;
 import dto.AlertaDTO;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
@@ -12,6 +13,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import logica.ejb.HospitalLogic;
@@ -52,12 +54,13 @@ public class AlertaResources
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void createAlerta(AlertaDTO alerta)
+    @Path("/{idDispositivo:\\d+}")
+    public void createAlerta(AlertaDTO alerta,@PathParam("idDispositivo") Long idDispositivo)
     {
-        System.out.println("La instancia es " + logic.hashCode());
-//       System.out.println("Hola " + alerta);
-
-logic.crearAlerta(alerta);
+//        System.out.println("La instancia es " + logic.hashCode());
+       System.out.println("Hola " + idDispositivo);
+       dispositivologic.agregarAlerta(idDispositivo, alerta);
+//        logic.crearAlerta(alerta, idDispositivo);
     }
     
     @GET
@@ -89,18 +92,20 @@ logic.crearAlerta(alerta);
         h.setId(1L);
         PacienteDTO p = new PacienteDTO("Brandon", 20 , h);
         p.setId(1L);
-        pacienteLogic.crearPaciente(p);
+        PacienteDTO e = pacienteLogic.crearPaciente(p);
        
         ConfiguracionDTO config = new ConfiguracionDTO("config ");
         config.setId(1L);
         
-        DispositivoDTO dispositivo = new DispositivoDTO( p, p.getHospital(), config);
+        DispositivoDTO dispositivo = new DispositivoDTO( e, p.getHospital(), config);
 //        config.setDispositivo(dispositivo);
         dispositivo.setConfiguration(config);
         dispositivo.setId(1L);
+        System.out.println("Paciente en dispositivo" + dispositivo.getPaciente().getId());
         dispositivologic.crearDispositivo(dispositivo);
         
-        AlertaDTO a = new AlertaDTO(0, presion,frecuencia, estres, dispositivo , AlertaDTO.AMARILLO, ubicacion);
+        AlertaDTO a = new AlertaDTO(0, presion,frecuencia, estres, /*dispositivo ,*/ AlertaDTO.AMARILLO, ubicacion);
+        
         return a;
     }
     

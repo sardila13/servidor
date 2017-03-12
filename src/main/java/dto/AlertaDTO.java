@@ -24,7 +24,7 @@ public class AlertaDTO
     private Integer[] presionSanguinea;
     private Integer frecuenciaCardiaca;
     private Integer nivelEstres;
-    private DispositivoDTO dispositivo;
+//    private DispositivoDTO dispositivo;
     private Integer tipo;
     private Long[] ubicacion;
     private Date fecha;
@@ -36,13 +36,13 @@ public class AlertaDTO
     {
     }
 
-    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres, DispositivoDTO IdDispositivo, Integer tipo, Long[] ubicacion)
+    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres, /*DispositivoDTO IdDispositivo,*/ Integer tipo, Long[] ubicacion)
     {
         this.esEmergencia = esEmergencia;
         this.presionSanguinea = presionSanguinea;
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.nivelEstres = nivelEstres;
-        this.dispositivo = dispositivo;
+//        this.dispositivo = dispositivo;
         this.tipo = tipo;
         this.ubicacion = ubicacion;
         this.fecha = new Date();
@@ -100,15 +100,15 @@ public class AlertaDTO
         this.nivelEstres = nivelEstres;
     }
 
-    public DispositivoDTO getDispositivo()
-    {
-        return dispositivo;
-    }
-
-    public void setDispositivo(DispositivoDTO pDispositivo)
-    {
-        this.dispositivo = pDispositivo;
-    }
+//    public DispositivoDTO getDispositivo()
+//    {
+//        return dispositivo;
+//    }
+//
+//    public void setDispositivo(DispositivoDTO pDispositivo)
+//    {
+//        this.dispositivo = pDispositivo;
+//    }
 
     public Integer getTipo()
     {
@@ -148,11 +148,11 @@ public class AlertaDTO
 
     public AlertaEntity toEntity() 
     {        
-        DispositivoEntity dis = null;
-        if(dispositivo != null){
-            dis = dispositivo.toEntity();
-        }
-        return new AlertaEntity(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres,dis, tipo, ubicacion, fecha);
+//        DispositivoEntity dis = null;
+//        if(dispositivo != null){
+//            dis = dispositivo.toEntity();
+//        }
+        return new AlertaEntity(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres,/*dis,*/ tipo, ubicacion, fecha);
     }
     
     

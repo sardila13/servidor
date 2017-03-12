@@ -5,14 +5,20 @@
 */
 package logica.ejb;
 
+import Entites.AlertaEntity;
+import Entites.DispositivoEntity;
+import Entites.PacienteEntity;
 import Persitence.PersistenceManager;
+import dto.AlertaDTO;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import dto.PacienteDTO;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -37,6 +43,9 @@ public class DispositivoLogic implements IDispositivo {
     @Resource
             UserTransaction userTran;
     
+    @Inject
+    PacienteLogic pacienteLogic;
+    
     
     public DispositivoLogic(){
         //persistence = new DispositivoMock();
@@ -45,13 +54,15 @@ public class DispositivoLogic implements IDispositivo {
     @Override
     public void crearDispositivo(DispositivoDTO dispositivo)
     {
-        System.out.println("Dispositivo: " + dispositivo.toString());
         try {
-            System.out.println("Dipsositivo: " + dispositivo.toEntity());
             userTran.begin();
-            em.persist(dispositivo.toEntity());
+            DispositivoEntity de = dispositivo.toEntity();
+            de.setPaciente(em.find(PacienteEntity.class, dispositivo.getPaciente().getId()));
+            em.persist(de);
             userTran.commit();
             
+            /*???*/
+            pacienteLogic.agregarDispositivo(de);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +72,7 @@ public class DispositivoLogic implements IDispositivo {
     @Override
     public DispositivoDTO buscarDispositivo(Long id)
     {
-        return em.find(DispositivoDTO.class, id);
+        return em.find(DispositivoEntity.class, id).toDTO();
         
     }
     
@@ -89,5 +100,24 @@ public class DispositivoLogic implements IDispositivo {
         em.merge(dispositivo);
         return confi;
     }
+
+    @Override
+    public void agregarAlerta(Long idDispositivo, AlertaDTO alerta) {
+        DispositivoEntity dispositivo = em.find(DispositivoEntity.class, idDispositivo);
+        alerta.setFecha(new Date());
+        AlertaEntity a = alerta.toEntity();
+        System.out.println("alerta Entity: "+a);
+        dispositivo.agregarAlerta(a);
+        try{
+            userTran.begin();
+            em.merge(dispositivo);
+            userTran.commit();
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
+    
     
 }

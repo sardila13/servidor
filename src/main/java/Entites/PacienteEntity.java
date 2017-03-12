@@ -36,7 +36,7 @@ public class PacienteEntity implements Serializable
 //    DispositivoLogic dispositivoLogic;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private String nombre;
@@ -58,7 +58,7 @@ public class PacienteEntity implements Serializable
     @OneToOne(cascade = CascadeType.ALL)
     private HistorialEntity historial;
     
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AlertaEntity> alertas;
     
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -173,5 +173,12 @@ public class PacienteEntity implements Serializable
         
         return p;
     }
+
+    @Override
+    public String toString() {
+        return "PacienteEntity{" + "id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", dispositivo=" + dispositivo + ", medicos=" + medicos + ", hospital=" + hospital + ", historial=" + historial + ", alertas=" + alertas + ", consejos=" + consejos + '}';
+    }
+    
+    
     
 }

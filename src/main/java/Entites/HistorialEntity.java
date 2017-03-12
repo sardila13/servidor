@@ -26,10 +26,10 @@ public class HistorialEntity implements Serializable
 {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToMany(mappedBy = "historial", cascade = CascadeType.ALL, orphanRemoval = true) 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
     private List<AlertaEntity> alertas;
     
     @PodamExclude

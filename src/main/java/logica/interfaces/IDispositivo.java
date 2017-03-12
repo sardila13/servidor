@@ -6,6 +6,7 @@
 package logica.interfaces;
 
 import com.sun.media.jfxmediaimpl.MediaDisposer;
+import dto.AlertaDTO;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import dto.PacienteDTO;
@@ -29,6 +30,8 @@ public interface IDispositivo {
     public void modificarDispositivo(Long id, DispositivoDTO paciente);
     
     public ConfiguracionDTO setConfiguracion(ConfiguracionDTO confi, Long idDispositivo);
+
+    public void agregarAlerta(Long idDispositivo, AlertaDTO alerta);
 
     
 }

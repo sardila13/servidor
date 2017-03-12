@@ -1,4 +1,5 @@
 package logica.ejb;
+import Entites.DispositivoEntity;
 import Persitence.PersistenceManager;
 import dto.AlertaDTO;
 import java.util.List;
@@ -38,21 +39,30 @@ public class AlertaLogic implements IAlertaLogic
     
   
     
-    public AlertaDTO crearAlerta(AlertaDTO alerta)
-    {
-        //Requerimiento 2
-        if(alerta.getFrecuenciaCardica()>100 ||alerta.getFrecuenciaCardica()<60
-                || alerta.getPresionSanguinea()[0]>120 || alerta.getPresionSanguinea()[1]<80
-                ||alerta.getNivelEstres()>70)
-        {
-            alerta.setEsEmergencia(1);
-            hospitalLogic.notificarEmergencia(alerta);
-        }
-        System.out.println(alerta.toString());
-        System.out.println("e: "+alerta.toEntity());
-        em.persist(alerta.toEntity());
-        return alerta;
-    }
+//    public AlertaDTO crearAlerta(AlertaDTO alerta, Long idDispositivo)
+//    {
+//        //Requerimiento 2
+//        
+//        
+//        if(alerta.getFrecuenciaCardica()>100 ||alerta.getFrecuenciaCardica()<60
+//                || alerta.getPresionSanguinea()[0]>120 || alerta.getPresionSanguinea()[1]<80
+//                ||alerta.getNivelEstres()>70)
+//        {
+//            alerta.setEsEmergencia(1);
+//            hospitalLogic.notificarEmergencia(alerta);
+//        }
+//        System.out.println("Buscar");
+//        DispositivoEntity dis = em.find(DispositivoEntity.class, idDispositivo );
+//        System.out.println("Encontró");
+//        System.out.println("Dispositivo Entity: " + dis);
+//        
+//        dis.agregarAlerta(alerta);
+//        alerta.setDispositivo(dis.toDTO());
+//        System.out.println(alerta.toString());
+//        System.out.println("e: "+alerta.toEntity());
+//        em.persist(alerta.toEntity());
+//        return alerta;
+//    }
     
     //No se necesita public AlertaDTO buscarAlerta(int pId)
 
