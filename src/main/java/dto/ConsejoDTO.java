@@ -47,8 +47,9 @@ public class ConsejoDTO {
         return "CnosejoDTO{" + "consejo=" + consejo + ", fecha=" + fecha + '}';
     }
 
-    ConsejoEntity toEntity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ConsejoEntity toEntity() 
+    {
+        return new ConsejoEntity(consejo, fecha);
     }
     
     

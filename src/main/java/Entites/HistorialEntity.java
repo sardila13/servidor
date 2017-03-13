@@ -5,6 +5,8 @@
  */
 package Entites;
 
+import dto.HistorialDTO;
+import dto.PacienteDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +92,15 @@ public class HistorialEntity implements Serializable
 
     public void setExamenes(ArrayList<String> examenes) {
         this.examenes = examenes;
+    }
+    
+    public HistorialDTO toDto()
+    {
+        PacienteDTO p=null;
+        if(paciente!=null)
+            p=paciente.toDTO();
+        
+        return new HistorialDTO(p);
     }
  
     

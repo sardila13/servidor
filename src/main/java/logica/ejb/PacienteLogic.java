@@ -65,6 +65,7 @@ public class PacienteLogic implements IPaciente {
             return pe.toDTO();
         }
         catch(Exception e){
+            e.printStackTrace();
             return null;
         }
 //        hospitalLogic.agregarPaciente(paciente);
@@ -73,25 +74,49 @@ public class PacienteLogic implements IPaciente {
     @Override
     public PacienteDTO buscarPaciente(Long id) {
         System.out.println("Logic " + id);
-        return em.find(PacienteDTO.class, id);
+        return em.find(PacienteEntity.class, id).toDTODetail();
     }
     
     @Override
-    public List<PacienteDTO> darPacientes() {
+    public List<PacienteDTO> darPacientes() 
+    {
+        List<PacienteDTO> r = new ArrayList<>();
+        
         Query q = em.createQuery("select u from PacienteEntity u");
-        return q.getResultList();
+        List<PacienteEntity> rata = q.getResultList();
+        for (int i = 0; i < rata.size(); i++) 
+        {
+            r.add(rata.get(i).toDTODetail());
+        }
+        return r;
     }
     
     @Override
     public void eliminarPaciente(Long id) {
-        em.remove(em.find(PacienteDTO.class, id));
+        try{
+        userTran.begin();
+        em.remove(em.find(PacienteEntity.class, id));
+        userTran.commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     @Override
-    public PacienteDTO modificarPaciente(Long id, PacienteDTO paciente) {
-        paciente.setId(id);
-        em.merge(paciente);
-        return paciente;
+    public PacienteDTO modificarPaciente(Long id, PacienteDTO paciente) 
+    {
+        try{
+            userTran.begin();
+            PacienteEntity p = paciente.toEntity();
+            p.setId(id);
+            em.merge(p);
+            userTran.commit();
+            return p.toDTO();
+        }
+        catch(Exception e){
+            return null;
+        }
     }
     
     public ArrayList<AlertaDTO> getHistorialPorRango(Long idPaciente, Date fechaInicio, Date fechaFinal)
@@ -100,8 +125,6 @@ public class PacienteLogic implements IPaciente {
         
         PacienteEntity p= em.find(PacienteEntity.class,idPaciente);
         DispositivoEntity d = em.find(DispositivoEntity.class, p.getDispositivo().getId());
-        
-        
         
         for (int i =0; i<d.getAlertas().size();i++)
         {
@@ -136,17 +159,28 @@ public class PacienteLogic implements IPaciente {
     }
     
     public HistorialDTO modificarHistorialPaciente(Long idPaciente, HistorialDTO p) {
-        PacienteDTO paciente = em.find(PacienteDTO.class, idPaciente);
-        paciente.setHistorial(p);
+        try 
+        {
+            userTran.begin();
+        PacienteEntity paciente = em.find(PacienteEntity.class, idPaciente);
+        paciente.setHistorial(p.toEntity());
         em.merge(paciente);
-        return p;
+        userTran.commit();
+        
+        return paciente.getHistorial().toDto();
+        }
+        catch (Exception e )
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
     
     public PacienteDTO agregarConsejo(long idPaciente, ConsejoDTO consejo) {
-        PacienteDTO paciente = em.find(PacienteDTO.class, idPaciente);
-        paciente.agregarConsejo(consejo);
+        PacienteEntity paciente = em.find(PacienteEntity.class, idPaciente);
+        paciente.agregarConsejo(consejo.toEntity());
         em.merge(paciente);
-        return paciente;
+        return paciente.toDTO();
     }
     
     public void agregarDispositivo(DispositivoEntity dispositivo) {

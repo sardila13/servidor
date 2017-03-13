@@ -50,7 +50,15 @@ public class PacienteResources
     @POST
     public void createPaciente (PacienteDTO p )
     {
+        System.out.println("Paciente: " + p.toString());
         logic.crearPaciente(p);
+    }
+    
+    @GET
+    @Path("ejemplo")
+    public PacienteDTO getPaciente()
+    {
+        return new PacienteDTO("Brandon", 19, logic.buscarPaciente(1L).getHospital());
     }
     
     @GET
@@ -64,9 +72,9 @@ public class PacienteResources
     @GET
     public List<PacienteDTO> getPacientes()
     {
-        for (int i = 0; i < logic.darPacientes().size(); i++) {
-            System.out.println(logic.darPacientes().get(i));
-        }
+//        for (int i = 0; i < logic.darPacientes().size(); i++) {
+//            System.out.println(logic.darPacientes().get(i));
+//        }
         return logic.darPacientes();
     }
             
@@ -85,11 +93,11 @@ public class PacienteResources
     }
     
     @DELETE
-    public void deletePaciente(@PathParam("idPaciente")long idPaciente)
+    @Path("{idPaciente:\\d+}/")
+    public void deletePaciente(@PathParam("idPaciente")Long idPaciente)
     {
         logic.eliminarPaciente(idPaciente);
     }
-    
     
     @GET
     @Path("{idPaciente:\\d+}/historial")

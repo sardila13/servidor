@@ -193,24 +193,30 @@ public class PacienteDTO {
 
     public ArrayList<MedicoEntity> medicosEntities(){
         ArrayList<MedicoEntity> nMedicos = new ArrayList<MedicoEntity>();
-        for(int i = 0; i < medicos.size(); i++){
-            nMedicos.add(medicos.get(i).toEntity());
+        if(medicos != null){
+            for(int i = 0; i < medicos.size(); i++){
+                nMedicos.add(medicos.get(i).toEntity());
+            }
         }
         return nMedicos;
     }
     
     public ArrayList<AlertaEntity> alertasEntities(){
-        ArrayList<AlertaEntity> nAlertas = new ArrayList<AlertaEntity>();
-        for(int i = 0; i < alertas.size(); i++){
-            nAlertas.add(alertas.get(i).toEntity());
+            ArrayList<AlertaEntity> nAlertas = new ArrayList<AlertaEntity>();
+        if(alertas != null){
+            for(int i = 0; i < alertas.size(); i++){
+                nAlertas.add(alertas.get(i).toEntity());
+        }
         }
         return nAlertas;
     }
     
     public ArrayList<ConsejoEntity> consejosEntities(){
         ArrayList<ConsejoEntity> nConsejos = new ArrayList<ConsejoEntity>();
-        for(int i = 0; i < consejos.size(); i++){
-            nConsejos.add(consejos.get(i).toEntity());
+        if(consejos != null){
+            for(int i = 0; i < consejos.size(); i++){
+                nConsejos.add(consejos.get(i).toEntity());
+            }
         }
         return nConsejos;
     }

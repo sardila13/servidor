@@ -108,7 +108,7 @@ public class HistorialDTO
         return nAlertas;
     }
 
-    HistorialEntity toEntity() {
+    public HistorialEntity toEntity() {
         PacienteEntity p  = null;
         if(paciente != null){
             p  =paciente.toEntity();

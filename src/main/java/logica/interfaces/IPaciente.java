@@ -31,5 +31,5 @@ public interface IPaciente {
 
     public HistorialDTO modificarHistorialPaciente(Long idPaciente, HistorialDTO p);
 
-    public List<AlertaDTO> getHistorialPorRango(long idPaciente, Date date, Date date0);
+    public List<AlertaDTO> getHistorialPorRango(Long idPaciente, Date date, Date date0);
 }

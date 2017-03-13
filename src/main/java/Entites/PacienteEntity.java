@@ -152,9 +152,13 @@ public class PacienteEntity implements Serializable
         this.consejos = consejos;
     }
     
-    public PacienteDTO toDTO(){
+    
+    
+    public PacienteDTO toDTO()
+    {
         ArrayList<MedicoDTO> pMedicos = new ArrayList<MedicoDTO>();
-        if(medicos != null){
+        if(medicos != null)
+        {
             for(int i = 0; i < medicos.size(); i++){
                 pMedicos.add(medicos.get(i).toDTO());
             }
@@ -177,6 +181,15 @@ public class PacienteEntity implements Serializable
     @Override
     public String toString() {
         return "PacienteEntity{" + "id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", dispositivo=" + dispositivo + ", medicos=" + medicos + ", hospital=" + hospital + ", historial=" + historial + ", alertas=" + alertas + ", consejos=" + consejos + '}';
+    }
+
+    public void agregarConsejo(ConsejoEntity toEntity) {
+        consejos.add(toEntity);
+    }
+
+    public PacienteDTO toDTODetail() 
+    {
+        return new PacienteDTO(nombre, edad, hospital.toDTO());
     }
     
     
