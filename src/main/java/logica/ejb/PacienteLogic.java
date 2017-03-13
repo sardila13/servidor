@@ -125,7 +125,7 @@ public class PacienteLogic implements IPaciente {
         
         PacienteEntity p= em.find(PacienteEntity.class,idPaciente);
         DispositivoEntity d = em.find(DispositivoEntity.class, p.getDispositivo().getId());
-        
+        //Funciona historial
         for (int i =0; i<d.getAlertas().size();i++)
         {
             AlertaDTO actual = d.getAlertas().get(i).toDTO();
