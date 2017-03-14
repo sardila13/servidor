@@ -1,0 +1,146 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Experimento I final",
+		"_postman_id": "fca3fec4-882d-6612-f3ab-7330ae35231f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Ejemplo (inicializar datos)",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/alertas/ejemplo",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"esEmergencia\": 0,\n  \"frecuenciaCardica\": 85,\n  \"nivelEstres\": 65,\n  \"presionSanguinea\": [\n    60,\n    80\n  ],\n  \"tipo\": 1,\n  \"ubicacion\": [\n    60,\n    80\n  ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "2. Crear una alerta",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/alertas/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"esEmergencia\": 0,\n  \"frecuenciaCardica\": 85,\n  \"nivelEstres\": 65,\n  \"presionSanguinea\": [\n    60,\n    80\n  ],\n  \"tipo\": 1,\n  \"ubicacion\": [\n    60,\n    80\n  ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3. Historial en rango (correcto)",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/paciente/historial-fechas/1/1287207658406/1587207658406",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3. Historial en rango (incorrecto)",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/paciente/historial-fechas/1/1587207658406/1587207658406",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4. GET Pacientes",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/paciente",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4. GET paciente(1)",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/paciente/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4. DELETE del paciente(1)",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/paciente/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4. POST paciente",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/paciente/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"edad\": 20,\n  \"hospital\": {\n    \"dispositivos\": [],\n    \"id\": 1,\n    \"nombre\": \"Uniandes\",\n    \"pacientes\": []\n  },\n  \"nombre\": \"Brandon\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4. PUT paciente",
+			"request": {
+				"url": "http://localhost:8080/servidor/api/paciente/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"edad\": 5,\n  \"hospital\": {\n    \"dispositivos\": [],\n    \"id\": 1,\n    \"nombre\": \"Uniandes\",\n    \"pacientes\": []\n  },\n  \"nombre\": \"Chucky\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
