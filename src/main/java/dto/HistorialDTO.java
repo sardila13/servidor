@@ -9,6 +9,7 @@ import Entites.AlertaEntity;
 import Entites.HistorialEntity;
 import Entites.PacienteEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  */
 public class HistorialDTO 
 {
-    private ArrayList<AlertaDTO> alertas;
+    private List<AlertaDTO> alertas;
     
     private PacienteDTO paciente;
     
@@ -69,7 +70,7 @@ public class HistorialDTO
     /**
      * @return the alertas
      */
-    public ArrayList getAlertas()
+    public List getAlertas()
     {
         return alertas;
     }
@@ -77,7 +78,7 @@ public class HistorialDTO
     /**
      * @param alertas the alertas to set
      */
-    public void setAlertas(ArrayList alertas)
+    public void setAlertas(List alertas)
     {
         this.alertas = alertas;
     }

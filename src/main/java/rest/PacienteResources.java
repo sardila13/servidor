@@ -104,7 +104,10 @@ public class PacienteResources
     public HistorialDTO getHistorialClinico (@PathParam("idPaciente") long idPaciente)
     {
         PacienteDTO p = logic.buscarPaciente(idPaciente);
-        return p.getHistorialClinico();
+        List<AlertaDTO> l = logic.getHistorialPorRango(idPaciente, new Date(1287207658406l), new Date(1587207658406l));
+        HistorialDTO d = p.getHistorialClinico();
+        d.setAlertas(l);
+        return d;
     }
     
 }
