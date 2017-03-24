@@ -37,7 +37,7 @@ public class DispositivoLogic implements IDispositivo {
     
     //private DispositivoMock persistence;
     
-    @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)
+    @PersistenceContext(unitName = "Oracle", type = PersistenceContextType.TRANSACTION)
     private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
     @Resource
@@ -103,10 +103,12 @@ public class DispositivoLogic implements IDispositivo {
 
     @Override
     public void agregarAlerta(Long idDispositivo, AlertaDTO alerta) {
+//        System.out.println("Buscando "+idDispositivo);
         DispositivoEntity dispositivo = em.find(DispositivoEntity.class, idDispositivo);
         alerta.setFecha(new Date());
         AlertaEntity a = alerta.toEntity();
-        System.out.println("alerta Entity: "+a);
+//        System.out.println("alerta Entity: "+a);
+//        System.out.println("dispositivo Entity: "+dispositivo);
         dispositivo.agregarAlerta(a);
         try{
             userTran.begin();

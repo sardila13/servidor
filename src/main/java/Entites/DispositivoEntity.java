@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -29,7 +30,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class DispositivoEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="dispositivo_seq_gen")
+    @SequenceGenerator(name="dispositivo_seq_gen", sequenceName="DISPOSITIVO_SEQ")
     private Long id;
     
     @OneToOne(mappedBy = "dispositivo", cascade = CascadeType.ALL, orphanRemoval = true)

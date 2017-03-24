@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -27,7 +28,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ConfiguracionEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="configuracion_seq_gen")
+    @SequenceGenerator(name="configuracion_seq_gen", sequenceName="CONFIGURACION_SEQ")
     private Long id;
     
 //    @OneToOne(mappedBy = "configuracion", cascade = CascadeType.ALL)

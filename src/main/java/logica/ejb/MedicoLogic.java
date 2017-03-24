@@ -30,7 +30,7 @@ public class MedicoLogic implements IMedicoLogic{
     private PacienteLogic pacienteLogic = new PacienteLogic();
     private DispositivoLogic dispositivoLogic = new DispositivoLogic();
     
-    @PersistenceContext(unitName = "Persistence", type = PersistenceContextType.TRANSACTION)
+    @PersistenceContext(unitName = "Oracle", type = PersistenceContextType.TRANSACTION)
     private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
     @Resource

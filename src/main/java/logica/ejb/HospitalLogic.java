@@ -33,7 +33,7 @@ import logica.interfaces.IHospital;
 @Singleton
 public class HospitalLogic implements IHospital
 {
-    @PersistenceContext(unitName = "Persistence" , type = PersistenceContextType.TRANSACTION)
+    @PersistenceContext(unitName = "Oracle" , type = PersistenceContextType.TRANSACTION)
     private EntityManager em;
     
     @Resource

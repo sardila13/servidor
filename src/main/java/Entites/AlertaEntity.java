@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import logica.ejb.DispositivoLogic;
@@ -27,7 +28,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class AlertaEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="alerta_seq_gen")
+    @SequenceGenerator(name="alerta_seq_gen", sequenceName="ALERTA_SEQ")
     private Long id;
     
     private Integer esEmergencia;

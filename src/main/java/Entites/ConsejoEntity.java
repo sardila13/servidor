@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,7 +24,8 @@ import javax.persistence.TemporalType;
 public class ConsejoEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="consejo_seq_gen")
+    @SequenceGenerator(name="consejo_seq_gen", sequenceName="CONSEJO_SEQ")
     private Long id;
     
     private String consejo;

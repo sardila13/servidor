@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -23,7 +24,9 @@ public class MedicoEntity implements Serializable
 {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="medico_seq_gen")
+    @SequenceGenerator(name="medico_seq_gen", sequenceName="MEDICO_SEQ")
     private Long id;
     
     @ManyToMany

@@ -17,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -28,7 +29,8 @@ public class HospitalEntity implements Serializable
 {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="hospital_seq_gen")
+    @SequenceGenerator(name="hospital_seq_gen", sequenceName="HOSPITAL_SEQ")
     private Long id;
     
     @PodamExclude

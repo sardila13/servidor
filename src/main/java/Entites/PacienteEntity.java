@@ -22,6 +22,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import logica.ejb.DispositivoLogic;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -36,7 +37,8 @@ public class PacienteEntity implements Serializable
 //    DispositivoLogic dispositivoLogic;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="paciente_seq_gen")
+    @SequenceGenerator(name="paciente_seq_gen", sequenceName="PACIENTE_SEQ")
     private Long id;
     
     private String nombre;

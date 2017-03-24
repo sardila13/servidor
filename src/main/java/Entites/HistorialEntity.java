@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -28,7 +29,8 @@ public class HistorialEntity implements Serializable
 {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="historial_seq_gen")
+    @SequenceGenerator(name="historial_seq_gen", sequenceName="HISTORIAL_SEQ")
     private Long id;
     
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
