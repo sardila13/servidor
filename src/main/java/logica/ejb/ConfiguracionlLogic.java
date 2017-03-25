@@ -5,23 +5,20 @@
 */
 package logica.ejb;
 
+import Entites.ConfiguracionEntity;
 import Entites.HospitalEntity;
-import Persitence.PersistenceManager;
 import dto.AlertaDTO;
+import dto.ConfiguracionDTO;
 import dto.HospitalDTO;
 import dto.PacienteDTO;
 import java.util.List;
-import java.util.logging.Level;
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.ejb.Stateless;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import javax.transaction.UserTransaction;
-import javax.ws.rs.core.Response;
 import logica.interfaces.IHospital;
 
 
@@ -31,7 +28,7 @@ import logica.interfaces.IHospital;
  */
 //@Stateless
 @Singleton
-public class HospitalLogic implements IHospital
+public class ConfiguracionlLogic implements IHospital
 {
     @PersistenceContext(unitName = "Oracle final" , type = PersistenceContextType.TRANSACTION)
     private EntityManager em;
@@ -42,7 +39,7 @@ public class HospitalLogic implements IHospital
     //= PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     //
     
-    public HospitalLogic()
+    public ConfiguracionlLogic()
     {
     }
     
@@ -59,15 +56,10 @@ public class HospitalLogic implements IHospital
 //    }
     
     
-    public void notificarEmergencia(AlertaDTO alerta)
-    {
-        System.out.println("EMERGENCIA "+alerta.toString());
-    }
-    
-    public void crear(HospitalDTO hospitalDTO)
+    public void crear(ConfiguracionDTO hospitalDTO)
     {
 //        hospitalDTO.setId(0L);
-        HospitalEntity he =hospitalDTO.toEntity();
+        ConfiguracionEntity he =hospitalDTO.toEntity();
         try {
             userTran.begin();
             em.persist(he);

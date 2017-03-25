@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Entites;
 
 import dto.ConfiguracionDTO;
@@ -30,15 +30,18 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class DispositivoEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="dispositivo_seq_gen")
-    @SequenceGenerator(name="dispositivo_seq_gen", sequenceName="DISPOSITIVO_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="dispositivo_seq_gen")
+    @SequenceGenerator(name="dispositivo_seq_gen", sequenceName="DISPOSITIVO_SEQU")
+    
+    
+    
     private Long id;
     
     @OneToOne(mappedBy = "dispositivo", cascade = CascadeType.ALL, orphanRemoval = true)
     @PodamExclude
     private PacienteEntity paciente;
     
-    @OneToMany(/*mappedBy = "dispositivo",*/ cascade = CascadeType.ALL, orphanRemoval = true) 
+    @OneToMany(/*mappedBy = "dispositivo",*/ cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AlertaEntity> alertas;
     
     @ManyToOne
@@ -46,8 +49,9 @@ public class DispositivoEntity implements Serializable
     private HospitalEntity hospital;
     
     @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+    @PodamExclude
     private ConfiguracionEntity configuracion;
-
+    
     public DispositivoEntity()
     {
         
@@ -59,48 +63,48 @@ public class DispositivoEntity implements Serializable
         this.hospital = hospital;
         this.configuracion = configuracion;
     }
-
+    
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public PacienteEntity getPaciente() {
         return paciente;
     }
-
+    
     public void setPaciente(PacienteEntity paciente) {
         this.paciente = paciente;
     }
-
+    
     public List<AlertaEntity> getAlertas() {
         return alertas;
     }
-
+    
     public void setAlertas(List<AlertaEntity> alertas) {
         this.alertas = alertas;
     }
-
+    
     public HospitalEntity getHospital() {
         return hospital;
     }
-
+    
     public void setHospital(HospitalEntity hospital) {
         this.hospital = hospital;
     }
-
+    
     public ConfiguracionEntity getConfiguracion() {
         return configuracion;
     }
-
+    
     public void setConfiguracion(ConfiguracionEntity configuracion) {
         this.configuracion = configuracion;
     }
-
-    public DispositivoDTO toDTO() 
+    
+    public DispositivoDTO toDTO()
     {
         PacienteDTO pPaciente = null;
         if(paciente != null){
@@ -118,12 +122,12 @@ public class DispositivoEntity implements Serializable
         d.setId(id);
         return d;
     }
-
+    
     @Override
     public String toString() {
         return "DispositivoEntity{" + "id=" + id + ", paciente=" + paciente.getId() + ", alertas=" + alertas.size() + ", hospital=" + hospital.getId() + ", configuracion=" + configuracion.getConfiguracion() + '}';
     }
-
+    
     public void agregarAlerta(AlertaEntity alerta) {
         alertas.add(alerta);
     }

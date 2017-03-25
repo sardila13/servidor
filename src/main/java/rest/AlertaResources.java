@@ -1,6 +1,5 @@
 package rest;
 
-import Entites.PacienteEntity;
 import dto.AlertaDTO;
 import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
@@ -16,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import logica.ejb.ConfiguracionlLogic;
 import logica.ejb.HospitalLogic;
 import logica.ejb.MedicoLogic;
 import logica.ejb.PacienteLogic;
@@ -45,6 +45,10 @@ public class AlertaResources
     
     @Inject
     private IDispositivo dispositivologic;
+    
+    @Inject
+    private ConfiguracionlLogic configuracionlogic;
+    
     //Requerimiento 1 Recibe info de los sensores...
     
 //    @PostConstruct
@@ -94,11 +98,17 @@ public class AlertaResources
         p.setId(1L);
         PacienteDTO e = pacienteLogic.crearPaciente(p);
        
+        
         ConfiguracionDTO config = new ConfiguracionDTO("config ");
         config.setId(1L);
         
+        configuracionlogic.crear(config);
+        
+        
         DispositivoDTO dispositivo = new DispositivoDTO( e, p.getHospital(), config);
 //        config.setDispositivo(dispositivo);
+
+
         dispositivo.setConfiguration(config);
         dispositivo.setId(1L);
         System.out.println("Paciente en dispositivo" + dispositivo.getPaciente().getId());

@@ -46,7 +46,7 @@ public class PersistenceManager {
     }
  
     protected void createEntityManagerFactory() {
-        this.emf = Persistence.createEntityManagerFactory("Oracle", System.getProperties());
+        this.emf = Persistence.createEntityManagerFactory("Oracle final", System.getProperties());
         if (DEBUG) {
             System.out.println("Persistence started at " + new java.util.Date());
         }

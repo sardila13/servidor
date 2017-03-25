@@ -5,20 +5,15 @@
  */
 package Entites;
 import dto.AlertaDTO;
-import dto.DispositivoDTO;
 import java.io.Serializable;
 import java.util.Date;
-import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import logica.ejb.DispositivoLogic;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -28,8 +23,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class AlertaEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="alerta_seq_gen")
-    @SequenceGenerator(name="alerta_seq_gen", sequenceName="ALERTA_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="alerta_seq_gen")
+    @SequenceGenerator(name="alerta_seq_gen", sequenceName="ALERTA_SEQU")
     private Long id;
     
     private Integer esEmergencia;

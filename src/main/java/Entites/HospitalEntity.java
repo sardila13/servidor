@@ -29,8 +29,8 @@ public class HospitalEntity implements Serializable
 {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="hospital_seq_gen")
-    @SequenceGenerator(name="hospital_seq_gen", sequenceName="HOSPITAL_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="hospital_seq_gen")
+    @SequenceGenerator(name="hospital_seq_gen", sequenceName="HOSPITAL_SEQU")
     private Long id;
     
     @PodamExclude

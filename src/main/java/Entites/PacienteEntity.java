@@ -12,7 +12,6 @@ import dto.PacienteDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import logica.ejb.DispositivoLogic;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -37,8 +35,8 @@ public class PacienteEntity implements Serializable
 //    DispositivoLogic dispositivoLogic;
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="paciente_seq_gen")
-    @SequenceGenerator(name="paciente_seq_gen", sequenceName="PACIENTE_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="paciente_seq_gen")
+    @SequenceGenerator(name="paciente_seq_gen", sequenceName="PACIENTE_SEQU")
     private Long id;
     
     private String nombre;

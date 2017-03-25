@@ -37,7 +37,7 @@ public class DispositivoLogic implements IDispositivo {
     
     //private DispositivoMock persistence;
     
-    @PersistenceContext(unitName = "Oracle", type = PersistenceContextType.TRANSACTION)
+    @PersistenceContext(unitName = "Oracle final", type = PersistenceContextType.TRANSACTION)
     private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
     @Resource

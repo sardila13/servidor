@@ -40,7 +40,7 @@ import logica.interfaces.IPaciente;
 @Singleton
 public class PacienteLogic implements IPaciente {
     
-    @PersistenceContext(unitName = "Oracle", type = PersistenceContextType.TRANSACTION)
+    @PersistenceContext(unitName = "Oracle final", type = PersistenceContextType.TRANSACTION)
     private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     
     @Resource

@@ -24,7 +24,7 @@ public class AlertaLogic implements IAlertaLogic
     @Inject
     private HospitalLogic hospitalLogic;
     
-    @PersistenceContext(unitName = "Oracle")
+    @PersistenceContext(unitName = "Oracle final")
     protected EntityManager em;
     
     @Resource

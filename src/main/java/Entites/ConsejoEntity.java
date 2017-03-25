@@ -24,8 +24,8 @@ import javax.persistence.TemporalType;
 public class ConsejoEntity implements Serializable
 {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="consejo_seq_gen")
-    @SequenceGenerator(name="consejo_seq_gen", sequenceName="CONSEJO_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="consejo_seq_gen")
+    @SequenceGenerator(name="consejo_seq_gen", sequenceName="CONSEJO_SEQU")
     private Long id;
     
     private String consejo;
