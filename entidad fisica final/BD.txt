@@ -1,5 +1,14 @@
-???Login en Oracle: ISIS2304B301710
-Contraseña : Gaffs0gal24
+Sneider - Drop and Create
+ISIS2304B301710
+Gaffs0gal24
+
+Sebas (ivan) - Don't drop
+ISIS2304A071720
+cRaneUpO94
+
+Brandon (ana) - Don't
+ISIS2304B061710
+ovEN31kudO
 
 
 url= jdbc:oracle:thin:@fn3.oracle.virtual.uniandes.edu.co\:1521\:prod
