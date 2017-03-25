@@ -49,7 +49,7 @@ public class DispositivoEntity implements Serializable
     private HospitalEntity hospital;
     
     @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
-    @PodamExclude
+//    @PodamExclude
     private ConfiguracionEntity configuracion;
     
     public DispositivoEntity()

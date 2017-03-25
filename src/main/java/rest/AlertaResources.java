@@ -102,7 +102,7 @@ public class AlertaResources
         ConfiguracionDTO config = new ConfiguracionDTO("config ");
         config.setId(1L);
         
-        configuracionlogic.crear(config);
+//        configuracionlogic.crear(config);
         
         
         DispositivoDTO dispositivo = new DispositivoDTO( e, p.getHospital(), config);
