@@ -26,7 +26,7 @@ public class AlertaDTO
     private Integer nivelEstres;
 //    private DispositivoDTO dispositivo;
     private Integer tipo;
-    private Long[] ubicacion;
+    private Double[] ubicacion;
     private Date fecha;
     
     @Inject
@@ -36,7 +36,7 @@ public class AlertaDTO
     {
     }
 
-    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres, /*DispositivoDTO IdDispositivo,*/ Integer tipo, Long[] ubicacion)
+    public AlertaDTO(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres, /*DispositivoDTO IdDispositivo,*/ Integer tipo, Double[] ubicacion)
     {
         this.esEmergencia = esEmergencia;
         this.presionSanguinea = presionSanguinea;
@@ -120,12 +120,12 @@ public class AlertaDTO
         this.tipo = tipo;
     }
 
-    public Long[] getUbicacion()
+    public Double[] getUbicacion()
     {
         return ubicacion;
     }
 
-    public void setUbicacion(Long[] ubicacion)
+    public void setUbicacion(Double[] ubicacion)
     {
         this.ubicacion = ubicacion;
     }

@@ -80,9 +80,9 @@ public class AlertaResources
         presion[0] = 60;
         presion[1] = 80;
         
-        Long[] ubicacion = new Long[2];
-        ubicacion[0] = 60L;
-        ubicacion[1] = 80L;
+        Double[] ubicacion = new Double[2];
+        ubicacion[0] = 60.0;
+        ubicacion[1] = 80.0;
         
         Integer frecuencia = 85;
         Integer estres = 65;

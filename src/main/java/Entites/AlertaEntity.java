@@ -45,7 +45,7 @@ public class AlertaEntity implements Serializable
     
     private Integer tipo;
     
-    private Long[] ubicacion;
+    private Double[] ubicacion;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -59,7 +59,7 @@ public class AlertaEntity implements Serializable
         
     }
 
-    public AlertaEntity(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres,/* DispositivoEntity dispositivo,*/ Integer tipo, Long[] ubicacion, Date fecha) {
+    public AlertaEntity(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres,/* DispositivoEntity dispositivo,*/ Integer tipo, Double[] ubicacion, Date fecha) {
         this.esEmergencia = esEmergencia;
         this.presionSanguinea = presionSanguinea;
         this.frecuenciaCardica = frecuenciaCardica;
@@ -128,11 +128,11 @@ public class AlertaEntity implements Serializable
         this.tipo = tipo;
     }
 
-    public Long[] getUbicacion() {
+    public Double[] getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Long[] ubicacion) {
+    public void setUbicacion(Double[] ubicacion) {
         this.ubicacion = ubicacion;
     }
 
