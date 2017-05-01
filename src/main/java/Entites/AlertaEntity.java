@@ -31,7 +31,7 @@ public class AlertaEntity implements Serializable
     
     private Integer[] presionSanguinea;
     
-    private Integer frecuenciaCardica;
+    private Integer frecuenciaCardiaca;
     
     private Integer nivelEstres;
     
@@ -59,10 +59,10 @@ public class AlertaEntity implements Serializable
         
     }
 
-    public AlertaEntity(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardica, Integer nivelEstres,/* DispositivoEntity dispositivo,*/ Integer tipo, Double[] ubicacion, Date fecha) {
+    public AlertaEntity(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres,/* DispositivoEntity dispositivo,*/ Integer tipo, Double[] ubicacion, Date fecha) {
         this.esEmergencia = esEmergencia;
         this.presionSanguinea = presionSanguinea;
-        this.frecuenciaCardica = frecuenciaCardica;
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.nivelEstres = nivelEstres;
 //        this.dispositivo = dispositivo;
         this.tipo = tipo;
@@ -96,12 +96,12 @@ public class AlertaEntity implements Serializable
         this.presionSanguinea = presionSanguinea;
     }
 
-    public Integer getFrecuenciaCardica() {
-        return frecuenciaCardica;
+    public Integer getFrecuenciaCardiaca() {
+        return frecuenciaCardiaca;
     }
 
-    public void setFrecuenciaCardica(Integer frecuenciaCardica) {
-        this.frecuenciaCardica = frecuenciaCardica;
+    public void setFrecuenciaCardiaca(Integer frecuenciaCardiaca) {
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
     }
 
     public Integer getNivelEstres() {
@@ -150,12 +150,12 @@ public class AlertaEntity implements Serializable
 //        if(dispositivo != null){
 //            pDispositivo = dispositivo.toDTO();
 //        }
-        return new AlertaDTO(getEsEmergencia(), getPresionSanguinea(), frecuenciaCardica, nivelEstres, /*pDispositivo,*/ tipo, ubicacion);
+        return new AlertaDTO(getEsEmergencia(), getPresionSanguinea(), frecuenciaCardiaca, nivelEstres, /*pDispositivo,*/ tipo, ubicacion);
     }
 
     @Override
     public String toString() {
-        return "AlertaEntity{" + "id=" + id + ", esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardica=" + frecuenciaCardica + ", nivelEstres=" + nivelEstres + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
+        return "AlertaEntity{" + "id=" + id + ", esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardiaca=" + frecuenciaCardiaca + ", nivelEstres=" + nivelEstres + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
     }
 
 

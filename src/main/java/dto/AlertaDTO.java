@@ -80,14 +80,14 @@ public class AlertaDTO
         this.presionSanguinea = presionSanguinea;
     }
 
-    public Integer getFrecuenciaCardica()
+    public Integer getFrecuenciaCardiaca()
     {
         return frecuenciaCardiaca;
     }
 
-    public void setFrecuenciaCardica(Integer frecuenciaCardica)
+    public void setFrecuenciaCardiaca(Integer frecuenciaCardiaca)
     {
-        this.frecuenciaCardiaca = frecuenciaCardica;
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
     }
 
     public Integer getNivelEstres()

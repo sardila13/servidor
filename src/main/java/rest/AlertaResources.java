@@ -116,6 +116,8 @@ public class AlertaResources
         
         AlertaDTO a = new AlertaDTO(0, presion,frecuencia, estres, /*dispositivo ,*/ AlertaDTO.AMARILLO, ubicacion);
         
+        System.out.println(a);
+        
         return a;
     }
     
