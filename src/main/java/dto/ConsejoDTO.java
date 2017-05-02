@@ -49,7 +49,7 @@ public class ConsejoDTO {
 
     public ConsejoEntity toEntity() 
     {
-        return new ConsejoEntity(consejo, fecha);
+        return new ConsejoEntity.ConsejoBuilder(consejo).fecha(fecha).build();
     }
     
     

@@ -43,11 +43,11 @@ public class HospitalEntity implements Serializable
     
     private String nombre;
     
-    public HospitalEntity(String nombre) 
+    private HospitalEntity(HospitalBuilder builder) 
     {
-        this.nombre = nombre;
-        dispositivos = new ArrayList<>();
-        pacientes = new ArrayList<>();
+        this.nombre = builder.nombre;
+        dispositivos = builder.dispositivos;
+        pacientes = builder.pacientes;
     }
     
     public HospitalEntity()
@@ -126,6 +126,33 @@ public class HospitalEntity implements Serializable
         pacientes.add(toEntity);
     }
     
+    
+    public static class HospitalBuilder{
+        private List<DispositivoEntity> dispositivos;
+    
+        private List<PacienteEntity> pacientes;
+    
+        private String nombre;
+        
+        public HospitalBuilder(String nombre) 
+        {
+            this.nombre = nombre;
+        }
+        
+        public HospitalBuilder dispositivos(ArrayList<DispositivoEntity> dispositivos){
+            this.dispositivos = dispositivos;
+            return this;
+        }
+        
+        public HospitalBuilder pacientes(ArrayList<PacienteEntity> pacientes){
+            this.pacientes = pacientes;
+            return this;
+        }
+        
+        public HospitalEntity build(){
+            return new HospitalEntity(this);
+        }
+    }
     
     
 }

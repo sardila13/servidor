@@ -62,7 +62,7 @@ public class MedicoDTO
 
     public MedicoEntity toEntity() 
     {
-        MedicoEntity m = new MedicoEntity(nombre, especialista);
+        MedicoEntity m = new MedicoEntity.MedicoBuilder(nombre).especialista(especialista).build();
         m.setId(id);
         return m;
     }

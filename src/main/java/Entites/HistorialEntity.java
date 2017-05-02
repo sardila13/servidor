@@ -44,11 +44,11 @@ public class HistorialEntity implements Serializable
     
     private List<String> examenes;
 
-    public HistorialEntity(List<AlertaEntity> alertas, PacienteEntity paciente, List<String> tratamientos, List<String> examenes) {
-        this.alertas = alertas;
-        this.paciente = paciente;
-        this.tratamientos = tratamientos;
-        this.examenes = examenes;
+    private HistorialEntity(HistorialBuilder builder) {
+        this.alertas = builder.alertas;
+        this.paciente = builder.paciente;
+        this.tratamientos = builder.tratamientos;
+        this.examenes = builder.examenes;
     }
 
     public HistorialEntity()
@@ -105,6 +105,42 @@ public class HistorialEntity implements Serializable
         return new HistorialDTO(p);
     }
  
+    public static class HistorialBuilder{
+        
+        private List<AlertaEntity> alertas;
+    
+        private PacienteEntity paciente;
+
+        private List<String> tratamientos;
+
+        private List<String> examenes;
+        
+        public HistorialBuilder(PacienteEntity paciente) {
+            this.alertas = alertas;
+            this.paciente = paciente;
+            this.tratamientos = tratamientos;
+            this.examenes = examenes;
+        }
+        
+        public HistorialBuilder alertas(List<AlertaEntity> alertas){
+            this.alertas = alertas;
+            return this;
+        }
+        
+        public HistorialBuilder tratamientos(List<String> tratamientos){
+            this.tratamientos = tratamientos;
+            return this;
+        }
+        
+        public HistorialBuilder examenes (List<String> examenes){
+            this.examenes = this.examenes;
+            return this;
+        }
+        
+        public HistorialEntity build(){
+            return new HistorialEntity(this);
+        }
+    }
     
     
 }

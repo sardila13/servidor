@@ -148,11 +148,9 @@ public class AlertaDTO
 
     public AlertaEntity toEntity() 
     {        
-//        DispositivoEntity dis = null;
-//        if(dispositivo != null){
-//            dis = dispositivo.toEntity();
-//        }
-        return new AlertaEntity(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres,/*dis,*/ tipo, ubicacion, fecha);
+        return new
+            AlertaEntity.AlertaBuilder(esEmergencia, presionSanguinea, frecuenciaCardiaca, nivelEstres)
+                .tipo(tipo).ubicacion(ubicacion).fecha(fecha).build();
     }
     
     

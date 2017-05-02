@@ -223,7 +223,7 @@ public class PacienteDTO {
     
     public PacienteEntity toEntity() 
     {
-         HospitalEntity h =null;
+        HospitalEntity h =null;
         if(hospital!=null)
         {
             h=hospital.toEntity();
@@ -238,11 +238,7 @@ public class PacienteDTO {
         {
             d=dispositivo.toEntity();
         }
-        
-        PacienteEntity ent = new PacienteEntity(nombre, edad, d, medicosEntities(), h,his , alertasEntities(), consejosEntities());
-//        ent.setId(id);
-        
-        return ent;
+        return new PacienteEntity.PacienteBuilder(nombre, edad).medicos(medicosEntities()).hospital(h).historial(his).alertas(alertasEntities()).consejos(consejosEntities()).build();
     }
 
     

@@ -114,7 +114,7 @@ public class HistorialDTO
         if(paciente != null){
             p  =paciente.toEntity();
         }
-        return new HistorialEntity(alertasEntities(), p, tratamientos, examenes);
+        return new HistorialEntity.HistorialBuilder(p).alertas(alertasEntities()).examenes(examenes).tratamientos(tratamientos).build();
     }
     
     

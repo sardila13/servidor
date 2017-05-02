@@ -57,11 +57,11 @@ public class DispositivoEntity implements Serializable
         
     }
     
-    public DispositivoEntity( PacienteEntity paciente, List<AlertaEntity> alertas, HospitalEntity hospital, ConfiguracionEntity configuracion) {
-        this.paciente = paciente;
-        this.alertas = alertas;
-        this.hospital = hospital;
-        this.configuracion = configuracion;
+    private DispositivoEntity(DispositivoBuilder builder) {
+        this.paciente = builder.paciente;
+        this.alertas = builder.alertas;
+        this.hospital = builder.hospital;
+        this.configuracion = builder.configuracion;
     }
     
     public Long getId() {
@@ -130,6 +130,40 @@ public class DispositivoEntity implements Serializable
     
     public void agregarAlerta(AlertaEntity alerta) {
         alertas.add(alerta);
+    }
+    
+    public static class DispositivoBuilder{
+   
+        private PacienteEntity paciente;
+    
+        private List<AlertaEntity> alertas;
+
+        private HospitalEntity hospital;
+
+        private ConfiguracionEntity configuracion;
+        
+        public DispositivoBuilder( PacienteEntity paciente) {
+            this.paciente = paciente;
+        }
+        
+        public DispositivoBuilder alertas(List<AlertaEntity> alertas){
+            this.alertas = alertas;
+            return this;
+        }
+        
+        public DispositivoBuilder hospital(HospitalEntity hospital){
+            this.hospital = hospital;
+            return this;
+        }
+        
+        public DispositivoBuilder configuracion(ConfiguracionEntity configuracion){
+            this.configuracion = configuracion;
+            return this;
+        }
+        
+        public DispositivoEntity build(){
+            return new DispositivoEntity(this);
+        }
     }
     
     

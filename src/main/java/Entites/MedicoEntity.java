@@ -7,6 +7,7 @@ package Entites;
 
 import dto.MedicoDTO;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,9 +42,10 @@ public class MedicoEntity implements Serializable
         
     }
     
-    public MedicoEntity(String nombre, int especialista) {
-        this.nombre = nombre;
-        this.especialista = especialista;
+    private MedicoEntity(MedicoBuilder builder) {
+        this.nombre = builder.nombre;
+        this.especialista = builder.especialista;
+        this.pacientes = builder.pacientes;
     }
 
     public Long getId() {
@@ -77,6 +79,30 @@ public class MedicoEntity implements Serializable
         return m;
     }
     
+    public static class MedicoBuilder{
+        private List<PacienteEntity> pacientes;
     
+        private String nombre;
+
+        private int especialista;
+        
+        public MedicoBuilder(String nombre) {
+            this.nombre = nombre;
+        }   
+        
+        public MedicoBuilder especialista(int especialista){
+            this.especialista = especialista;
+            return this;
+        }
+        
+        public MedicoBuilder pacientes(ArrayList<PacienteEntity> pacientes){
+            this.pacientes = pacientes;
+            return this;
+        }
+        
+        public MedicoEntity build(){
+            return new MedicoEntity(this);
+        }
+    }
     
 }

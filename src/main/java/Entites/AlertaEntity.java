@@ -58,16 +58,15 @@ public class AlertaEntity implements Serializable
     {
         
     }
-
-    public AlertaEntity(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres,/* DispositivoEntity dispositivo,*/ Integer tipo, Double[] ubicacion, Date fecha) {
-        this.esEmergencia = esEmergencia;
-        this.presionSanguinea = presionSanguinea;
-        this.frecuenciaCardiaca = frecuenciaCardiaca;
-        this.nivelEstres = nivelEstres;
-//        this.dispositivo = dispositivo;
-        this.tipo = tipo;
-        this.ubicacion = ubicacion;
-        this.fecha = fecha;
+    
+    private AlertaEntity(AlertaBuilder builder){
+        this.esEmergencia = builder.esEmergencia;
+        this.presionSanguinea = builder.presionSanguinea;
+        this.frecuenciaCardiaca = builder.frecuenciaCardiaca;
+        this.nivelEstres = builder.nivelEstres;
+        this.tipo = builder.tipo;
+        this.ubicacion = builder.ubicacion;
+        this.fecha = builder.fecha;
     }
     
     
@@ -158,7 +157,52 @@ public class AlertaEntity implements Serializable
         return "AlertaEntity{" + "id=" + id + ", esEmergencia=" + esEmergencia + ", presionSanguinea=" + presionSanguinea + ", frecuenciaCardiaca=" + frecuenciaCardiaca + ", nivelEstres=" + nivelEstres + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", fecha=" + fecha + '}';
     }
 
+    public static class AlertaBuilder{
+        private Long id;
+    
+        private Integer esEmergencia;
 
+        private Integer[] presionSanguinea;
+
+        private Integer frecuenciaCardiaca;
+
+        private Integer nivelEstres;
+
+        private Integer tipo;
+
+        private Double[] ubicacion;
+        
+        private Date fecha;
+
+    
+        public AlertaBuilder(Integer esEmergencia, Integer[] presionSanguinea, Integer frecuenciaCardiaca, Integer nivelEstres) {
+            this.esEmergencia = esEmergencia;
+            this.presionSanguinea = presionSanguinea;
+            this.frecuenciaCardiaca = frecuenciaCardiaca;
+            this.nivelEstres = nivelEstres;
+    
+        }
+        
+        public AlertaBuilder tipo(Integer tipo){
+            this.tipo = tipo;
+            return this;
+        }
+        
+        public AlertaBuilder ubicacion(Double ubicacion[]){
+            this.ubicacion = ubicacion;
+            return this;
+        }
+        
+        public AlertaBuilder fecha(Date fecha){
+            this.fecha = fecha;
+            return this;
+        }
+        
+        public AlertaEntity build(){
+            return new AlertaEntity(this);
+        }
+    
+    }
     
     
 }

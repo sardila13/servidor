@@ -69,15 +69,15 @@ public class PacienteEntity implements Serializable
         
     }
     
-    public PacienteEntity(String nombre, int edad, DispositivoEntity dispositivo, List<MedicoEntity> medicos, HospitalEntity hospital, HistorialEntity historial, List<AlertaEntity> alertas, List<ConsejoEntity> consejos) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.dispositivo = dispositivo;
-        this.medicos = medicos;
-        this.hospital = hospital;
-        this.historial = historial;
-        this.alertas = alertas;
-        this.consejos = consejos;
+    private PacienteEntity(PacienteBuilder builder) {
+        this.nombre = builder.nombre;
+        this.edad = builder.edad;
+        this.dispositivo = builder.dispositivo;
+        this.medicos = builder.medicos;
+        this.hospital = builder.hospital;
+        this.historial = builder.historial;
+        this.alertas = builder.alertas;
+        this.consejos = builder.consejos;
     }
     
     public Long getId() {
@@ -192,6 +192,62 @@ public class PacienteEntity implements Serializable
         return new PacienteDTO(nombre, edad, hospital.toDTO());
     }
     
+    public static class PacienteBuilder{
+        private String nombre;
     
+        private int edad;
+
+        private DispositivoEntity dispositivo;
+
+        private List<MedicoEntity> medicos;
+
+        private HospitalEntity hospital;
+
+        private HistorialEntity historial;
+
+        private List<AlertaEntity> alertas;
+
+        private List<ConsejoEntity> consejos;
+        
+        public PacienteBuilder(String nombre, int edad){
+            this.nombre = nombre;
+            this.edad = edad;
+        }
+        
+        public PacienteBuilder dispositivo(DispositivoEntity dis){
+            this.dispositivo = dis;
+            return this;
+        }
+        
+        public PacienteBuilder medicos(List<MedicoEntity> medicos){
+            this.medicos = medicos;
+            return this;
+        }
+        
+        public PacienteBuilder hospital(HospitalEntity hospital){
+            this.hospital = hospital;
+            return this;
+        }
+        
+        public PacienteBuilder historial(HistorialEntity historial){
+            this.historial = historial;
+            return this;
+        }
+        
+        
+        public PacienteBuilder alertas(List<AlertaEntity> alertas){
+            this.alertas = alertas;
+            return this;
+        }
+        public PacienteBuilder consejos(List<ConsejoEntity> consejos){
+            this.consejos = consejos;
+            return this;
+        }
+        
+        public PacienteEntity build(){
+            return new PacienteEntity(this);
+        }
+        
+    }
     
 }

@@ -6,14 +6,17 @@
 package dto;
 
 import Entites.ConfiguracionEntity;
+import Entites.ConfiguracionEntity.ConfiguracionEvent;
 import Entites.HospitalEntity;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author s.ardila13
  */
-public class ConfiguracionDTO {
+public class ConfiguracionDTO implements Observer {
     
     private Long id;
     
@@ -74,12 +77,16 @@ public class ConfiguracionDTO {
     
     public ConfiguracionEntity toEntity()
     {
-        ConfiguracionEntity c = new ConfiguracionEntity(configuracion, fecha);
-        c.setId(id);
-//        if(dispositivo != null){
-//            c.setDispositivo(dispositivo.toEntity());
-//        }
-        return c;
+        return new
+            ConfiguracionEntity.ConfiguracionBuilder(configuracion).fecha(fecha).build();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg instanceof ConfiguracionEntity.ConfiguracionEvent){
+            this.configuracion = ((ConfiguracionEvent) arg).getConfiguracionNueva();
+            System.out.println("Se ha cambiado la configuración");
+        }
     }
     
 }

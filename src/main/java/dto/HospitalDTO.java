@@ -74,9 +74,7 @@ public class HospitalDTO
     
     public HospitalEntity toEntity()
     {
-        HospitalEntity h = new HospitalEntity(nombre);
-        h.setDispositivos(dispositivosEntities());
-        h.setPacientes(pacientesEntities());
+        HospitalEntity h = new HospitalEntity.HospitalBuilder(nombre).dispositivos(dispositivosEntities()).pacientes(pacientesEntities()).build();
         h.setId(id);
         return h;
     }

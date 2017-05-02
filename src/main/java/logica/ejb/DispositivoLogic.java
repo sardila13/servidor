@@ -6,6 +6,7 @@
 package logica.ejb;
 
 import Entites.AlertaEntity;
+import Entites.ConfiguracionEntity;
 import Entites.DispositivoEntity;
 import Entites.PacienteEntity;
 import Persitence.PersistenceManager;
@@ -16,6 +17,7 @@ import dto.PacienteDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Observer;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -96,6 +98,8 @@ public class DispositivoLogic implements IDispositivo {
     public ConfiguracionDTO setConfiguracion(ConfiguracionDTO confi, Long idDispositivo)
     {
         DispositivoDTO dispositivo = em.find(DispositivoDTO.class, idDispositivo);
+        ConfiguracionEntity configuracion = new ConfiguracionEntity.ConfiguracionBuilder(confi.getConfiguracion()).fecha(confi.getFecha()).build();
+        configuracion.getObservable().addObserver(confi);
         dispositivo.setConfiguration(confi);
         em.merge(dispositivo);
         return confi;

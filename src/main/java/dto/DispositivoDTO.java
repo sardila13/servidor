@@ -119,7 +119,7 @@ public class DispositivoDTO {
         {
             c=configuracion.toEntity();
         }
-        return new DispositivoEntity(p, alertasEntities(), h, c);
+        return new DispositivoEntity.DispositivoBuilder(p).alertas(alertasEntities()).hospital(h).configuracion(c).build();
     }
 
     @Override

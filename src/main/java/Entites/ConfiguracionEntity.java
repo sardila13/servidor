@@ -9,6 +9,7 @@ import dto.ConfiguracionDTO;
 import dto.DispositivoDTO;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Observable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,9 +44,9 @@ public class ConfiguracionEntity implements Serializable
         
     }
 
-    public ConfiguracionEntity(String configuracion, Date fecha) {
-        this.configuracion = configuracion;
-        this.fecha = fecha;
+    private ConfiguracionEntity(ConfiguracionBuilder builder) {
+        this.configuracion = builder.configuracion;
+        this.fecha = builder.fecha;
     }
     
     public Long getId() {
@@ -61,7 +62,14 @@ public class ConfiguracionEntity implements Serializable
     }
 
     public void setConfiguracion(String configuracion) {
+        
+        ConfiguracionEvent evento = new ConfiguracionEvent(this, this.configuracion, configuracion);
         this.configuracion = configuracion;
+        
+        synchronized(OBSERVABLE){
+            OBSERVABLE.setChanged();
+            OBSERVABLE.notifyObservers(evento);
+        }
     }
 
     public Date getFecha() {
@@ -99,6 +107,70 @@ public class ConfiguracionEntity implements Serializable
     
     
 
+    public static class ConfiguracionBuilder {
     
+        private String configuracion;
+    
+        private Date fecha;
+        
+        public ConfiguracionBuilder(String configuracion) {
+            this.configuracion = configuracion;
+        }
+
+        public ConfiguracionBuilder fecha(Date fecha){
+            this.fecha = fecha;
+            return this;
+        }
+        
+        public ConfiguracionEntity build(){
+            return new ConfiguracionEntity(this);
+        }
+        
+    }
+    
+    public class ConfiguracionEvent{
+            
+            private ConfiguracionEntity configuracion;
+            
+            private String configuracionAnterior;
+            
+            private String configuracionNueva;
+            
+            public ConfiguracionEvent(ConfiguracionEntity config, String anterior, String nueva){
+                this.configuracion = config;
+                this.configuracionAnterior = anterior;
+                this.configuracionNueva = nueva;
+            }
+
+            public ConfiguracionEntity getConfiguracion() {
+                return configuracion;
+            }
+
+            public String getConfiguracionAnterior() {
+                return configuracionAnterior;
+            }
+
+            public String getConfiguracionNueva() {
+                return configuracionNueva;
+            }
+            
+        }
+    
+    private final static ConfiguracionObservable OBSERVABLE;
+    
+    static{
+        OBSERVABLE = new ConfiguracionObservable();
+    }
+    
+    public static Observable getObservable(){
+        return OBSERVABLE;
+    }
+    
+    public static class ConfiguracionObservable extends Observable{
+        @Override
+        public synchronized void setChanged(){
+            super.setChanged();
+        }
+    }
     
 }

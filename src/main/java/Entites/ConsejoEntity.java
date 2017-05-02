@@ -39,9 +39,9 @@ public class ConsejoEntity implements Serializable
     public ConsejoEntity() {
     }
 
-    public ConsejoEntity(String consejo, Date fecha) {
-        this.consejo = consejo;
-        this.fecha = fecha;
+    private ConsejoEntity(ConsejoBuilder builder) {
+        this.consejo = builder.consejo;
+        this.fecha = builder.fecha;
     }
 
     public String getConsejo() {
@@ -68,5 +68,27 @@ public class ConsejoEntity implements Serializable
     public void setId(Long pId)
     {
         id = pId;
+    }
+    
+    public static class ConsejoBuilder{
+    
+        private String consejo;
+    
+        private Date fecha;
+
+        private PacienteEntity paciente;
+        
+        public ConsejoBuilder(String consejo) {
+            this.consejo = consejo;
+        }
+        
+        public ConsejoBuilder fecha(Date fecha){
+            this.fecha = fecha;
+            return this; 
+        }
+        
+        public ConsejoEntity build(){
+            return new ConsejoEntity(this);
+        }
     }
 }
