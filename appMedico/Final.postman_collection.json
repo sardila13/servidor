@@ -1,0 +1,71 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Final",
+		"_postman_id": "8c83b8e2-9c6f-b2d7-98c9-bc2448def518",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Enviar configuración",
+			"request": {
+				"url": "http://localhost:8080/servidorFinal/api/medico/configuracion/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"configuracion\": \"config\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Enviar Consejo",
+			"request": {
+				"url": "http://localhost:8080/servidorFinal/api/medico/consejo/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"consejo\": \"Consejo\",\n  \"fecha\": \"2017-05-01T17:15:50.312-05:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "1. Ejemplo (inicializar datos)",
+			"request": {
+				"url": "http://localhost:8080/servidorFinal/api/alertas/ejemplo",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"esEmergencia\": 0,\n  \"frecuenciaCardica\": 85,\n  \"nivelEstres\": 65,\n  \"presionSanguinea\": [\n    60,\n    80\n  ],\n  \"tipo\": 1,\n  \"ubicacion\": [\n    60,\n    80\n  ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
